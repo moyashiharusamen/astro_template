@@ -1,6 +1,0 @@
-@charset "utf-8";
-
-// ========== font-size ==========
-@function rem($px) {
-    @return ($px / 16px) * 1rem;
-}

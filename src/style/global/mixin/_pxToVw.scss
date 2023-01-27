@@ -1,0 +1,9 @@
+@charset "utf-8";
+@use "sass:math";
+
+
+// ========== px to vw ==========
+// 引数の px を vw に変換して返す
+@function pxToVw($px, $contentSize) {
+    @return math.div($px, $contentSize) * 100vw;
+}
