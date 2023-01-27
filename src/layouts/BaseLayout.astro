@@ -1,26 +1,26 @@
 ---
+import BaseHead from "../components/common/BaseHead.astro";
 import Header from "../components/common/Header.astro";
 import Footer from "../components/common/Footer.astro";
 export interface Props {
-    path: string;
+    path?: string;
     title: string;
     description: string;
     keywords: string;
 }
 
-const { title, description, keywords } = Astro.props;
+const { path, title, description, keywords } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="ja">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <title>{title}</title>
-        <meta name="keywords" content={keywords} />
-        <meta name="description" content={description} />
-        <meta name="format-detection" content="telephone=no" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <BaseHead
+            path={`${path}`}
+            title={`${title}`}
+            description={`${description}`}
+            keywords={`${keywords}`}
+        />
     </head>
     <body>
         <Header />
@@ -28,8 +28,7 @@ const { title, description, keywords } = Astro.props;
         <slot />
 
         <Footer />
-    </body>
-</html>
-<style is:global></style>
+    </body><style is:global></style>
 
-<script></script>
+    <script></script>
+</html>
