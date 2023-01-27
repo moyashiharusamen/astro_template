@@ -1,0 +1,12 @@
+@charset "utf-8";
+
+// ========== position ==========
+@mixin centering() {
+    width: 100%;
+    max-width: var.$content-size;
+    margin-right: auto;
+    margin-left: auto;
+    @include mp.pr(40px, (calc(40/var.$bp_l)) * 100vw, (calc(20/var.$bp_m)) * 100vw);
+    @include mp.pl(40px, (calc(40/var.$bp_l)) * 100vw, (calc(20/var.$bp_m)) * 100vw);
+    box-sizing: border-box;
+}

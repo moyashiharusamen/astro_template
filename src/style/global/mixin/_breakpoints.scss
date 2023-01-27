@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+
+// ========== responsive ==========
+$breakpoints: (
+    'sp': '(max-width: 768px)',
+    'pc': '(min-width: 769px)'
+) !default;
+
+@mixin mediaQuery($breakpoint: pc) {
+    @if $breakpoint == 'sp' {
+        @media screen and #{map-get($breakpoints, $breakpoint)} {
+            @content;
+        }
+    } @else {
+        @media print, screen and #{map-get($breakpoints, $breakpoint)} {
+            @content;
+        }
+    }
+}

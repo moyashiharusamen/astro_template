@@ -2,6 +2,7 @@
 import BaseHead from "../components/common/BaseHead.astro";
 import Header from "../components/common/Header.astro";
 import Footer from "../components/common/Footer.astro";
+
 export interface Props {
     path?: string;
     title: string;
@@ -28,7 +29,5 @@ const { path, title, description, keywords } = Astro.props;
         <slot />
 
         <Footer />
-    </body><style is:global></style>
-
-    <script></script>
+    </body>
 </html>
