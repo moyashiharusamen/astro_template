@@ -1,6 +1,6 @@
-export default class Hoge {
+export default class BaseLayout {
     constructor() {
-        const header = document.querySelector('header');
-        console.log(header);
+        const header = document.querySelector('body');
+        header.classList.add('BaseLayout');
     }
 }
