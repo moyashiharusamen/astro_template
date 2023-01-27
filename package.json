@@ -15,7 +15,7 @@
     "prettier:check": "yarn prettier:check:ts && yarn prettier:check:astro",
     "prettier:check:ts": "prettier --check 'src/**/*.ts'",
     "prettier:check:astro": "prettier --check 'src/**/*.astro'",
-    "build": "astro build",
+    "build": "astro check && tsc --noEmit && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
