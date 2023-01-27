@@ -2,7 +2,13 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-    build: {
-        assets: 'assets/style'
-    }
+    vite: {
+        build: {
+            rollupOptions: {
+                output: {
+                    assetFileNames: "assets/style/[name][extname]",
+                },
+            },
+        },
+    },
 });
