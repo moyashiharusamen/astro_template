@@ -21,5 +21,5 @@ module.exports = {
     // 改行コードの指定
     endOfLine: "lf",
     // 属性の改行
-    singleAttributePerLine: true,
+    singleAttributePerLine: false,
 };
