@@ -7,6 +7,12 @@
     "dev": "astro dev",
     "eslint": "eslint --ext .ts --ignore-path .gitignore .",
     "eslint:fix": "eslint --fix --ext .ts,.astro --ignore-path .gitignore .",
+    "prettier:write": "yarn prettier:write:ts && yarn prettier:write:astro",
+    "prettier:write:ts": "prettier --write 'src/**/*.ts'",
+    "prettier:write:astro": "prettier --write 'src/**/*.astro'",
+    "prettier:check": "yarn prettier:check:ts && yarn prettier:check:astro",
+    "prettier:check:ts": "prettier --check 'src/**/*.ts'",
+    "prettier:check:astro": "prettier --check 'src/**/*.astro'",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -18,6 +24,8 @@
     "@typescript-eslint/eslint-plugin": "^5.49.0",
     "@typescript-eslint/parser": "^5.49.0",
     "eslint": "^8.32.0",
-    "eslint-plugin-astro": "^0.23.0"
+    "eslint-plugin-astro": "^0.23.0",
+    "prettier": "^2.8.3",
+    "prettier-plugin-astro": "^0.8.0"
   }
 }
