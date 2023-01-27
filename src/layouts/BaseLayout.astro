@@ -12,9 +12,8 @@ export interface Props {
 
 const { title = SITE.title, description = SITE.description, ogImage = SITE.ogImage } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site.origin);
-const socialImageURL = new URL(ogImage ? ogImage : SITE.ogImage, Astro.site.origin).href;
-// console.log(socialImageURL)
+const canonicalURL = new URL(Astro.url.pathname, SITE.urlOrigin);
+const socialImageURL = new URL(ogImage ? ogImage : SITE.ogImage, SITE.urlOrigin).href;
 ---
 
 <!DOCTYPE html>
@@ -48,3 +47,4 @@ const socialImageURL = new URL(ogImage ? ogImage : SITE.ogImage, Astro.site.orig
         <Footer />
     </body>
 </html>
+
