@@ -13,12 +13,12 @@ export default defineConfig({
         },
     },
     integrations: [
-		compress({
-			css: true,
-			html: true,
-			img: false,
-			js: false,
-			svg: false,
-		}),
-	],
+        compress({
+            css: true,
+            html: true,
+            img: false,
+            js: false,
+            svg: false,
+        }),
+    ],
 });
