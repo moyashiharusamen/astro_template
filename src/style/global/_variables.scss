@@ -14,6 +14,10 @@
 
 
 // ========== contents size ==========
+$content-width: 0;
+$content-margin: 0;
+$content-margin-pc: 0;
+$content-size: $content-width + ($content-margin * 2);
 
 
 // ========== break point ==========

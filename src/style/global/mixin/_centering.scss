@@ -1,12 +1,20 @@
 @charset "utf-8";
 
+@use '../variables' as var;
+@use './mediaQuery' as mq;
+
 // ========== position ==========
 @mixin centering() {
     width: 100%;
     max-width: var.$content-size;
     margin-right: auto;
     margin-left: auto;
-    @include mp.pr(40px, (calc(40/var.$bp_l)) * 100vw, (calc(20/var.$bp_m)) * 100vw);
-    @include mp.pl(40px, (calc(40/var.$bp_l)) * 100vw, (calc(20/var.$bp_m)) * 100vw);
+    padding-right: var.$content-margin;
+    padding-left: var.$content-margin;
     box-sizing: border-box;
+
+    @include mq.mediaQuery() {
+        padding-right: var.$content-margin-pc;
+        padding-left: var.$content-margin-pc;
+    }
 }
