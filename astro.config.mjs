@@ -3,6 +3,9 @@ import compress from 'astro-compress';
 
 // https://astro.build/config
 export default defineConfig({
+    build: {
+        assets: 'assets/script',
+    },
     vite: {
         build: {
             rollupOptions: {
