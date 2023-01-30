@@ -1,10 +1,12 @@
 @charset "utf-8";
 
+@use '../variables' as var;
+
 
 // ========== responsive ==========
 $breakpoints: (
-    'sp': '(max-width: 768px)',
-    'pc': '(min-width: 769px)'
+    'op': '(max-width: 768px)',
+    'pc': '(min-width: 768px)'
 ) !default;
 
 @mixin mediaQuery($breakpoint: pc) {
