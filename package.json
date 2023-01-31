@@ -20,6 +20,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@acab/reset.css": "^0.5.3",
     "astro": "^2.0.1"
   },
   "devDependencies": {
