@@ -5,13 +5,15 @@
 
 // ========== px to vw ==========
 // 引数の px を vw に変換して返す
-@function pxToVw($px, $device) {
+@function pxToVw($px, $device: 'sp') {
     $contentSize: 0;
 
-    @if $device == 'pc' {
+    @if $device == 'sp' {
         $contentSize: v.$content-width;
-    } @else if $device == 'sp' {
-        $contentSize: v.$content-width-sp;
+    } @else if $device == 'pc' {
+        $contentSize: v.$content-width-pc;
+    } @else {
+        $contentSize: v.$content-width;
     }
 
     @return math.div($px, $contentSize) * 100vw;
