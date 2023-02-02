@@ -1,0 +1,87 @@
+---
+import '../style.scss';
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { SITE } from "@src/config";
+const { rootPath } = SITE;
+import { pagelist } from "./pagelist";
+---
+
+<BaseLayout title="ページリスト" description="ページリスト">
+    <main>
+        <!-- データで見る生理痛のはなし -->
+        <section>
+            <div>
+                <h2>ページリスト</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ページ</th>
+                            <th>URL</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {
+                            pagelist.map((item) => <tr><td>{item.pageTitle}</td><td><a href={`${item.url}`}>{item.url}</a></td></tr>)
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</BaseLayout>
+
+<style lang="scss">
+    @use '../../../style/global' as g;
+
+    table {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        border-collapse: collapse;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid #333;
+    }
+
+    thead {
+        font-size: 20px;
+
+        @include g.mediaQuery() {
+            font-size: 16px;
+        }
+    }
+
+    tbody {
+        font-size: 16px;
+
+        @include g.mediaQuery() {
+            font-size: 14px;
+        }
+    }
+
+    th,
+    td {
+        padding: 10px;
+    }
+
+    th {
+        background: g.$base-color;
+        color: #fff;
+    }
+
+    td {
+        text-align: center;
+    }
+
+    a {
+        color: blue;
+    }
+</style>
+
+<script>
+</script>

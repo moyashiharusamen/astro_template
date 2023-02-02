@@ -1,0 +1,16 @@
+@use '../../style/global' as g;
+
+section {
+    padding: 0 0 100px;
+}
+
+section > div {
+    // @include g.centering();
+}
+
+h2 {
+    margin: 120px 0 60px;
+    font-size: g.rem(32px);
+    color: g.$base-color;
+    text-align: center;
+}

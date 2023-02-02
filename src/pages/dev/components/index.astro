@@ -1,0 +1,24 @@
+---
+import '../style.scss';
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { SITE } from "@src/config";
+const { rootPath } = SITE;
+---
+
+<BaseLayout title="コンポーネントリスト" description="コンポーネントリスト">
+    <main>
+        <!-- データで見る生理痛のはなし -->
+        <section>
+            <div>
+                <h2>コンポーネントリスト</h2>
+            </div>
+        </section>
+    </main>
+</BaseLayout>
+
+<style lang="scss">
+    @use '../../../style/global' as g;
+</style>
+
+<script>
+</script>
