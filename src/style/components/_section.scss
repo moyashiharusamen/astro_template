@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+@use '../global' as g;
+
+.section {
+    @at-root {
+        // ---------- 基底要素 ----------
+        .section {
+            padding: g.rem(50px) 0;
+
+            @include g.mediaQuery() {
+                padding: g.rem(100px) 0;
+            }
+        }
+
+        // ---------- 基底要素のインナー要素 ----------
+        .section__inner {
+            @include g.centering();
+            @include g.resetMargin();
+        }
+    }
+}

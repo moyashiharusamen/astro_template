@@ -8,15 +8,15 @@ $base-color: #333;
 
 
 // ========== text ==========
-
+$base-text-color: #333;
 
 // ========== gradation ==========
 
 
 // ========== contents size ==========
-$content-width: 0;
-$content-margin: 0;
-$content-margin-pc: 0;
+$content-width: 1000px;
+$content-margin: 20px;
+$content-margin-pc: 30px;
 $content-size: $content-width + ($content-margin * 2);
 
 
