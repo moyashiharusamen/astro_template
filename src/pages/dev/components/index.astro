@@ -5,6 +5,7 @@ import Section from "@src/components/common/Section.astro";
 import Heading from '@src/components/parts/Heading.astro';
 import Text from '@src/components/parts/Text.astro';
 import MediaImage from '@src/components/parts/MediaImage.astro';
+import LinkButton from '@src/components/parts/LinkButton.astro';
 ---
 
 <BaseLayout title="コンポーネントリスト" description="コンポーネントリスト">
@@ -29,6 +30,12 @@ import MediaImage from '@src/components/parts/MediaImage.astro';
                 height="400"
                 lazy={true}
                 async={true}
+            />
+
+            <LinkButton
+                text="リンクボタン"
+                href="__dummy__"
+                blank={false}
             />
         </Section>
     </main>
