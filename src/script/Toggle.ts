@@ -21,16 +21,16 @@ export default class Toggle {
 
     /**
      * インスタンスを生成
-     * @param {HTMLElement|String} element 基底要素ノード、またはそれを探すための文字列
+     * @param {Object} element 基底要素ノード、またはそれを探すための文字列
      * @param {String} rootName 設定したい BEM ブロック名
      */
-    constructor(element: HTMLElement, rootName: string = Toggle.baseName) {
+    constructor(element: Object, rootName: string = Toggle.baseName) {
         const name = rootName;
 
         /**
          * @type {HTMLElement} 基底要素ノード
          */
-        const base = this.base = element;
+        const base = this.base = <HTMLElement>element;
 
         /**
          * @type {HTMLElement} トグルの開閉される本体要素

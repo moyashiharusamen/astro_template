@@ -27,15 +27,15 @@ export default class Modal {
 
     /**
      * インスタンスを生成
-     * @param {HTMLElement|String} element 基底要素ノード、またはそれを探すための文字列
+     * @param {Object} element 基底要素ノード、またはそれを探すための文字列
      */
-    constructor(element: HTMLElement) {
+    constructor(element: Object) {
         const baseName = Modal.baseName;
 
         /**
          * @type {HTMLElement} 基底要素ノード
          */
-        const base: HTMLElement = element;
+        const base = <HTMLElement>element;
 
         /**
          * @type {HTMLElement} HTML の body 要素
