@@ -11,26 +11,26 @@ export default class Modal {
     /**
      * @property {string} BEM ブロック名
      */
-    static baseName = 'modal';
+    static baseName: string = 'modal';
 
-    body:       HTMLBodyElement;
-    modalBody: HTMLElement;
-    button:     HTMLElement;
-    buttonText: HTMLElement;
-    focusableElement: NodeList;
+    body:                  HTMLBodyElement;
+    modalBody:             HTMLElement;
+    button:                HTMLElement;
+    buttonText:            HTMLElement;
+    focusableElement:      NodeList;
     firstFocusableElement: HTMLElement;
-    lastFocusableElement: HTMLElement;
-    modalOverlay: HTMLDivElement;
-    openClass: string;
-    uniquId:    string;
-    windowYPosition: number;
+    lastFocusableElement:  HTMLElement;
+    modalOverlay:          HTMLDivElement;
+    openClass:             string;
+    uniquId:               string;
+    windowYPosition:       number;
 
     /**
      * インスタンスを生成
      * @param {Object} element 基底要素ノード、またはそれを探すための文字列
      */
-    constructor(element: Object) {
-        const baseName = Modal.baseName;
+    constructor(element: Object, rootName: string = Modal.baseName) {
+        const baseName = rootName;
 
         /**
          * @type {HTMLElement} 基底要素ノード
