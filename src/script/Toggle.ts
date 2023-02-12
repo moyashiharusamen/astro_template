@@ -24,7 +24,7 @@ export default class Toggle {
      * @param {HTMLElement|String} element 基底要素ノード、またはそれを探すための文字列
      * @param {String} rootName 設定したい BEM ブロック名
      */
-    constructor(element: any, rootName: string = Toggle.baseName) {
+    constructor(element: HTMLElement, rootName: string = Toggle.baseName) {
         const name = rootName;
 
         /**
@@ -35,17 +35,17 @@ export default class Toggle {
         /**
          * @type {HTMLElement} トグルの開閉される本体要素
          */
-        this.body = base.querySelector(`.${name}__body`);
+        this.body = <HTMLElement>base.querySelector(`.${name}__body`);
 
         /**
          * @type {HTMLElement} トグルの開閉を制御するボタン要素
          */
-        this.button = base.querySelector(`.${name}__button`);
+        this.button = <HTMLElement>base.querySelector(`.${name}__button`);
 
         /**
          * @type {HTMLElement} ボタン内にあるマーク部分要素
          */
-        this.buttonMark = base.querySelector(`.${name}__button__mark`);
+        this.buttonMark = <HTMLElement>base.querySelector(`.${name}__button__mark`);
 
         /**
          * @type {String} ユニークな識別子
