@@ -7,6 +7,7 @@ import Text from '@src/components/parts/Text.astro';
 import MediaImage from '@src/components/parts/MediaImage.astro';
 import LinkButton from '@src/components/parts/LinkButton.astro';
 import Toggle from '@src/components/parts/Toggle.astro';
+import Modal from '@src/components/parts/Modal.astro';
 ---
 
 <BaseLayout title="コンポーネントリスト" description="コンポーネントリスト">
@@ -24,6 +25,8 @@ import Toggle from '@src/components/parts/Toggle.astro';
                     'テキストテキスト'
                 ]}
             />
+
+            <Modal />
 
             <Text
                 text={[

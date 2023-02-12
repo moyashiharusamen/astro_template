@@ -28,6 +28,10 @@ body {
     @include g.mediaQuery() {
         font-size: g.rem(16px);
     }
+
+    &.-modal-open {
+        overflow: hidden;
+    }
 }
 
 main {
