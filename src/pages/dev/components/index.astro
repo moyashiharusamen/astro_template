@@ -3,6 +3,8 @@ import '../style.scss';
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Section from "@src/components/common/Section.astro";
 import Heading from '@src/components/parts/Heading.astro';
+import Text from '@src/components/parts/Text.astro';
+import MediaImage from '@src/components/parts/MediaImage.astro';
 ---
 
 <BaseLayout title="コンポーネントリスト" description="コンポーネントリスト">
@@ -11,6 +13,22 @@ import Heading from '@src/components/parts/Heading.astro';
             <Heading
                 level={1}
                 text="コンポーネントリスト"
+            />
+
+            <Text
+                text={[
+                    'テキストテキストテキスト',
+                    'テキストテキスト<sup>※</sup>テキストテキスト'
+                ]}
+            />
+
+            <MediaImage
+                imgSrc="/assets/image/dummy.webp"
+                alt="__dummy__"
+                width="600"
+                height="400"
+                lazy={true}
+                async={true}
             />
         </Section>
     </main>
