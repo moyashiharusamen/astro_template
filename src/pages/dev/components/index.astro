@@ -2,12 +2,16 @@
 import '../style.scss';
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Section from "@src/components/common/Section.astro";
+import Heading from '@src/components/parts/Heading.astro';
 ---
 
 <BaseLayout title="コンポーネントリスト" description="コンポーネントリスト">
     <main>
         <Section>
-            <h2>コンポーネントリスト</h2>
+            <Heading
+                level={1}
+                text="コンポーネントリスト"
+            />
         </Section>
     </main>
 </BaseLayout>

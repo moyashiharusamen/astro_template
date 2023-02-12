@@ -2,13 +2,17 @@
 import '../style.scss';
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Section from "@src/components/common/Section.astro";
+import Heading from '@src/components/parts/Heading.astro';
 import { PAGELIST } from "@src/config";
 ---
 
 <BaseLayout title="ページリスト" description="ページリスト">
     <main>
         <Section>
-            <h2>ページリスト</h2>
+            <Heading
+                level={1}
+                text="ページリスト"
+            />
 
                 <table>
                     <thead>
