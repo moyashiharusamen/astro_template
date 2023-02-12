@@ -1,11 +1,17 @@
 ---
+export interface Props {
+    htmlELement?: string;
+}
+
+const { htmlELement } = Astro.props;
+const Section = htmlELement ? htmlELement : 'section';
 ---
 
-<section class="root">
+<Section class:list="root">
     <div class="inner">
         <slot />
     </div>
-</section>
+</Section>
 
 
 <style lang="scss">
