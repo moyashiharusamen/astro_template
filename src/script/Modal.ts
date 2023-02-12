@@ -9,7 +9,7 @@ import { v4 } from 'uuid';
  */
 export default class Modal {
     /**
-     * @property {string} BEM ブロック名
+     * @property {string} ブロック名
      */
     static baseName: string = 'modal';
 
@@ -28,6 +28,7 @@ export default class Modal {
     /**
      * インスタンスを生成
      * @param {Object} element 基底要素ノード、またはそれを探すための文字列
+     * @param {String} rootName 設定したいブロック名
      */
     constructor(element: Object, rootName: string = Modal.baseName) {
         const baseName = rootName;

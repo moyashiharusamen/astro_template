@@ -8,6 +8,7 @@ import MediaImage from '@src/components/parts/MediaImage.astro';
 import LinkButton from '@src/components/parts/LinkButton.astro';
 import Toggle from '@src/components/parts/Toggle.astro';
 import Modal from '@src/components/parts/Modal.astro';
+import Accordion from '@src/components/parts/Accordion.astro';
 ---
 
 <BaseLayout title="コンポーネントリスト" description="コンポーネントリスト">
@@ -34,6 +35,8 @@ import Modal from '@src/components/parts/Modal.astro';
                     'テキストテキスト<sup>※</sup>テキストテキスト'
                 ]}
             />
+
+            <Accordion />
 
             <MediaImage
                 imgSrc="/assets/image/dummy.webp"

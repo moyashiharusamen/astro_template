@@ -2,14 +2,15 @@
  *  @fileoverview トグルを制御するJS
  *  ============================================================ */
 
+import Events from 'events'
 import { v4 } from 'uuid';
 
 /**
  * @class Toggle
  */
-export default class Toggle {
+export default class Toggle extends Events {
     /**
-     * @property {string} BEM ブロック名
+     * @property {string} ブロック名
      */
     static baseName: string = 'toggle';
 
@@ -22,9 +23,11 @@ export default class Toggle {
     /**
      * インスタンスを生成
      * @param {Object} element 基底要素ノード、またはそれを探すための文字列
-     * @param {String} rootName 設定したい BEM ブロック名
+     * @param {String} rootName 設定したいブロック名
      */
     constructor(element: Object, rootName: string = Toggle.baseName) {
+        super()
+
         const name = rootName;
 
         /**
@@ -90,6 +93,7 @@ export default class Toggle {
      * @return {Void}
      */
     open() {
+        this.emit('open', this);
         this.body.setAttribute('aria-hidden', 'false');
         this.button.setAttribute('aria-expanded', 'true');
         this.buttonMark.textContent = '閉じる';

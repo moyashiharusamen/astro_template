@@ -24,11 +24,13 @@
     "astro": "^2.0.1"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.191",
     "@typescript-eslint/eslint-plugin": "^5.49.0",
     "@typescript-eslint/parser": "^5.49.0",
     "astro-compress": "^1.1.28",
     "eslint": "^8.32.0",
     "eslint-plugin-astro": "^0.23.0",
+    "event-emitter": "^0.3.5",
     "prettier": "^2.8.3",
     "prettier-plugin-astro": "^0.8.0",
     "sass": "^1.57.1",

@@ -10,12 +10,14 @@
         // ---------- トグルを開閉するボタン要素 ----------
 
         // ---------- ボタン内のテキスト ----------
-        .toggle__button__mark {
+        .toggle__button__mark,
+        .accordionItem__button__mark {
             @include g.visibilityHidden();
         }
 
         // ---------- トグルの本体要素 ----------
-        .toggle__body {
+        .toggle__body,
+        .accordionItem__body {
             visibility: visible;
             opacity: 1;
             transition: opacity .3s ease, visibility .3s ease, margin-top .3s ease, padding-top .3s ease, padding-bottom .3s ease;
@@ -23,7 +25,8 @@
         }
 
         // ---------- トグルの本体が閉じているとき ----------
-        .toggle__body[aria-hidden="true"] {
+        .toggle__body[aria-hidden="true"],
+        .accordionItem__body[aria-hidden="true"] {
             visibility: hidden;
             height: 0;
             margin: 0;
