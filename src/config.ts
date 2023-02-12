@@ -12,9 +12,4 @@ export const PAGELIST = [
         pageTitle: 'Top',
         url: SITE.rootPath,
     },
-    {
-        id: 2,
-        pageTitle: 'Components',
-        url: `${SITE.rootPath}components/`,
-    },
 ];

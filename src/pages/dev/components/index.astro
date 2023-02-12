@@ -6,6 +6,7 @@ import Heading from '@src/components/parts/Heading.astro';
 import Text from '@src/components/parts/Text.astro';
 import MediaImage from '@src/components/parts/MediaImage.astro';
 import LinkButton from '@src/components/parts/LinkButton.astro';
+import Toggle from '@src/components/parts/Toggle.astro';
 ---
 
 <BaseLayout title="コンポーネントリスト" description="コンポーネントリスト">
@@ -14,6 +15,14 @@ import LinkButton from '@src/components/parts/LinkButton.astro';
             <Heading
                 level={1}
                 text="コンポーネントリスト"
+            />
+
+            <Toggle
+                buttonText="トグルボタン"
+                bodyText={[
+                    'テキストテキストテキスト',
+                    'テキストテキスト'
+                ]}
             />
 
             <Text

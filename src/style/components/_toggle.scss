@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+@use '../global' as g;
+
+
+.toggle {
+    @at-root {
+        // ---------- 基底要素 ----------
+
+        // ---------- トグルを開閉するボタン要素 ----------
+
+        // ---------- ボタン内のテキスト ----------
+        .toggle__button__mark {
+            @include g.visibilityHidden();
+        }
+
+        // ---------- トグルの本体要素 ----------
+        .toggle__body {
+            visibility: visible;
+            opacity: 1;
+            transition: opacity .3s ease, visibility .3s ease, margin-top .3s ease, padding-top .3s ease, padding-bottom .3s ease;
+            will-change: margin-top, padding-top, padding-bottom;
+        }
+
+        // ---------- トグルの本体が閉じているとき ----------
+        .toggle__body[aria-hidden="true"] {
+            visibility: hidden;
+            height: 0;
+            margin: 0;
+            padding: 0;
+            opacity: 0;
+
+            * {
+                visibility: hidden;
+                height: 0;
+                margin: 0;
+                padding: 0;
+                opacity: 0;
+            }
+        }
+    }
+}
