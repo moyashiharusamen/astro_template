@@ -1,21 +1,19 @@
 ---
 import '../style.scss';
 import BaseLayout from "@layouts/BaseLayout.astro";
-import { SITE } from "@src/config";
-const { rootPath } = SITE;
-import { pagelist } from "./pagelist";
+import Section from "@src/components/common/Section.astro";
+import { PAGELIST } from "@src/config";
 ---
 
 <BaseLayout title="ページリスト" description="ページリスト">
     <main>
-        <!-- データで見る生理痛のはなし -->
-        <section>
-            <div>
-                <h2>ページリスト</h2>
+        <Section>
+            <h2>ページリスト</h2>
 
                 <table>
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>ページ</th>
                             <th>URL</th>
                         </tr>
@@ -23,12 +21,17 @@ import { pagelist } from "./pagelist";
 
                     <tbody>
                         {
-                            pagelist.map((item) => <tr><td>{item.pageTitle}</td><td><a href={`${item.url}`}>{item.url}</a></td></tr>)
+                            PAGELIST.map((item) => (
+                                <tr>
+                                    <td>{item.id}</td>
+                                    <td>{item.pageTitle}</td>
+                                    <td><a href={`${item.url}`}>{item.url}</a></td>
+                                </tr>
+                            ))
                         }
                     </tbody>
                 </table>
-            </div>
-        </section>
+        </Section>
     </main>
 </BaseLayout>
 

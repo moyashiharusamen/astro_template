@@ -1,0 +1,28 @@
+---
+---
+
+<section class="root">
+    <div class="inner">
+        <slot></slot>
+    </div>
+</section>
+
+
+<style lang="scss">
+    @use '../../style/global' as g;
+
+    // ---------- 基底要素 ----------
+    .root {
+        padding: g.rem(50px) 0;
+
+        @include g.mediaQuery() {
+            padding: g.rem(100px) 0;
+        }
+    }
+
+    // ---------- 基底要素のインナー要素 ----------
+    .inner {
+        @include g.centering();
+        @include g.resetMargin();
+    }
+</style>

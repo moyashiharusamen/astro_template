@@ -1,27 +1,23 @@
 ---
 import './style.scss';
 import BaseLayout from "@layouts/BaseLayout.astro";
-import { SITE } from "@src/config";
-const { rootPath } = SITE;
+import Section from "@src/components/common/Section.astro";
 ---
 
 <BaseLayout title="開発用ページ" description="開発用ページ">
     <main>
-        <!-- データで見る生理痛のはなし -->
-        <section>
-            <div>
-                <h2>開発用ページ</h2>
+        <Section>
+            <h2>開発用ページ</h2>
 
-                <ul>
-                    <li>
-                        <a href="pagelist/">ページリスト</a>
-                    </li>
-                    <li>
-                        <a href="components/">コンポーネントリスト</a>
-                    </li>
-                </ul>
-            </div>
-        </section>
+            <ul>
+                <li>
+                    <a href="pagelist/">ページリスト</a>
+                </li>
+                <li>
+                    <a href="components/">コンポーネントリスト</a>
+                </li>
+            </ul>
+        </Section>
     </main>
 </BaseLayout>
 

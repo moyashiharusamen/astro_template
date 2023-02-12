@@ -1,17 +1,14 @@
 ---
 import '../style.scss';
 import BaseLayout from "@layouts/BaseLayout.astro";
-import { SITE } from "@src/config";
-const { rootPath } = SITE;
+import Section from "@src/components/common/Section.astro";
 ---
 
 <BaseLayout title="コンポーネントリスト" description="コンポーネントリスト">
     <main>
-        <section>
-            <div>
-                <h2>コンポーネントリスト</h2>
-            </div>
-        </section>
+        <Section>
+            <h2>コンポーネントリスト</h2>
+        </Section>
     </main>
 </BaseLayout>
 
