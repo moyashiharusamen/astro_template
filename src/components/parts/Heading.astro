@@ -8,9 +8,9 @@ const { level, text } = Astro.props;
 const Heading = `h${level}`;
 ---
 
-<div class:list={['root', `-${Heading}`]}>
+<header class:list={['root', `-${Heading}`]}>
     <Heading class:list="heading">{text}</Heading>
-</div>
+</header>
 
 <style lang="scss">
     @use '../../style/global' as g;
