@@ -1,0 +1,26 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Section from "@src/components/common/Section.astro";
+import Heading from '@src/components/parts/Heading.astro';
+import Checker from "@src/components/checker/Checker.vue";
+---
+
+<BaseLayout title="チェッカー" description="チェッカー">
+    <main>
+        <Section>
+            <Heading
+                level={1}
+                text="チェッカー"
+            />
+
+            <Checker client:load />
+        </Section>
+    </main>
+</BaseLayout>
+
+<style lang="scss">
+    @use '../../style/global' as g;
+</style>
+
+<script>
+</script>

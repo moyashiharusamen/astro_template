@@ -38,5 +38,6 @@ main {
     flex-grow: 1;
 }
 
-:where(:focus-visible) {
+a {
+    color: g.$base-text-color;
 }
