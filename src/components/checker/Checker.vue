@@ -188,7 +188,11 @@ export default {
             this.disabledNextButton = this.isLastQuestion() || !this.answerContent[this.currentQuestionID];
         },
 
-        judgeResultButton() {
+        /**
+         * 結果ページへのリンクを表示するか判断する
+         * @return {Void}
+         */
+        judgeResultLink() {
             this.isLastQuestion() && this.answerContent[this.currentQuestionID]
                 ? this.isResultButton = true
                 : this.isResultButton = false;
@@ -219,7 +223,7 @@ export default {
 
             this.decrementId();
             this.checkedButton();
-            this.judgeResultButton();
+            this.judgeResultLink();
         },
 
         /**
@@ -231,7 +235,7 @@ export default {
 
             this.incrementId();
             this.checkedButton();
-            this.judgeResultButton();
+            this.judgeResultLink();
         },
 
         /**
@@ -242,7 +246,7 @@ export default {
             this.saveAnswer(e);
             this.incrementId();
             this.choiceChecked(e);
-            this.judgeResultButton();
+            this.judgeResultLink();
         },
 
         /**
