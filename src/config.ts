@@ -12,4 +12,14 @@ export const PAGELIST = [
         pageTitle: 'Top',
         url: SITE.rootPath,
     },
+    {
+        id: 2,
+        pageTitle: '診断',
+        url: `${SITE.rootPath}checker/`,
+    },
+    {
+        id: 3,
+        pageTitle: '診断結果',
+        url: `${SITE.rootPath}checker/result/`,
+    },
 ];
