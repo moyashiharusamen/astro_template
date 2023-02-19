@@ -27,7 +27,7 @@
                             v-for="item in currentQuestion.choice"
                             :key="item"
                             :data-value-answer="item"
-                            @click="clickChoiceButton($event); skipQuestion([3,5], $event, 'いいえ')"
+                            @click="clickChoiceButton($event); skipQuestions([3,5], $event, 'いいえ')"
                         >
                             {{ item }}
                         </button>
@@ -155,7 +155,7 @@ export default {
     },
 
     methods: {
-        skipQuestion(fromTo, e, answer) {
+        skipQuestions(fromTo, e, answer) {
             const from = fromTo[0];
             const to = fromTo[1] - 1;
             const checkedAnswer = e.target.dataset.valueAnswer;
@@ -242,6 +242,12 @@ export default {
         decrementId() {
             if (this.isFirstQuestion()) return;
 
+            // スキップした要素へ戻ろうとした場合、それを飛ばす
+            this.skipQuestionIds.forEach(item => {
+                if (item === this.currentQuestionID + 1) return;
+                this.currentQuestionID--;
+            })
+
             this.currentQuestionID--;
             this.checkButton();
         },
@@ -255,6 +261,14 @@ export default {
 
             this.currentQuestionID++;
             this.checkButton();
+
+            // 設問をスキップせずに進んだ場合、配列 skipQuestionIds を空にする
+            this.skipQuestionIds.forEach(item => {
+                if (item - 1 === this.currentQuestionID) {
+                    this.skipQuestionIds = [];
+                    return;
+                }
+            })
         },
 
         /**
