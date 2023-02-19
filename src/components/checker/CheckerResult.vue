@@ -1,8 +1,11 @@
 <template>
     <div class="wrap">
         <dl class="result" ref="result">
-            <div v-for="(item, i) in answers" :key="item">
-                <dt><span class="num">{{ i + 1 }}.</span><span class="text">{{ item.title }}</span></dt>
+            <div v-for="item in answers" :key="item">
+                <dt>
+                    <span class="num">{{ item.id }} .</span>
+                    <span class="text">{{ item.title }}</span>
+                </dt>
                 <dd>{{ item.answer }}</dd>
             </div>
         </dl>

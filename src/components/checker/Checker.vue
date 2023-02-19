@@ -22,11 +22,12 @@
                             role="checkbox"
                             ref="choiceButton"
                             aria-checked="false"
+                            :data-value-id="currentQuestion.id"
                             :data-value-title="currentQuestion.title"
                             v-for="item in currentQuestion.choice"
                             :key="item"
                             :data-value-answer="item"
-                            @click="clickChoiceButton($event)"
+                            @click="clickChoiceButton($event); skipQuestion([3,5], $event, 'いいえ')"
                         >
                             {{ item }}
                         </button>
@@ -60,6 +61,7 @@
                     v-if="isResultButton"
                     @click="setStorage()"
                 >
+                <!-- v-if="isResultButton" -->
                     結果画面へ
                 </a>
             </transition>
@@ -148,10 +150,50 @@ export default {
     },
 
     methods: {
-        skipQuestion(from, to) {
-            if (from !== this.currentQuestionID) return
+        skipQuestion(fromTo, e, answer) {
+            const from = fromTo[0];
+            const to = fromTo[1] - 1;
+            const checkedAnswer = e.target.dataset.valueAnswer;
+            let skipQuestionIds = [];
+            const fromIndex = skipQuestionIds.indexOf(from);
+            const toIndex = skipQuestionIds.indexOf(to);
 
-            this.currentQuestionID = to;
+            if (
+                from !== this.currentQuestionID
+                ||
+                checkedAnswer !== answer
+            ) return;
+
+            this.currentQuestionID = to
+
+            for (let i = from; i <= fromTo[1]; i++) {
+                skipQuestionIds.push(i);
+            }
+            skipQuestionIds.splice(fromIndex, 1);
+            skipQuestionIds.splice(toIndex, 1);
+
+            skipQuestionIds.forEach(item => {
+                this.saveAnswer(e, JSON.stringify({ id: item, title: '未回答', answer: '未回答' }));
+            })
+        },
+
+        /**
+         * 回答をデータとして保存する
+         * @return {Void}
+         */
+        saveAnswer(e, answers) {
+            const dataId = e.target.dataset.valueId;
+            const dataTitle = e.target.dataset.valueTitle;
+            const dataAnswer = e.target.dataset.valueAnswer;
+            const content = answers || JSON.stringify({ id: dataId, title: dataTitle, answer: dataAnswer });
+
+            if (this.answerContent[this.currentQuestionID]) {
+                // 現在の設問分の回答が配列にあれば、その回答を上書き
+                this.answerContent[this.currentQuestionID] = content;
+            } else {
+                // 現在の設問分の回答が配列になければ、その回答を順番に設定
+                this.answerContent.splice(this.currentQuestionID, 0, content);
+            }
         },
 
         /**
@@ -247,24 +289,6 @@ export default {
             this.incrementId();
             this.choiceChecked(e);
             this.judgeResultLink();
-        },
-
-        /**
-         * 回答をデータとして保存する
-         * @return {Void}
-         */
-        saveAnswer(e) {
-            const dataAnswer = e.target.dataset.valueAnswer;
-            const dataTitle = e.target.dataset.valueTitle;
-            const content = JSON.stringify({ title: dataTitle, answer: dataAnswer });
-
-            if (this.answerContent[this.currentQuestionID]) {
-                // 現在の設問分の回答が配列にあれば、その回答を上書き
-                this.answerContent[this.currentQuestionID] = content;
-            } else {
-                // 現在の設問分の回答が配列になければ、その回答を順番に設定
-                this.answerContent.splice(this.currentQuestionID, 0, content);
-            }
         },
 
         /**
