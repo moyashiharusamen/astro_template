@@ -190,7 +190,6 @@ export default {
             const dataTitle = e.target.dataset.valueTitle;
             const dataAnswer = e.target.dataset.valueAnswer;
             const content = answers || JSON.stringify({ id: dataId, title: dataTitle, answer: dataAnswer });
-            console.log(content);
 
             if (this.answerContent[this.currentQuestionID]) {
                 // 現在の設問分の回答が配列にあれば、その回答を上書き
@@ -202,14 +201,38 @@ export default {
         },
 
         /**
-         * currentQuestionID の値をインクリメントする
+         * 前へボタンを押したとき
          * @return {Void}
          */
-        incrementId() {
+        clickPrevButton() {
+            if (this.isFirstQuestion()) return;
+
+            this.decrementId();
+            this.checkedButton();
+            this.judgeResultLink();
+        },
+
+        /**
+         * 次へボタンを押したとき
+         * @return {Void}
+         */
+        clickNextButton() {
             if (this.isLastQuestion()) return;
 
-            this.currentQuestionID++;
-            this.checkButton();
+            this.incrementId();
+            this.checkedButton();
+            this.judgeResultLink();
+        },
+
+        /**
+         * 選択肢ボタンを押したとき
+         * @return {Void}
+         */
+        clickChoiceButton(e) {
+            this.saveAnswer(e);
+            this.incrementId();
+            this.choiceChecked(e);
+            this.judgeResultLink();
         },
 
         /**
@@ -220,6 +243,17 @@ export default {
             if (this.isFirstQuestion()) return;
 
             this.currentQuestionID--;
+            this.checkButton();
+        },
+
+        /**
+         * currentQuestionID の値をインクリメントする
+         * @return {Void}
+         */
+        incrementId() {
+            if (this.isLastQuestion()) return;
+
+            this.currentQuestionID++;
             this.checkButton();
         },
 
@@ -259,41 +293,6 @@ export default {
                     e.ariaChecked = true;
                 })
             })
-        },
-
-        /**
-         * 前へボタンを押したとき
-         * @return {Void}
-         */
-        clickPrevButton() {
-            if (this.isFirstQuestion()) return;
-
-            this.decrementId();
-            this.checkedButton();
-            this.judgeResultLink();
-        },
-
-        /**
-         * 次へボタンを押したとき
-         * @return {Void}
-         */
-        clickNextButton() {
-            if (this.isLastQuestion()) return;
-
-            this.incrementId();
-            this.checkedButton();
-            this.judgeResultLink();
-        },
-
-        /**
-         * 選択肢ボタンを押したとき
-         * @return {Void}
-         */
-        clickChoiceButton(e) {
-            this.saveAnswer(e);
-            this.incrementId();
-            this.choiceChecked(e);
-            this.judgeResultLink();
         },
 
         /**
