@@ -119,6 +119,11 @@ export default {
             answerContent: [],
 
             /**
+             * @type {object[]} スキップした設問のID群
+             */
+            skipQuestionIds: [],
+
+            /**
              * @type {boolean} 前へボタンを非活性にしたいときに true にする
              */
             disabledPrevButton: true,
@@ -154,9 +159,8 @@ export default {
             const from = fromTo[0];
             const to = fromTo[1] - 1;
             const checkedAnswer = e.target.dataset.valueAnswer;
-            let skipQuestionIds = [];
-            const fromIndex = skipQuestionIds.indexOf(from);
-            const toIndex = skipQuestionIds.indexOf(to);
+            const fromIndex = this.skipQuestionIds.indexOf(from);
+            const toIndex = this.skipQuestionIds.indexOf(to);
 
             if (
                 from !== this.currentQuestionID
@@ -164,16 +168,16 @@ export default {
                 checkedAnswer !== answer
             ) return;
 
-            this.currentQuestionID = to
+            this.currentQuestionID = to;
 
             for (let i = from; i <= fromTo[1]; i++) {
-                skipQuestionIds.push(i);
+                this.skipQuestionIds.push(i);
             }
-            skipQuestionIds.splice(fromIndex, 1);
-            skipQuestionIds.splice(toIndex, 1);
+            this.skipQuestionIds.splice(fromIndex, 1);
+            this.skipQuestionIds.splice(toIndex, 1);
 
-            skipQuestionIds.forEach(item => {
-                this.saveAnswer(e, JSON.stringify({ id: item, title: '未回答', answer: '未回答' }));
+            this.skipQuestionIds.forEach(item => {
+                this.saveAnswer(e, JSON.stringify({ id: `${item + 1}`, title: '未回答', answer: '未回答' }));
             })
         },
 
@@ -186,6 +190,7 @@ export default {
             const dataTitle = e.target.dataset.valueTitle;
             const dataAnswer = e.target.dataset.valueAnswer;
             const content = answers || JSON.stringify({ id: dataId, title: dataTitle, answer: dataAnswer });
+            console.log(content);
 
             if (this.answerContent[this.currentQuestionID]) {
                 // 現在の設問分の回答が配列にあれば、その回答を上書き
