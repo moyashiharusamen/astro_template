@@ -23,10 +23,10 @@
                             ref="choiceButton"
                             aria-checked="false"
                             :data-value-id="currentQuestion.id"
-                            :data-value-title="currentQuestion.title"
-                            v-for="item in currentQuestion.choice"
+                            v-for="(item, i) in currentQuestion.choice"
                             :key="item"
                             :data-value-answer="item"
+                            :data-button-id="i"
                             @click="clickChoiceButton($event); skipQuestions([3,5], $event, 'いいえ')"
                         >
                             {{ item }}
@@ -186,10 +186,13 @@ export default {
          * @return {Void}
          */
         saveAnswer(e, answers) {
-            const dataId = e.target.dataset.valueId;
-            const dataTitle = e.target.dataset.valueTitle;
-            const dataAnswer = e.target.dataset.valueAnswer;
-            const content = answers || JSON.stringify({ id: dataId, title: dataTitle, answer: dataAnswer });
+            const dataId = Number(e.target.dataset.valueId) - 1;
+            const dataButtonId = Number(e.target.dataset.buttonId);
+            const content = answers || JSON.stringify({
+                id: dataId + 1,
+                title: this.questions[dataId].title,
+                answer: this.questions[dataId].choice[dataButtonId],
+            });
 
             if (this.answerContent[this.currentQuestionID]) {
                 // 現在の設問分の回答が配列にあれば、その回答を上書き
@@ -208,7 +211,7 @@ export default {
             if (this.isFirstQuestion()) return;
 
             this.decrementId();
-            this.checkedButton();
+            // this.checkedButton();
             this.judgeResultLink();
         },
 
@@ -244,7 +247,10 @@ export default {
 
             // スキップした要素へ戻ろうとした場合、それを飛ばす
             this.skipQuestionIds.forEach(item => {
-                if (item === this.currentQuestionID + 1) return;
+                if (
+                    item === this.currentQuestionID + 1 ||
+                    item > this.currentQuestionID + 1
+                ) return;
                 this.currentQuestionID--;
             })
 
