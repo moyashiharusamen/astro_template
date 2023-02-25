@@ -11,6 +11,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: delete files
+        run: ls | grep -v -E "^..ftp-deploy-sync-state.json|^.htaccess" | xargs rm -rf
       - name: npm-install
         run: npm install
       - name: build
