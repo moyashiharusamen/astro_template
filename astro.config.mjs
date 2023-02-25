@@ -22,7 +22,7 @@ export default defineConfig({
             css: true,
             html: true,
             img: false,
-            js: false,
+            js: true,
             svg: false,
         }),
     ],
