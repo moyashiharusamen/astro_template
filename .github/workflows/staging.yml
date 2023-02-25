@@ -11,6 +11,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: npm-install
+        run: npm install
       - name: build
         run: npm run build
       - name: FTP-Deploy-Action
