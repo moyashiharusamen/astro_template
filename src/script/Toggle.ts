@@ -23,7 +23,7 @@ export default class Toggle extends Events {
     /**
      * インスタンスを生成
      * @param {Object} element 基底要素ノード、またはそれを探すための文字列
-     * @param {String} rootName 設定したいブロック名
+     * @param {string} rootName 設定したいブロック名
      */
     constructor(element: Object, rootName: string = Toggle.baseName) {
         super()
@@ -51,7 +51,7 @@ export default class Toggle extends Events {
         this.buttonMark = <HTMLElement>base.querySelector(`.${name}__button__mark`);
 
         /**
-         * @type {String} ユニークな識別子
+         * @type {string} ユニークな識別子
          */
         this.uniquId = `${name}__${v4()}`;
 
@@ -111,7 +111,7 @@ export default class Toggle extends Events {
 
     /**
      * トグルが開いているかどうか
-     * @returns {Boolean}
+     * @returns {boolean}
      */
     isOpened() {
         return this.body.getAttribute('aria-hidden') !== 'true';

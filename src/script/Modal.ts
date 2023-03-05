@@ -28,7 +28,7 @@ export default class Modal {
     /**
      * インスタンスを生成
      * @param {Object} element 基底要素ノード、またはそれを探すための文字列
-     * @param {String} rootName 設定したいブロック名
+     * @param {string} rootName 設定したいブロック名
      */
     constructor(element: Object, rootName: string = Modal.baseName) {
         const baseName = rootName;
@@ -81,18 +81,18 @@ export default class Modal {
         this.modalBody.appendChild(this.modalOverlay);
 
         /**
-         * @type {String} モーダルが開いたときに付与される class 属性名
+         * @type {string} モーダルが開いたときに付与される class 属性名
          */
         this.openClass = '-modal-open';
 
 
         /**
-         * @type {String} ユニークな識別子
+         * @type {string} ユニークな識別子
          */
         this.uniquId = `${baseName}__${v4()}`;
 
         /**
-         * @type {Number} window の縦軸位置が入る
+         * @type {number} window の縦軸位置が入る
          */
         this.windowYPosition = 0;
 

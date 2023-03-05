@@ -83,7 +83,7 @@ export default {
             currentQuestionID: 0,
 
             /**
-             * @type {object[]} 設問群
+             * @type {Object[]} 設問群
              */
             questions: [
                 {
@@ -114,12 +114,12 @@ export default {
             ],
 
             /**
-             * @type {object[]} 回答群
+             * @type {Object[]} 回答群
              */
             answerContent: [],
 
             /**
-             * @type {object[]} スキップした設問のID群
+             * @type {Object[]} スキップした設問のID群
              */
             skipQuestionIds: [],
 
@@ -147,7 +147,7 @@ export default {
     computed: {
         /**
          * 現在表示されるべき設問を返す
-         * @return {object}
+         * @return {Object}
          */
         currentQuestion() {
             return this.questions[this.currentQuestionID];
