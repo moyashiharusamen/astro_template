@@ -13,6 +13,7 @@ export default class Modal {
      */
     static baseName: string = 'modal';
 
+    base:                  HTMLElement;
     body:                  HTMLBodyElement;
     modalBody:             HTMLElement;
     button:                HTMLElement;
@@ -36,7 +37,7 @@ export default class Modal {
         /**
          * @type {HTMLElement} 基底要素ノード
          */
-        const base = <HTMLElement>element;
+        const base = this.base = <HTMLElement>element;
 
         /**
          * @type {HTMLElement} HTML の body 要素
@@ -124,7 +125,7 @@ export default class Modal {
                 : this.close();
         });
         this.modalOverlay.addEventListener('click', () => this.close());
-        document.addEventListener('keydown', (e) => {
+        this.base.addEventListener('keyup', (e) => {
             if (
                 (e.key === 'Escape' || e.key === 'Esc')
                 &&
@@ -133,21 +134,20 @@ export default class Modal {
                 this.close();
             };
         })
-        this.firstFocusableElement.addEventListener('focusout', (e) => {
-            // フォーカスした先がモーダル内の要素だった場合
-            this.focusableElement.forEach((element: Object) => {
-                if (Object.is(element, e.relatedTarget)) return;
-            });
-
-            this.lastFocusableElement.focus();
-        })
-        this.lastFocusableElement.addEventListener('focusout', (e) => {
-            // フォーカスした先がモーダル内の要素だった場合
-            this.focusableElement.forEach((element: Object) => {
-                if (Object.is(element, e.relatedTarget)) return;
-            });
-
-            this.firstFocusableElement.focus();
+        this.base.addEventListener('keydown', (e) => {
+            if (e.code === 'Tab') {
+                if (e.shiftKey) {
+                    if (document.activeElement === this.firstFocusableElement) {
+                        e.preventDefault();
+                        this.lastFocusableElement.focus();
+                    }
+                } else {
+                    if (document.activeElement === this.lastFocusableElement) {
+                        e.preventDefault();
+                        this.firstFocusableElement.focus();
+                    }
+                }
+            }
         })
     }
 
