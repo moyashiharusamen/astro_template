@@ -1,32 +1,30 @@
 ---
 export interface Props {
-    text: Array<string>;
+  text: Array<string>;
 }
 
 const { text } = Astro.props;
 ---
 
 <div class="root">
-    {
-        text.map(item => <p class="text" set:html={item} />)
-    }
+  {text.map(item => <p class="text" set:html={item} />)}
 </div>
 
 <style lang="scss">
-    @use '../../style/global' as g;
+  @use "../../style/global" as g;
 
-    // ---------- 基底要素 ----------
-    .root {
-        margin-top: 1.5em;
-        font-size: g.rem(14px);
+  // ---------- 基底要素 ----------
+  .root {
+    margin-top: 1.5em;
+    font-size: g.rem(14px);
 
-        @include g.mediaQuery() {
-            font-size: g.rem(16px);
-        }
+    @include g.mediaQuery() {
+      font-size: g.rem(16px);
     }
+  }
 
-    // ---------- テキスト要素 ----------
-    .text + p {
-        margin-top: 0.5em;
-    }
+  // ---------- テキスト要素 ----------
+  .text + p {
+    margin-top: 0.5em;
+  }
 </style>

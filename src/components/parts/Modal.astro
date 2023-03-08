@@ -2,40 +2,39 @@
 ---
 
 <div class="root modal">
-    <button type="button" class="button modal__button">
-        モーダルボタン
+  <button type="button" class="button modal__button">
+    モーダルボタン
 
-        <div class="menu__text modal__button__text">開く</div>
-    </button>
+    <div class="menu__text modal__button__text">開く</div>
+  </button>
 
-    <div role="dialog">
-        <nav class="nav modal__body" aria-label="__dummy__">
-            <div class="modal__body__inner">
-                モーダルボディ
+  <div role="dialog">
+    <nav class="nav modal__body" aria-label="__dummy__">
+      <div class="modal__body__inner">
+        モーダルボディ
 
-                <a href="__dummy__">ダミーリンク</a>
+        <a href="__dummy__">ダミーリンク</a>
 
-                <a href="__dummy__">ダミーリンク</a>
+        <a href="__dummy__">ダミーリンク</a>
 
-                <a href="__dummy__">ダミーリンク</a>
-            </div>
-        </nav>
-    </div>
+        <a href="__dummy__">ダミーリンク</a>
+      </div>
+    </nav>
+  </div>
 </div>
 
 <style lang="scss">
-    @use '../../style/global' as g;
+  @use "../../style/global" as g;
 
-    // ---------- 基底要素 ----------
-    .root {
-    }
+  // ---------- 基底要素 ----------
+  .root {
+  }
 
-    // ---------- ナビを開くボタン ----------
-    .button {
-    }
+  // ---------- ナビを開くボタン ----------
+  .button {
+  }
 
-    // ---------- モーダルを開くボタンが押されたとき ----------
-    .button[aria-expanded="true"] {
-    }
-
+  // ---------- モーダルを開くボタンが押されたとき ----------
+  .button[aria-expanded="true"] {
+  }
 </style>

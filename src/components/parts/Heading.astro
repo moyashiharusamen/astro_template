@@ -1,76 +1,76 @@
 ---
 export interface Props {
-    level: number;
-    text:  string;
+  level: number;
+  text: string;
 }
 
 const { level, text } = Astro.props;
 const Heading = `h${level}`;
 ---
 
-<header class:list={['root', `-${Heading}`]}>
-    <Heading class:list="heading">{text}</Heading>
+<header class:list={["root", `-${Heading}`]}>
+  <Heading class:list="heading">{text}</Heading>
 </header>
 
 <style lang="scss">
-    @use '../../style/global' as g;
+  @use "../../style/global" as g;
 
-    // ---------- 基底要素 ----------
-    .root {
-        text-align: center;
+  // ---------- 基底要素 ----------
+  .root {
+    text-align: center;
+  }
+
+  .root.-h1 {
+    margin-bottom: g.rem(50px);
+
+    @include g.mediaQuery() {
+      margin-bottom: g.rem(75px);
     }
+  }
 
-    .root.-h1 {
-        margin-bottom: g.rem(50px);
+  .root.-h2 {
+    margin: g.rem(40px) 0 g.rem(20px);
 
-        @include g.mediaQuery() {
-            margin-bottom: g.rem(75px);
-        }
+    @include g.mediaQuery() {
+      margin: g.rem(60px) 0 g.rem(30px);
     }
+  }
 
-    .root.-h2 {
-        margin: g.rem(40px) 0 g.rem(20px);
+  .root.-h3 {
+    margin: g.rem(30px) 0 g.rem(15px);
 
-        @include g.mediaQuery() {
-            margin: g.rem(60px) 0 g.rem(30px);
-        }
+    @include g.mediaQuery() {
+      margin: g.rem(50px) 0 g.rem(25px);
     }
+  }
 
-    .root.-h3 {
-        margin: g.rem(30px) 0 g.rem(15px);
+  // ---------- 見出し要素 ----------
+  .heading {
+    font-weight: 500;
+    color: g.$base-text-color;
+  }
 
-        @include g.mediaQuery() {
-            margin: g.rem(50px) 0 g.rem(25px);
-        }
+  .-h1 .heading {
+    font-size: g.rem(32px);
+
+    @include g.mediaQuery() {
+      font-size: g.rem(36px);
     }
+  }
 
-    // ---------- 見出し要素 ----------
-    .heading {
-        font-weight: 500;
-        color: g.$base-text-color;
+  .-h2 .heading {
+    font-size: g.rem(24px);
+
+    @include g.mediaQuery() {
+      font-size: g.rem(32px);
     }
+  }
 
-    .-h1 .heading {
-        font-size: g.rem(32px);
+  .-h3 .heading {
+    font-size: g.rem(20px);
 
-        @include g.mediaQuery() {
-            font-size: g.rem(36px);
-        }
+    @include g.mediaQuery() {
+      font-size: g.rem(28px);
     }
-
-    .-h2 .heading {
-        font-size: g.rem(24px);
-
-        @include g.mediaQuery() {
-            font-size: g.rem(32px);
-        }
-    }
-
-    .-h3 .heading {
-        font-size: g.rem(20px);
-
-        @include g.mediaQuery() {
-            font-size: g.rem(28px);
-        }
-    }
+  }
 </style>

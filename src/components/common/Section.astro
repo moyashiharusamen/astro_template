@@ -1,34 +1,33 @@
 ---
 export interface Props {
-    htmlELement?: string;
+  htmlELement?: string;
 }
 
 const { htmlELement } = Astro.props;
-const Section = htmlELement ? htmlELement : 'section';
+const Section = htmlELement ? htmlELement : "section";
 ---
 
 <Section class:list="root">
-    <div class="inner">
-        <slot />
-    </div>
+  <div class="inner">
+    <slot />
+  </div>
 </Section>
 
-
 <style lang="scss">
-    @use '../../style/global' as g;
+  @use "../../style/global" as g;
 
-    // ---------- 基底要素 ----------
-    .root {
-        padding: g.rem(40px) 0;
+  // ---------- 基底要素 ----------
+  .root {
+    padding: g.rem(40px) 0;
 
-        @include g.mediaQuery() {
-            padding: g.rem(80px) 0;
-        }
+    @include g.mediaQuery() {
+      padding: g.rem(80px) 0;
     }
+  }
 
-    // ---------- 基底要素のインナー要素 ----------
-    .inner {
-        @include g.centering();
-        @include g.resetMargin();
-    }
+  // ---------- 基底要素のインナー要素 ----------
+  .inner {
+    @include g.centering();
+    @include g.resetMargin();
+  }
 </style>

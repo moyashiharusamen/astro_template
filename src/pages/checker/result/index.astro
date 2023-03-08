@@ -1,26 +1,22 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Section from "@src/components/common/Section.astro";
-import Heading from '@src/components/parts/Heading.astro';
+import Heading from "@src/components/parts/Heading.astro";
 import CheckerResult from "@src/components/checker/CheckerResult.vue";
 ---
 
 <BaseLayout title="結果" description="結果">
-    <main>
-        <Section>
-            <Heading
-                level={1}
-                text="結果"
-            />
+  <main>
+    <Section>
+      <Heading level={1} text="結果" />
 
-            <CheckerResult client:load />
-        </Section>
-    </main>
+      <CheckerResult client:load />
+    </Section>
+  </main>
 </BaseLayout>
 
 <style lang="scss">
-    @use '../../../style/global' as g;
+  @use "../../../style/global" as g;
 </style>
 
-<script>
-</script>
+<script></script>

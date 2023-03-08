@@ -3,59 +3,57 @@ import { SITE } from "@src/config";
 const { rootPath } = SITE;
 
 export interface Props {
-    buttonText: string;
-    bodyText:   Array<string>;
+  buttonText: string;
+  bodyText: Array<string>;
 }
 
 const { buttonText, bodyText } = Astro.props;
 ---
 
 <div class="root toggle">
-    <div class="inner">
-        <button type="button" class="button toggle__button">
-            {buttonText}
+  <div class="inner">
+    <button type="button" class="button toggle__button">
+      {buttonText}
 
-            <span class="button__mark"><span class="toggle__button__mark">開く</span></span>
-        </button>
+      <span class="button__mark"><span class="toggle__button__mark">開く</span></span>
+    </button>
 
-        <div class="body toggle__body" aria-hidden="true">
-            <div class="body__inner">
-                {
-                    bodyText.map(item => <p set:html={item} />)
-                }
-            </div>
-        </div>
+    <div class="body toggle__body" aria-hidden="true">
+      <div class="body__inner">
+        {bodyText.map(item => <p set:html={item} />)}
+      </div>
     </div>
+  </div>
 </div>
 
 <style lang="scss">
-    @use '../../style/global' as g;
+  @use "../../style/global" as g;
 
-    // ---------- 基底要素 ----------
-    .root {
-        margin-top: g.rem(20px);
+  // ---------- 基底要素 ----------
+  .root {
+    margin-top: g.rem(20px);
 
-        @include g.mediaQuery() {
-            margin-top: g.rem(40px);
-        }
+    @include g.mediaQuery() {
+      margin-top: g.rem(40px);
     }
+  }
 
-    // ---------- 基底要素のインナー要素 ----------
-    .inner {
-    }
+  // ---------- 基底要素のインナー要素 ----------
+  .inner {
+  }
 
-    // ---------- トグルを開閉するボタン ----------
-    .button {
-    }
+  // ---------- トグルを開閉するボタン ----------
+  .button {
+  }
 
-    // ---------- トグルが開いているとき ----------
-    .button[aria-expanded="true"] {
-    }
+  // ---------- トグルが開いているとき ----------
+  .button[aria-expanded="true"] {
+  }
 
-    // ---------- トグル本体 ----------
-    .body {
-    }
+  // ---------- トグル本体 ----------
+  .body {
+  }
 
-    .body__inner {
-    }
+  .body__inner {
+  }
 </style>

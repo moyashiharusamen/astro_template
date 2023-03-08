@@ -1,64 +1,48 @@
 ---
-import '../style.scss';
+import "../style.scss";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Section from "@src/components/common/Section.astro";
-import Heading from '@src/components/parts/Heading.astro';
-import Text from '@src/components/parts/Text.astro';
-import MediaImage from '@src/components/parts/MediaImage.astro';
-import LinkButton from '@src/components/parts/LinkButton.astro';
-import Toggle from '@src/components/parts/Toggle.astro';
-import Modal from '@src/components/parts/Modal.astro';
-import Accordion from '@src/components/parts/Accordion.astro';
+import Heading from "@src/components/parts/Heading.astro";
+import Text from "@src/components/parts/Text.astro";
+import MediaImage from "@src/components/parts/MediaImage.astro";
+import LinkButton from "@src/components/parts/LinkButton.astro";
+import Toggle from "@src/components/parts/Toggle.astro";
+import Modal from "@src/components/parts/Modal.astro";
+import Accordion from "@src/components/parts/Accordion.astro";
 ---
 
 <BaseLayout title="コンポーネントリスト" description="コンポーネントリスト">
-    <main>
-        <Section>
-            <Heading
-                level={1}
-                text="コンポーネントリスト"
-            />
+  <main>
+    <Section>
+      <Heading level={1} text="コンポーネントリスト" />
 
-            <Toggle
-                buttonText="トグルボタン"
-                bodyText={[
-                    'テキストテキストテキスト',
-                    'テキストテキスト'
-                ]}
-            />
+      <Toggle
+        buttonText="トグルボタン"
+        bodyText={["テキストテキストテキスト", "テキストテキスト"]}
+      />
 
-            <Modal />
+      <Modal />
 
-            <Text
-                text={[
-                    'テキストテキストテキスト',
-                    'テキストテキスト<sup>※</sup>テキストテキスト'
-                ]}
-            />
+      <Text text={["テキストテキストテキスト", "テキストテキスト<sup>※</sup>テキストテキスト"]} />
 
-            <Accordion />
+      <Accordion />
 
-            <MediaImage
-                imgSrc="/assets/image/dummy.webp"
-                alt="__dummy__"
-                width="600"
-                height="400"
-                lazy={true}
-                async={true}
-            />
+      <MediaImage
+        imgSrc="/assets/image/dummy.webp"
+        alt="__dummy__"
+        width="600"
+        height="400"
+        lazy={true}
+        async={true}
+      />
 
-            <LinkButton
-                text="リンクボタン"
-                href="__dummy__"
-                blank={false}
-            />
-        </Section>
-    </main>
+      <LinkButton text="リンクボタン" href="__dummy__" blank={false} />
+    </Section>
+  </main>
 </BaseLayout>
 
 <style lang="scss">
-    @use '../../../style/global' as g;
+  @use "../../../style/global" as g;
 </style>
 
-<script>
-</script>
+<script></script>
