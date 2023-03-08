@@ -5,10 +5,16 @@ import Heading from "@src/components/parts/Heading.astro";
 import Checker from "@src/components/checker/Checker.vue";
 ---
 
-<BaseLayout title="チェッカー" description="チェッカー">
+<BaseLayout
+  title="チェッカー"
+  description="チェッカー"
+>
   <main>
     <Section>
-      <Heading level={1} text="チェッカー" />
+      <Heading
+        level={1}
+        text="チェッカー"
+      />
 
       <Checker client:load />
     </Section>

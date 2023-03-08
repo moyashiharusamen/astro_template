@@ -11,10 +11,16 @@ import Modal from "@src/components/parts/Modal.astro";
 import Accordion from "@src/components/parts/Accordion.astro";
 ---
 
-<BaseLayout title="コンポーネントリスト" description="コンポーネントリスト">
+<BaseLayout
+  title="コンポーネントリスト"
+  description="コンポーネントリスト"
+>
   <main>
     <Section>
-      <Heading level={1} text="コンポーネントリスト" />
+      <Heading
+        level={1}
+        text="コンポーネントリスト"
+      />
 
       <Toggle
         buttonText="トグルボタン"
@@ -36,7 +42,11 @@ import Accordion from "@src/components/parts/Accordion.astro";
         async={true}
       />
 
-      <LinkButton text="リンクボタン" href="__dummy__" blank={false} />
+      <LinkButton
+        text="リンクボタン"
+        href="__dummy__"
+        blank={false}
+      />
     </Section>
   </main>
 </BaseLayout>

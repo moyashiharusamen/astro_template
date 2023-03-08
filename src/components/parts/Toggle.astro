@@ -12,13 +12,19 @@ const { buttonText, bodyText } = Astro.props;
 
 <div class="root toggle">
   <div class="inner">
-    <button type="button" class="button toggle__button">
+    <button
+      type="button"
+      class="button toggle__button"
+    >
       {buttonText}
 
       <span class="button__mark"><span class="toggle__button__mark">開く</span></span>
     </button>
 
-    <div class="body toggle__body" aria-hidden="true">
+    <div
+      class="body toggle__body"
+      aria-hidden="true"
+    >
       <div class="body__inner">
         {bodyText.map(item => <p set:html={item} />)}
       </div>

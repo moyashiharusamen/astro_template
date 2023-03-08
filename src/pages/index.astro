@@ -5,10 +5,17 @@ import Heading from "@src/components/parts/Heading.astro";
 import Text from "@src/components/parts/Text.astro";
 ---
 
-<BaseLayout title="__dummy__" description="__dummy__" ogImage="__dummy__.jpg">
+<BaseLayout
+  title="__dummy__"
+  description="__dummy__"
+  ogImage="__dummy__.jpg"
+>
   <main>
     <Section>
-      <Heading level={1} text="トップページ" />
+      <Heading
+        level={1}
+        text="トップページ"
+      />
       <Text text={["テキストテキストテキスト", "テキストテキスト<sup>※</sup>テキストテキスト"]} />
     </Section>
   </main>

@@ -7,7 +7,14 @@ const { text } = Astro.props;
 ---
 
 <div class="root">
-  {text.map(item => <p class="text" set:html={item} />)}
+  {
+    text.map(item => (
+      <p
+        class="text"
+        set:html={item}
+      />
+    ))
+  }
 </div>
 
 <style lang="scss">

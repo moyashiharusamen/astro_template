@@ -9,7 +9,11 @@ const { text, href, blank } = Astro.props;
 ---
 
 <div class="root">
-  <a class="link" href={`${href}`} target={`${blank ? "_blank" : ""}`}>
+  <a
+    class="link"
+    href={`${href}`}
+    target={`${blank ? "_blank" : ""}`}
+  >
     {text}
   </a>
 </div>

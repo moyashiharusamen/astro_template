@@ -5,10 +5,16 @@ import Heading from "@src/components/parts/Heading.astro";
 import CheckerResult from "@src/components/checker/CheckerResult.vue";
 ---
 
-<BaseLayout title="結果" description="結果">
+<BaseLayout
+  title="結果"
+  description="結果"
+>
   <main>
     <Section>
-      <Heading level={1} text="結果" />
+      <Heading
+        level={1}
+        text="結果"
+      />
 
       <CheckerResult client:load />
     </Section>
