@@ -17,7 +17,7 @@ module.exports = {
     // 長い行の折り返し位置
     printWidth: 100,
     // インデントのサイズ
-    tabWidth: 4,
+    tabWidth: 2,
     // 改行コードの指定
     endOfLine: "lf",
     // 属性の改行
