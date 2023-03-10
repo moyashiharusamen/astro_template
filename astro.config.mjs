@@ -4,26 +4,26 @@ import compress from 'astro-compress';
 
 // https://astro.build/config
 export default defineConfig({
+  build: {
+    assets: 'assets/script',
+  },
+  vite: {
     build: {
-        assets: 'assets/script',
-    },
-    vite: {
-        build: {
-            rollupOptions: {
-                output: {
-                    assetFileNames: 'assets/style/[name].[extname]',
-                },
-            },
+      rollupOptions: {
+        output: {
+          assetFileNames: 'assets/style/[name].[extname]',
         },
+      },
     },
-    integrations: [
-        vue(),
-        compress({
-            css: true,
-            html: true,
-            img: false,
-            js: true,
-            svg: false,
-        }),
-    ],
+  },
+  integrations: [
+    vue(),
+    compress({
+      css: true,
+      html: true,
+      img: false,
+      js: true,
+      svg: false,
+    }),
+  ],
 });
