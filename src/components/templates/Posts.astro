@@ -1,0 +1,23 @@
+---
+const posts = await Astro.glob("../../pages/posts/*.md");
+---
+
+<div class="root">
+  {
+    posts.slice(0, 3).map(post => (
+      <article>
+        <h2>{post.frontmatter.title}</h2>
+        <p>{post.frontmatter.description}</p>
+        <a href={post.url}>Read more</a>
+      </article>
+    ))
+  }
+</div>
+
+<style lang="scss">
+  @use "../../style/global" as g;
+
+  // ---------- 基底要素 ----------
+  .root {
+  }
+</style>

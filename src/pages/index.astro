@@ -3,6 +3,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import Section from "@src/components/common/Section.astro";
 import Heading from "@src/components/parts/Heading.astro";
 import Text from "@src/components/parts/Text.astro";
+import Posts from "@src/components/templates/Posts.astro";
 ---
 
 <BaseLayout
@@ -16,7 +17,10 @@ import Text from "@src/components/parts/Text.astro";
         level={1}
         text="トップページ"
       />
+
       <Text text={["テキストテキストテキスト", "テキストテキスト<sup>※</sup>テキストテキスト"]} />
+
+      <Posts />
     </Section>
   </main>
 </BaseLayout>
