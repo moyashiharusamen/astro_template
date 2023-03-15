@@ -14,10 +14,11 @@ $base-text-color: #333;
 
 
 // ========== contents size ==========
-$content-width: 1000px;
+$content-width: 375;
+$content-width-pc: 1000;
 $content-margin: 20px;
 $content-margin-pc: 30px;
-$content-size: $content-width + ($content-margin * 2);
+$content-size: $content-width-pc + ($content-margin * 2);
 
 
 // ========== break point ==========
