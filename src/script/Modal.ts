@@ -17,7 +17,6 @@ export default class Modal {
   body: HTMLBodyElement;
   modalBody: HTMLElement;
   button: HTMLElement;
-  buttonText: HTMLElement;
   focusableElement: NodeList;
   firstFocusableElement: HTMLElement;
   lastFocusableElement: HTMLElement;
@@ -47,7 +46,7 @@ export default class Modal {
     /**
      * @type {HTMLElement} モーダルの開閉される本体要素
      */
-    this.modalBody = <HTMLElement>base.querySelector(`.${baseName}__body`);
+    const modalBody = this.modalBody = <HTMLElement>base.querySelector(`.${baseName}__body`);
 
     /**
      * @type {HTMLElement} モーダルの開閉を制御するボタン要素
@@ -55,15 +54,10 @@ export default class Modal {
     this.button = <HTMLElement>base.querySelector(`.${baseName}__button`);
 
     /**
-     * @type {HTMLElement} ボタン内のテキスト要素
-     */
-    this.buttonText = <HTMLElement>base.querySelector(`.${baseName}__button__text`);
-
-    /**
      * @type {NodeList} モーダル内のフォーカス可能な要素群
      */
     this.focusableElement = <NodeList>(
-      base.querySelectorAll(
+      modalBody.querySelectorAll(
         "a[href], area[href], input, select, textarea, button, output, video, audio, object, embed, iframe, [tabindex], [onclick]"
       )
     );
@@ -163,7 +157,6 @@ export default class Modal {
     this.body.style.top = `${-this.windowYPosition}px`;
     this.modalBody.setAttribute("aria-hidden", "false");
     this.button.setAttribute("aria-expanded", "true");
-    this.buttonText.textContent = "閉じる";
     this.firstFocusableElement.focus();
   }
 
@@ -176,7 +169,6 @@ export default class Modal {
     this.body.style.top = "";
     this.modalBody.setAttribute("aria-hidden", "true");
     this.button.setAttribute("aria-expanded", "false");
-    this.buttonText.textContent = "閉じる";
     window.scrollTo(0, this.windowYPosition);
   }
 }
