@@ -26,7 +26,20 @@ import Accordion from "@src/components/parts/Accordion.astro";
         bodyText={["テキストテキストテキスト", "テキストテキスト"]}
       />
 
-      <Modal />
+      <Modal
+        buttonText={[
+          'モーダルボタン',
+        ]}
+        headingLevel={2}
+        headingText={[
+          'モーダル見出し',
+        ]}
+        bodyText={[
+          'テキストテキストテキスト',
+          'テキストテキストテキスト',
+          'テキストテキストテキスト',
+        ]}
+      />
 
       <Text text={["テキストテキストテキスト", "テキストテキスト<sup>※</sup>テキストテキスト"]} />
 
