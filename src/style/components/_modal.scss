@@ -5,46 +5,19 @@
 .modal {
     @at-root {
         // ---------- ブロックの基底要素 ----------
-        .modal {
-        }
+        // .modal {
+        // }
 
         // ---------- ボタン部分 ----------
-        .modal__openButton {}
+        // .modal__openButton {}
 
         .modal__button__text {
             @include g.visibilityHidden();
         }
 
         // ---------- 本体部分 ----------
-        .modal__body {
-            visibility: hidden;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            margin: auto;
-            position: fixed;
-            inset: 0;
-            z-index: 100;
-            transition: visibility .4s ease;
-        }
-
-        .modal__body[aria-hidden="false"] {
-            display: flex;
-            visibility: visible;
-        }
-
-        .modal__body__inner {
-            background: #fff;
-            opacity: 0;
-            z-index: 100;
-            transition: opacity .3s ease;
-        }
-
-        .modal__body[aria-hidden="false"] .modal__body__inner {
-            opacity: 1;
-        }
+        // .modal__body {
+        // }
 
         // ---------- 透過背景 ----------
         .modal__overlay {

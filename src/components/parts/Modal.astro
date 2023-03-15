@@ -1,4 +1,16 @@
 ---
+import { v4 } from "uuid";
+
+export interface Props {
+  buttonText: Array<string>;
+  headingLevel: number;
+  headingText: Array<string>;
+  bodyText: Array<string>;
+}
+
+const { buttonText, headingLevel, headingText, bodyText } = Astro.props;
+const Heading = `h${headingLevel}`;
+const uuid = v4();
 ---
 
 <div class="root modal">
@@ -6,26 +18,27 @@
     type="button"
     class="button modal__button"
   >
-    モーダルボタン
-
-    <div class="menu__text modal__button__text">開く</div>
+    {buttonText.map(item => <span>{item}</span>)}
   </button>
 
-  <div role="dialog">
-    <nav
-      class="nav modal__body"
-      aria-label="__dummy__"
-    >
-      <div class="modal__body__inner">
-        モーダルボディ
+  <div
+    role="dialog"
+    class="nav modal__body"
+    aria-labelledby={uuid}
+  >
+    <div class="modal__body__inner">
+      <Heading id={uuid}>
+        {headingText.map(item => <span>{item}</span>)}
+      </Heading>
 
-        <a href="__dummy__">ダミーリンク</a>
+      {bodyText.map(item => <p>{item}</p>)}
 
-        <a href="__dummy__">ダミーリンク</a>
+      <a href="__dummy__">ダミーリンク</a>
 
-        <a href="__dummy__">ダミーリンク</a>
-      </div>
-    </nav>
+      <a href="__dummy__">ダミーリンク</a>
+
+      <a href="__dummy__">ダミーリンク</a>
+    </div>
   </div>
 </div>
 
@@ -34,13 +47,52 @@
 
   // ---------- 基底要素 ----------
   .root {
+    margin-top: g.rem(40px);
   }
 
-  // ---------- ナビを開くボタン ----------
+  // ---------- ナビを開くボタン要素 ----------
   .button {
   }
 
   // ---------- モーダルを開くボタンが押されたとき ----------
   .button[aria-expanded="true"] {
+  }
+
+  // ---------- モーダル本体要素 ----------
+  .modal__body {
+    visibility: hidden;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    transition: visibility 0.4s ease;
+  }
+
+  .modal__body[aria-hidden="false"] {
+    display: flex;
+    visibility: visible;
+  }
+
+  .modal__body__inner {
+    width: g.pxToVw(300, 'sp');
+    padding: g.rem(20px) g.rem(30px);
+    background: #fff;
+    opacity: 0;
+    z-index: 100;
+    transition: opacity 0.3s ease;
+
+    @include g.mediaQuery() {
+      width: min(g.pxToVw(800, 'pc'), g.rem(800px));
+      padding: g.rem(50px);
+    }
+  }
+
+  .modal__body[aria-hidden="false"] .modal__body__inner {
+    opacity: 1;
   }
 </style>
