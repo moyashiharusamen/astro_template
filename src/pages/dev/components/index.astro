@@ -7,7 +7,7 @@ import MediaImage from "@src/components/parts/MediaImage.astro";
 import LinkButton from "@src/components/parts/LinkButton.astro";
 import Toggle from "@src/components/parts/Toggle.astro";
 import Modal from "@src/components/parts/Modal.astro";
-import Accordion from "@src/components/parts/Accordion.astro";
+import Accordion from "@src/components/templates/Accordion.astro";
 ---
 
 <BaseLayout
@@ -21,27 +21,23 @@ import Accordion from "@src/components/parts/Accordion.astro";
         text="コンポーネントリスト"
       />
 
+      <Text text={["テキストテキストテキスト", "テキストテキスト<sup>※</sup>テキストテキスト"]} />
+
       <Toggle
         buttonText="トグルボタン"
         bodyText={["テキストテキストテキスト", "テキストテキスト"]}
       />
 
       <Modal
-        buttonText={[
-          'モーダルボタン',
-        ]}
+        buttonText={["モーダルボタン"]}
         headingLevel={2}
-        headingText={[
-          'モーダル見出し',
-        ]}
+        headingText={["モーダル見出し"]}
         bodyText={[
-          'テキストテキストテキスト',
-          'テキストテキストテキスト',
-          'テキストテキストテキスト',
+          "テキストテキストテキスト",
+          "テキストテキストテキスト",
+          "テキストテキストテキスト"
         ]}
       />
-
-      <Text text={["テキストテキストテキスト", "テキストテキスト<sup>※</sup>テキストテキスト"]} />
 
       <Accordion />
 
