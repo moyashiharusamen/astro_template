@@ -13,6 +13,10 @@ $base-text-color: #333;
 // ========== gradation ==========
 
 
+// ========== easing ==========
+$easing: cubic-bezier(0.42, 0, 0.58, 1);
+
+
 // ========== contents size ==========
 $content-width: 375;
 $content-width-pc: 1000;
