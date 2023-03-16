@@ -19,6 +19,7 @@ export default class Tab {
   buttonWrap: HTMLElement;
   buttons: NodeList;
   bodies: NodeList;
+  defaultDisplayNumber: number;
   uniquId: string;
 
   /**
@@ -50,6 +51,12 @@ export default class Tab {
     this.bodies = <NodeList>base.querySelectorAll(`.${baseName}__body`);
 
     /**
+     * @type {number} デフォルトで表示するタブの順番を表す数値
+     */
+    this.defaultDisplayNumber = Number(base.dataset.defaultDisplay) - 1;
+
+
+    /**
      * @type {string} ユニークな識別子
      */
     this.uniquId = `${baseName}__${v4()}`;
@@ -77,13 +84,23 @@ export default class Tab {
     this.buttonWrap.setAttribute("role", "tablist");
     this.buttons.forEach((button: any, i) => {
       button.setAttribute("role", "tab");
-      button.setAttribute("aria-selected", "false");
-      button.setAttribute("tabindex", "-1");
       button.setAttribute("aria-controls", `${this.baseName}_${i + 1}`);
+
+      if (this.defaultDisplayNumber === i) {
+        button.setAttribute("aria-selected", "true");
+        button.setAttribute("tabindex", "0");
+      } else {
+        button.setAttribute("aria-selected", "false");
+        button.setAttribute("tabindex", "-1");
+      }
     });
     this.bodies.forEach((body: any, i) => {
       body.setAttribute("role", "tabpanel");
       body.setAttribute("id", `${this.baseName}_${i + 1}`);
+
+      if (this.defaultDisplayNumber === i) {
+        body.setAttribute("aria-hidden", "false");
+      }
     });
   }
 
