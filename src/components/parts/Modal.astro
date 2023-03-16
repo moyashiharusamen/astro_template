@@ -9,7 +9,7 @@ export interface Props {
 }
 
 const { buttonText, headingLevel, headingText, bodyText } = Astro.props;
-const Heading = `h${headingLevel}`;
+const Heading: any = `h${headingLevel}`;
 const uuid = v4();
 ---
 
