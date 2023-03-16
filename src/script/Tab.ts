@@ -49,19 +49,10 @@ export default class Tab {
     this.setAttr();
   }
 
-  bindEvents() {
-    this.buttons.forEach((button, i) => {
-      button.addEventListener('click', e => {
-        const target: any = e.target;
-        if (target.getAttribute('aria-selected') === 'true') return;
-
-        this.toggle(target, false);
-      });
-
-      button.addEventListener('keydown', e => this.keyCtrl(e));
-    })
-  }
-
+  /**
+   * 属性の初期設定
+   * @return {Void}
+   */
   setAttr() {
     let defaultDisplayNumber: number;
     this.buttonWrap.setAttribute('role', 'tablist');
@@ -85,6 +76,27 @@ export default class Tab {
     });
   }
 
+  /**
+   * イベントのバインド登録
+   * @return {Void}
+   */
+  bindEvents() {
+    this.buttons.forEach((button, i) => {
+      button.addEventListener('click', e => {
+        const target: any = e.target;
+        if (target.getAttribute('aria-selected') === 'true') return;
+
+        this.toggle(target, false);
+      });
+
+      button.addEventListener('keydown', e => this.keyCtrl(e));
+    })
+  }
+
+  /**
+   * タブの開閉
+   * @return {Void}
+   */
   toggle(target: HTMLElement, inputKeyboard: boolean) {
     const currentTargetID = target.getAttribute('aria-controls');
     const targetElement = <HTMLElement>this.base.querySelector(`.${this.baseName}__body[id='${currentTargetID}'`);
@@ -105,6 +117,10 @@ export default class Tab {
     if (inputKeyboard) target.focus();
   }
 
+  /**
+   * タブボタンをキーボードで操作したときの挙動の制御
+   * @return {Void}
+   */
   keyCtrl(e: any) {
     let target;
     const currentTarget = e.target;
