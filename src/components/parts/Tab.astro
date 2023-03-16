@@ -1,7 +1,7 @@
 ---
 ---
 
-<div class="root tab" data-default-display="1">
+<div class="root tab">
   <div class="tab__button__wrap">
     <button class="tab__button">タブボタン1</button>
     <button class="tab__button">タブボタン2</button>
@@ -32,5 +32,33 @@
 
   // ---------- 基底要素 ----------
   .root {
+    width: 100%;
+    margin-top: g.rem(40px);
   }
+
+  // ---------- ボタン要素 ----------
+  .tab__button__wrap {
+    display: flex;
+    gap: g.rem(10px);
+    position: relative;
+    z-index: 2;
+  }
+
+  .tab__button {
+    flex: 1 1 0;
+    padding: g.rem(10px);
+    border: 1px solid g.$base-color;
+    border-radius: g.rem(10px) g.rem(10px) 0 0;
+  }
+
+  // ---------- 本体要素 ----------
+  .tab__body__wrap {
+    padding: g.rem(20px);
+    border: 1px solid g.$base-color;
+    position: relative;
+    top: g.rem(-1px);
+    z-index: 1;
+  }
+
+  .tab__body {}
 </style>
