@@ -2,7 +2,7 @@
  *  @fileoverview タブパネルを制御するJS
  *  ============================================================ */
 
-import { v4 } from "uuid";
+import { v4 } from 'uuid';
 
 /**
  * @class Tab
@@ -12,7 +12,7 @@ export default class Tab {
   /**
    * @property {string} ブロック名
    */
-  static baseName: string = "tab";
+  static baseName: string = 'tab';
 
   baseName: string;
   base: HTMLElement;
@@ -67,59 +67,59 @@ export default class Tab {
 
   bindEvents() {
     this.buttons.forEach((button, i) => {
-      button.addEventListener("click", e => {
+      button.addEventListener('click', e => {
         const target: any = e.target;
-        if (target.getAttribute("aria-selected") === "true") return;
+        if (target.getAttribute('aria-selected') === 'true') return;
 
           this.toggle(target, false);
       });
 
-      button.addEventListener("keydown", e => {
+      button.addEventListener('keydown', e => {
         this.keyCtrl(e);
       });
     })
   }
 
   setAttr() {
-    this.buttonWrap.setAttribute("role", "tablist");
+    this.buttonWrap.setAttribute('role', 'tablist');
     this.buttons.forEach((button: any, i) => {
-      button.setAttribute("role", "tab");
-      button.setAttribute("aria-controls", `${this.baseName}_${i + 1}`);
+      button.setAttribute('role', 'tab');
+      button.setAttribute('aria-controls', `${this.baseName}_${i + 1}`);
 
       if (this.defaultDisplayNumber === i) {
-        button.setAttribute("aria-selected", "true");
-        button.setAttribute("tabindex", "0");
+        button.setAttribute('aria-selected', 'true');
+        button.setAttribute('tabindex', '0');
       } else {
-        button.setAttribute("aria-selected", "false");
-        button.setAttribute("tabindex", "-1");
+        button.setAttribute('aria-selected', 'false');
+        button.setAttribute('tabindex', '-1');
       }
     });
     this.bodies.forEach((body: any, i) => {
-      body.setAttribute("role", "tabpanel");
-      body.setAttribute("id", `${this.baseName}_${i + 1}`);
+      body.setAttribute('role', 'tabpanel');
+      body.setAttribute('id', `${this.baseName}_${i + 1}`);
 
       if (this.defaultDisplayNumber === i) {
-        body.setAttribute("aria-hidden", "false");
+        body.setAttribute('aria-hidden', 'false');
       }
     });
   }
 
   toggle(target: HTMLElement, inputKeyboard: boolean) {
-    const currentTargetID = target.getAttribute("aria-controls");
-    const targetElement = <HTMLElement>this.base.querySelector(`.${this.baseName}__body[id="${currentTargetID}"`);
+    const currentTargetID = target.getAttribute('aria-controls');
+    const targetElement = <HTMLElement>this.base.querySelector(`.${this.baseName}__body[id='${currentTargetID}'`);
 
-    if (targetElement.getAttribute("aria-hidden") === "false") return;
+    if (targetElement.getAttribute('aria-hidden') === 'false') return;
 
     this.buttons.forEach((button: any) => {
-      button.setAttribute("aria-selected", "false");
-      button.setAttribute("tabindex", "-1");
+      button.setAttribute('aria-selected', 'false');
+      button.setAttribute('tabindex', '-1');
     });
-    target.setAttribute("aria-selected", "true");
-    target.setAttribute("tabindex", "0");
+    target.setAttribute('aria-selected', 'true');
+    target.setAttribute('tabindex', '0');
     this.bodies.forEach((body: any) => {
-      body.setAttribute("aria-hidden", "true");
+      body.setAttribute('aria-hidden', 'true');
     });
-    targetElement.setAttribute("aria-hidden", "false");
+    targetElement.setAttribute('aria-hidden', 'false');
 
     if (inputKeyboard) target.focus();
   }
@@ -129,28 +129,28 @@ export default class Tab {
     const currentTarget = e.target;
 
     if (
-      (e.key === "ArrowRight" || e.key === "Right")
-      || (e.key === "ArrowDown" || e.key === "Down")
+      (e.key === 'ArrowRight' || e.key === 'Right')
+      || (e.key === 'ArrowDown' || e.key === 'Down')
     ) {
       target = currentTarget.nextElementSibling;
 
       // 次のタブがなければ最初のタブへ
       if (!target) target = this.buttons[0];
     } else if (
-      (e.key === "ArrowLeft" || e.key === "Left")
-      || (e.key === "ArrowUp" || e.key === "Up")
+      (e.key === 'ArrowLeft' || e.key === 'Left')
+      || (e.key === 'ArrowUp' || e.key === 'Up')
     ) {
-      // "left arrow key & up arrow key"
+      // 'left arrow key & up arrow key'
       target = currentTarget.previousElementSibling;
 
       // 前のタブがなければ最後のタブへ
       if (!target) target = this.buttons[this.buttons.length - 1];
     }
 
-    if ((e.key === "ArrowLeft" || e.key === "Left")
-      || (e.key === "ArrowUp" || e.key === "Up")
-      || (e.key === "ArrowRight" || e.key === "Right")
-      || (e.key === "ArrowDown" || e.key === "Down")
+    if ((e.key === 'ArrowLeft' || e.key === 'Left')
+      || (e.key === 'ArrowUp' || e.key === 'Up')
+      || (e.key === 'ArrowRight' || e.key === 'Right')
+      || (e.key === 'ArrowDown' || e.key === 'Down')
     ) {
       e.preventDefault()
       this.toggle(target, true);

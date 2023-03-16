@@ -2,9 +2,9 @@
  *  @fileoverview アコーディオンを制御するJS
  *  ============================================================ */
 
-import Events from "events";
-import _ from "lodash";
-import Toggle from "./Toggle";
+import Events from 'events';
+import _ from 'lodash';
+import Toggle from './Toggle';
 
 /**
  * @class Accordion
@@ -13,7 +13,7 @@ export default class Accordion {
   /**
    * @property {string} ブロック名
    */
-  static baseName: string = "accordion";
+  static baseName: string = 'accordion';
 
   events: Object;
   toggles: Toggle[];
@@ -33,14 +33,14 @@ export default class Accordion {
     /**
      * @type {HTMLElement} 基底要素ノード
      */
-    const item = base.querySelectorAll(".accordionItem");
+    const item = base.querySelectorAll('.accordionItem');
 
     this.events = new Events.EventEmitter();
 
     /**
      * @type {Toggle[]} Toggle のインスタンス群
      */
-    this.toggles = [...item].map(element => new Toggle(element, "accordionItem"));
+    this.toggles = [...item].map(element => new Toggle(element, 'accordionItem'));
 
     this.bindEvents();
   }
@@ -51,13 +51,13 @@ export default class Accordion {
    */
   bindEvents() {
     this.toggles.forEach(toggle => {
-      toggle.on("open", () => this.onOpen(toggle));
+      toggle.on('open', () => this.onOpen(toggle));
     });
   }
 
   /**
    * Toggle のいずれかが開かれたら、それ以外の Toggle を閉じる
-   * @param {Object} toggle  "open" イベントが発生した（いま開かれた） Toggle インスタンス
+   * @param {Object} toggle  'open' イベントが発生した（いま開かれた） Toggle インスタンス
    * @return {Void}
    */
   onOpen(toggle: object) {

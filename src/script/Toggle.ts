@@ -2,8 +2,8 @@
  *  @fileoverview トグルを制御するJS
  *  ============================================================ */
 
-import Events from "events";
-import { v4 } from "uuid";
+import Events from 'events';
+import { v4 } from 'uuid';
 
 /**
  * @class Toggle
@@ -12,7 +12,7 @@ export default class Toggle extends Events {
   /**
    * @property {string} ブロック名
    */
-  static baseName: string = "toggle";
+  static baseName: string = 'toggle';
 
   base: HTMLElement;
   body: HTMLElement;
@@ -64,9 +64,9 @@ export default class Toggle extends Events {
    * @return {Void}
    */
   setAttr() {
-    this.button.setAttribute("aria-expanded", "false");
-    this.button.setAttribute("aria-controls", this.uniquId);
-    this.body.setAttribute("id", this.uniquId);
+    this.button.setAttribute('aria-expanded', 'false');
+    this.button.setAttribute('aria-controls', this.uniquId);
+    this.body.setAttribute('id', this.uniquId);
   }
 
   /**
@@ -74,7 +74,7 @@ export default class Toggle extends Events {
    * @return {Void}
    */
   bindEvents() {
-    this.button.addEventListener("click", e => {
+    this.button.addEventListener('click', e => {
       e.preventDefault();
       this.toggle();
     });
@@ -93,10 +93,10 @@ export default class Toggle extends Events {
    * @return {Void}
    */
   open() {
-    this.emit("open", this);
-    this.body.setAttribute("aria-hidden", "false");
-    this.button.setAttribute("aria-expanded", "true");
-    this.buttonMark.textContent = "閉じる";
+    this.emit('open', this);
+    this.body.setAttribute('aria-hidden', 'false');
+    this.button.setAttribute('aria-expanded', 'true');
+    this.buttonMark.textContent = '閉じる';
   }
 
   /**
@@ -104,9 +104,9 @@ export default class Toggle extends Events {
    * @return {Void}
    */
   close() {
-    this.body.setAttribute("aria-hidden", "true");
-    this.button.setAttribute("aria-expanded", "false");
-    this.buttonMark.textContent = "開く";
+    this.body.setAttribute('aria-hidden', 'true');
+    this.button.setAttribute('aria-expanded', 'false');
+    this.buttonMark.textContent = '開く';
   }
 
   /**
@@ -114,6 +114,6 @@ export default class Toggle extends Events {
    * @returns {boolean}
    */
   isOpened() {
-    return this.body.getAttribute("aria-hidden") !== "true";
+    return this.body.getAttribute('aria-hidden') !== 'true';
   }
 }
