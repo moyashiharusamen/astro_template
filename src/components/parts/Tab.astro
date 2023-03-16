@@ -1,0 +1,37 @@
+---
+// export interface Props {
+//   text: Array<string>;
+// }
+
+// const { text } = Astro.props;
+---
+
+<div class="root tab">
+  <div class="tab__button__wrap">
+    <button class="tab__button">タブボタン1</button>
+    <button class="tab__button">タブボタン2</button>
+  </div>
+
+  <div class="tab__body__wrap">
+    <div
+      class="tab__body"
+      aria-hidden="true"
+    >
+      <p>テキストテキストテキスト</p>
+    </div>
+    <div
+      class="tab__body"
+      aria-hidden="true"
+    >
+      <p>テキストテキストテキストテキスト</p>
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  @use "../../style/global" as g;
+
+  // ---------- 基底要素 ----------
+  .root {
+  }
+</style>
