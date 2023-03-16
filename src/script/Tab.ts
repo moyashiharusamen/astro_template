@@ -62,7 +62,6 @@ export default class Tab {
     this.buttons.forEach((button, i) => {
       button.addEventListener("click", e => {
         const target: any = e.target;
-        console.log(target);
         if (target.getAttribute("aria-selected") === "true") return;
 
           this.toggle(target, false);
