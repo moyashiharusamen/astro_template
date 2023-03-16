@@ -2,8 +2,6 @@
  *  @fileoverview タブパネルを制御するJS
  *  ============================================================ */
 
-import { v4 } from 'uuid';
-
 /**
  * @class Tab
  */
@@ -19,9 +17,6 @@ export default class Tab {
   buttonWrap: HTMLElement;
   buttons: NodeList;
   bodies: NodeList;
-  defaultDisplayNumber: number;
-  uniquId: string;
-
   /**
    * インスタンスを生成
    * @param {Object} element 基底要素ノード、またはそれを探すための文字列
@@ -50,17 +45,6 @@ export default class Tab {
      */
     this.bodies = <NodeList>base.querySelectorAll(`.${baseName}__body`);
 
-    /**
-     * @type {number} デフォルトで表示するタブの順番を表す数値
-     */
-    this.defaultDisplayNumber = Number(base.dataset.defaultDisplay) - 1;
-
-
-    /**
-     * @type {string} ユニークな識別子
-     */
-    this.uniquId = `${baseName}__${v4()}`;
-
     this.bindEvents();
     this.setAttr();
   }
@@ -71,35 +55,32 @@ export default class Tab {
         const target: any = e.target;
         if (target.getAttribute('aria-selected') === 'true') return;
 
-          this.toggle(target, false);
+        this.toggle(target, false);
       });
 
-      button.addEventListener('keydown', e => {
-        this.keyCtrl(e);
-      });
+      button.addEventListener('keydown', e => this.keyCtrl(e));
     })
   }
 
   setAttr() {
+    let defaultDisplayNumber: number;
     this.buttonWrap.setAttribute('role', 'tablist');
+    this.bodies.forEach((body: any, i) => {
+      body.setAttribute('role', 'tabpanel');
+      body.setAttribute('id', `${this.baseName}_${i + 1}`);
+
+      if (body.getAttribute('aria-hidden') === 'false') defaultDisplayNumber = i;
+    });
     this.buttons.forEach((button: any, i) => {
       button.setAttribute('role', 'tab');
       button.setAttribute('aria-controls', `${this.baseName}_${i + 1}`);
 
-      if (this.defaultDisplayNumber === i) {
+      if (defaultDisplayNumber === i) {
         button.setAttribute('aria-selected', 'true');
         button.setAttribute('tabindex', '0');
       } else {
         button.setAttribute('aria-selected', 'false');
         button.setAttribute('tabindex', '-1');
-      }
-    });
-    this.bodies.forEach((body: any, i) => {
-      body.setAttribute('role', 'tabpanel');
-      body.setAttribute('id', `${this.baseName}_${i + 1}`);
-
-      if (this.defaultDisplayNumber === i) {
-        body.setAttribute('aria-hidden', 'false');
       }
     });
   }
