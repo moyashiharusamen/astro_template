@@ -9,6 +9,7 @@ import Toggle from "@src/components/parts/Toggle.astro";
 import Modal from "@src/components/parts/Modal.astro";
 import Accordion from "@src/components/templates/Accordion.astro";
 import Tab from "@src/components/parts/Tab.astro";
+import ListLink from "@src/components/parts/ListLink.astro";
 ---
 
 <BaseLayout
@@ -57,6 +58,21 @@ import Tab from "@src/components/parts/Tab.astro";
         text="リンクボタン"
         href="__dummy__"
         blank={false}
+      />
+
+      <ListLink
+        link={
+          [
+            {
+              href: '/__dummy__/',
+              text: 'リストリンク1',
+            },
+            {
+              href: '/__dummy__/',
+              text: 'リストリンク2',
+            }
+          ]
+        }
       />
     </Section>
   </main>
