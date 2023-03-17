@@ -17,31 +17,19 @@ const Heading = `h${level}`;
 
   // ---------- 基底要素 ----------
   .root {
-    text-align: center;
+    // text-align: center;
   }
 
   .root.-h1 {
-    margin-bottom: g.rem(50px);
-
-    @include g.mediaQuery() {
-      margin-bottom: g.rem(75px);
-    }
+    margin: g.rem(64px) 0 g.rem(24px);
   }
 
   .root.-h2 {
-    margin: g.rem(40px) 0 g.rem(20px);
-
-    @include g.mediaQuery() {
-      margin: g.rem(60px) 0 g.rem(30px);
-    }
+    margin: g.rem(64px) 0 g.rem(24px);
   }
 
   .root.-h3 {
-    margin: g.rem(30px) 0 g.rem(15px);
-
-    @include g.mediaQuery() {
-      margin: g.rem(50px) 0 g.rem(25px);
-    }
+    margin: g.rem(40px) 0 g.rem(24px);
   }
 
   // ---------- 見出し要素 ----------
@@ -54,12 +42,12 @@ const Heading = `h${level}`;
     font-size: g.rem(32px);
 
     @include g.mediaQuery() {
-      font-size: g.rem(36px);
+      font-size: g.rem(42px);
     }
   }
 
   .-h2 .heading {
-    font-size: g.rem(24px);
+    font-size: g.rem(26px);
 
     @include g.mediaQuery() {
       font-size: g.rem(32px);
@@ -67,10 +55,10 @@ const Heading = `h${level}`;
   }
 
   .-h3 .heading {
-    font-size: g.rem(20px);
+    font-size: g.rem(22px);
 
     @include g.mediaQuery() {
-      font-size: g.rem(28px);
+      font-size: g.rem(26px);
     }
   }
 </style>

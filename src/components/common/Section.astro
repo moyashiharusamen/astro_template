@@ -18,16 +18,10 @@ const Section = htmlELement ? htmlELement : "section";
 
   // ---------- 基底要素 ----------
   .root {
-    padding: g.rem(40px) 0;
-
-    @include g.mediaQuery() {
-      padding: g.rem(80px) 0;
-    }
   }
 
   // ---------- 基底要素のインナー要素 ----------
   .inner {
     @include g.centering();
-    @include g.resetMargin();
   }
 </style>
