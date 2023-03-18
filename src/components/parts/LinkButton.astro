@@ -13,8 +13,8 @@ const { text, href, blank } = Astro.props;
     class="link"
     href={`${href}`}
     target={`${blank ? "_blank" : ""}`}
+    set:html={text}
   >
-    {text}
   </a>
 </div>
 

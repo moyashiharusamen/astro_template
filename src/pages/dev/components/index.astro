@@ -65,6 +65,12 @@ import ListLink from "@src/components/parts/ListLink.astro";
         blank={false}
       />
 
+      <LinkButton
+        text="リンクボタン"
+        href="__dummy__"
+        blank={false}
+      />
+
       <Heading
         level={3}
         text="コンポーネント説明"
@@ -72,7 +78,11 @@ import ListLink from "@src/components/parts/ListLink.astro";
 
       <List
         text={[
-          "コンポーネント説明",
+          "引数 text は表示するリンクのテキストを設定します",
+          "引数 href はリンク先の URL を設定します",
+          '引数 blank を true 指定すると、 target="_blank" が設定されます',
+          "配列内で HTML 要素を記述すると、 HTML 要素として出力されます",
+          "上記方法で出力された HTML 要素はコンポーネントファイル内で CSS の設定ができません",
         ]}
       />
     </Section>
