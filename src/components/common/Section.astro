@@ -1,14 +1,15 @@
 ---
 export interface Props {
   htmlELement?: string;
+  gray?:        boolean;
 }
 
-const { htmlELement } = Astro.props;
+const { htmlELement, gray } = Astro.props;
 const Section = htmlELement ? htmlELement : "section";
 ---
 
-<Section class:list="root">
-  <div class="inner">
+<Section class:list={["root", { gray }]}>
+  <div class="section__inner">
     <slot />
   </div>
 </Section>
@@ -18,10 +19,15 @@ const Section = htmlELement ? htmlELement : "section";
 
   // ---------- 基底要素 ----------
   .root {
+    padding: g.rem(50px) 0;
+  }
+
+  .gray {
+    background: #eee
   }
 
   // ---------- 基底要素のインナー要素 ----------
-  .inner {
+  .section__inner {
     @include g.centering();
   }
 </style>

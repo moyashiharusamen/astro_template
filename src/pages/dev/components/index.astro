@@ -18,33 +18,47 @@ import ListLink from "@src/components/parts/ListLink.astro";
   description="コンポーネントリスト"
 >
   <main>
-    <Section>
+    <Heading
+      level={1}
+      text="コンポーネントリスト"
+      centering={true}
+    />
+
+    <Section
+      gray={true}
+    >
       <Heading
-        level={1}
-        text="コンポーネントリスト"
+        level={2}
+        text="Text コンポーネント"
       />
 
       <Text text={["テキストテキストテキスト", "テキストテキスト<sup>※</sup>テキストテキスト"]} />
+      <Text text={["テキストテキストテキスト", "テキストテキスト<sup>※</sup>テキストテキスト"]} />
 
-      <Toggle
-        buttonText="トグルボタン"
-        bodyText={["テキストテキストテキスト", "テキストテキスト"]}
+      <Heading
+        level={3}
+        text="コンポーネント説明"
       />
 
-      <Modal
-        buttonText={["モーダルボタン"]}
-        headingLevel={2}
-        headingText={["モーダル見出し"]}
-        bodyText={[
-          "テキストテキストテキスト",
-          "テキストテキストテキスト",
-          "テキストテキストテキスト"
+      <List
+        text={[
+          "引数 text は配列で指定してください",
+          "引数 text は配列の要素ごとに p 要素が生成されます",
+          "改行したいときは配列の要素ごとに設定してください",
+          "Text コンポーネント内の p 要素同士には上下余白はありません",
+          "上下余白を設定したい場合は Text コンポーネントを複数使用してください",
+          "配列内で HTML 要素を記述すると、 HTML 要素として出力されます",
+          "上記方法で出力された HTML 要素はコンポーネントファイル内で CSS の設定ができません",
         ]}
       />
+    </Section>
 
-      <Accordion />
 
-      <Tab />
+    <Section>
+      <Heading
+        level={2}
+        text="MediaImage コンポーネント"
+      />
 
       <MediaImage
         imgSrc="/assets/image/dummy.webp"
@@ -55,10 +69,50 @@ import ListLink from "@src/components/parts/ListLink.astro";
         async={true}
       />
 
+      <Heading
+        level={3}
+        text="コンポーネント説明"
+      />
+
+      <List
+        text={[
+          "コンポーネント説明",
+        ]}
+      />
+    </Section>
+
+
+    <Section
+      gray={true}
+    >
+      <Heading
+        level={2}
+        text="LinkButton コンポーネント"
+      />
+
       <LinkButton
         text="リンクボタン"
         href="__dummy__"
         blank={false}
+      />
+
+      <Heading
+        level={3}
+        text="コンポーネント説明"
+      />
+
+      <List
+        text={[
+          "コンポーネント説明",
+        ]}
+      />
+    </Section>
+
+
+    <Section>
+      <Heading
+        level={2}
+        text="List コンポーネント"
       />
 
       <List
@@ -66,6 +120,27 @@ import ListLink from "@src/components/parts/ListLink.astro";
           "リストリストリストリスト",
           "リストリスト",
         ]}
+      />
+
+      <Heading
+        level={3}
+        text="コンポーネント説明"
+      />
+
+      <List
+        text={[
+          "コンポーネント説明",
+        ]}
+      />
+    </Section>
+
+
+    <Section
+      gray={true}
+    >
+      <Heading
+        level={2}
+        text="ListLink コンポーネント"
       />
 
       <ListLink
@@ -81,6 +156,117 @@ import ListLink from "@src/components/parts/ListLink.astro";
             }
           ]
         }
+      />
+
+      <Heading
+        level={3}
+        text="コンポーネント説明"
+      />
+
+      <List
+        text={[
+          "コンポーネント説明",
+        ]}
+      />
+    </Section>
+
+
+    <Section>
+      <Heading
+        level={2}
+        text="Toggle コンポーネント"
+      />
+
+      <Toggle
+        buttonText="トグルボタン"
+        bodyText={["テキストテキストテキスト", "テキストテキスト"]}
+      />
+
+      <Heading
+        level={3}
+        text="コンポーネント説明"
+      />
+
+      <List
+        text={[
+          "コンポーネント説明",
+        ]}
+      />
+    </Section>
+
+
+    <Section
+      gray={true}
+    >
+      <Heading
+        level={2}
+        text="Accordion コンポーネント"
+      />
+
+      <Accordion />
+
+      <Heading
+        level={3}
+        text="コンポーネント説明"
+      />
+
+      <List
+        text={[
+          "コンポーネント説明",
+        ]}
+      />
+    </Section>
+
+
+    <Section>
+      <Heading
+        level={2}
+        text="Modal コンポーネント"
+      />
+
+      <Modal
+        buttonText={["モーダルボタン"]}
+        headingLevel={2}
+        headingText={["モーダル見出し"]}
+        bodyText={[
+          "テキストテキストテキスト",
+          "テキストテキストテキスト",
+          "テキストテキストテキスト"
+        ]}
+      />
+
+      <Heading
+        level={3}
+        text="コンポーネント説明"
+      />
+
+      <List
+        text={[
+          "コンポーネント説明",
+        ]}
+      />
+    </Section>
+
+
+    <Section
+      gray={true}
+    >
+      <Heading
+        level={2}
+        text="Tab コンポーネント"
+      />
+
+      <Tab />
+
+      <Heading
+        level={3}
+        text="コンポーネント説明"
+      />
+
+      <List
+        text={[
+          "コンポーネント説明",
+        ]}
       />
     </Section>
   </main>

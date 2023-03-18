@@ -2,13 +2,14 @@
 export interface Props {
   level: number;
   text: string;
+  centering?: boolean;
 }
 
-const { level, text } = Astro.props;
+const { level, text, centering } = Astro.props;
 const Heading = `h${level}`;
 ---
 
-<header class:list={["root", `-${Heading}`]}>
+<header class:list={["root", `-${Heading}`, { centering }]}>
   <Heading class:list="heading">{text}</Heading>
 </header>
 
@@ -16,20 +17,23 @@ const Heading = `h${level}`;
   @use "../../style/global" as g;
 
   // ---------- 基底要素 ----------
-  .root {
-    // text-align: center;
+  .root.centering {
+    @include g.centering();
   }
 
   .root.-h1 {
-    margin: g.rem(64px) 0 g.rem(24px);
+    margin-top: g.rem(64px);
+    margin-bottom: g.rem(24px);
   }
 
   .root.-h2 {
-    margin: g.rem(64px) 0 g.rem(24px);
+    margin-top: g.rem(64px);
+    margin-bottom: g.rem(24px);
   }
 
   .root.-h3 {
-    margin: g.rem(40px) 0 g.rem(24px);
+    margin-top: g.rem(40px);
+    margin-bottom: g.rem(24px);
   }
 
   // ---------- 見出し要素 ----------
