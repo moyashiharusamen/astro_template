@@ -162,12 +162,12 @@ import ListLink from "@src/components/parts/ListLink.astro";
         link={
           [
             {
-              href: '/__dummy__/',
               text: 'リストリンク1',
+              href: '/__dummy__/',
             },
             {
-              href: '/__dummy__/',
               text: 'リストリンク2',
+              href: '/__dummy__/',
             }
           ]
         }
@@ -180,7 +180,11 @@ import ListLink from "@src/components/parts/ListLink.astro";
 
       <List
         text={[
-          "コンポーネント説明",
+          "引数 link（必須）は配列内のオブジェクトごとに li 要素が生成されます",
+          "text キー（必須）は表示するリンクのテキストを設定します",
+          "href キー（必須）はリンク先の URL を設定します",
+          "配列内で HTML 要素を記述すると、 HTML 要素として出力されます",
+          "上記方法で出力された HTML 要素はコンポーネントファイル内で CSS の設定ができません",
         ]}
       />
     </Section>
