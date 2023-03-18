@@ -13,7 +13,7 @@
                 "src/layouts/*"
             ]
         },
-        "importsNotUsedAsValues": "error",
+        "ignoreDeprecations": "5.0",
         "allowJs": true
     },
 }
