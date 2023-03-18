@@ -62,13 +62,12 @@ import ListLink from "@src/components/parts/ListLink.astro";
       <LinkButton
         text="リンクボタン"
         href="__dummy__"
-        blank={false}
       />
 
       <LinkButton
         text="リンクボタン"
         href="__dummy__"
-        blank={false}
+        blank={true}
       />
 
       <Heading
@@ -78,9 +77,9 @@ import ListLink from "@src/components/parts/ListLink.astro";
 
       <List
         text={[
-          "引数 text は表示するリンクのテキストを設定します",
-          "引数 href はリンク先の URL を設定します",
-          '引数 blank を true 指定すると、 target="_blank" が設定されます',
+          "引数 text（必須）は表示するリンクのテキストを設定します",
+          "引数 href（必須）はリンク先の URL を設定します",
+          '引数 blank（任意）を true 指定すると、 a 要素に target="_blank" が設定されます',
           "配列内で HTML 要素を記述すると、 HTML 要素として出力されます",
           "上記方法で出力された HTML 要素はコンポーネントファイル内で CSS の設定ができません",
         ]}
@@ -110,7 +109,14 @@ import ListLink from "@src/components/parts/ListLink.astro";
 
       <List
         text={[
-          "コンポーネント説明",
+          "引数 imgSrc（必須）は画像の src 属性の値を設定します",
+          "引数 alt（必須）は img 要素の alt 属性の値を設定します",
+          "引数 width（必須）は img 要素の width 属性の値を設定します",
+          "引数 height（必須）は img 要素の height 属性の値を設定します",
+          "引数の width と height はレイアウトシフト対策として必ず設定してください",
+          '引数 lazy（任意）は true を設定すると img 要素に loading="lazy" を設定します',
+          '引数 async（任意）は true を設定すると img 要素に decoding="async" を設定します',
+          "引数の lazy と async は基本的には true にしてください、ただしファーストビューに入るので対象の画像をチラつかせたくないなどの理由がある場合は false に設定、または未記入で対応してくださ",
         ]}
       />
     </Section>
