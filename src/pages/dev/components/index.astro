@@ -24,9 +24,7 @@ import ListLink from "@src/components/parts/ListLink.astro";
       centering={true}
     />
 
-    <Section
-      gray={true}
-    >
+    <Section>
       <Heading
         level={2}
         text="Text コンポーネント"
@@ -42,11 +40,46 @@ import ListLink from "@src/components/parts/ListLink.astro";
 
       <List
         text={[
-          "引数 text は配列で指定してください",
-          "引数 text は配列の要素ごとに p 要素が生成されます",
+          "引数 text（必須）は配列の要素ごとに p 要素が生成されます",
           "改行したいときは配列の要素ごとに設定してください",
           "Text コンポーネント内の p 要素同士には上下余白はありません",
           "上下余白を設定したい場合は Text コンポーネントを複数使用してください",
+          "配列内で HTML 要素を記述すると、 HTML 要素として出力されます",
+          "上記方法で出力された HTML 要素はコンポーネントファイル内で CSS の設定ができません",
+        ]}
+      />
+    </Section>
+
+
+    <Section
+      gray={true}
+    >
+      <Heading
+        level={2}
+        text="LinkButton コンポーネント"
+      />
+
+      <LinkButton
+        text="リンクボタン"
+        href="__dummy__"
+      />
+
+      <LinkButton
+        text="リンクボタン"
+        href="__dummy__"
+        blank={true}
+      />
+
+      <Heading
+        level={3}
+        text="コンポーネント説明"
+      />
+
+      <List
+        text={[
+          "引数 text（必須）は表示するリンクのテキストを設定します",
+          "引数 href（必須）はリンク先の URL を設定します",
+          '引数 blank（任意）を true 指定すると、 a 要素に target="_blank" が設定されます',
           "配列内で HTML 要素を記述すると、 HTML 要素として出力されます",
           "上記方法で出力された HTML 要素はコンポーネントファイル内で CSS の設定ができません",
         ]}
@@ -76,7 +109,14 @@ import ListLink from "@src/components/parts/ListLink.astro";
 
       <List
         text={[
-          "コンポーネント説明",
+          "引数 imgSrc（必須）は画像の src 属性の値を設定します",
+          "引数 alt（必須）は img 要素の alt 属性の値を設定します",
+          "引数 width（必須）は img 要素の width 属性の値を設定します",
+          "引数 height（必須）は img 要素の height 属性の値を設定します",
+          "引数の width と height はレイアウトシフト対策として必ず設定してください",
+          '引数 lazy（任意）は true を設定すると img 要素に loading="lazy" を設定します',
+          '引数 async（任意）は true を設定すると img 要素に decoding="async" を設定します',
+          "引数の lazy と async は基本的には true にしてください、ただしファーストビューに入るので対象の画像をチラつかせたくないなどの理由がある場合は false に設定、または未記入で対応してくださ",
         ]}
       />
     </Section>
@@ -85,31 +125,6 @@ import ListLink from "@src/components/parts/ListLink.astro";
     <Section
       gray={true}
     >
-      <Heading
-        level={2}
-        text="LinkButton コンポーネント"
-      />
-
-      <LinkButton
-        text="リンクボタン"
-        href="__dummy__"
-        blank={false}
-      />
-
-      <Heading
-        level={3}
-        text="コンポーネント説明"
-      />
-
-      <List
-        text={[
-          "コンポーネント説明",
-        ]}
-      />
-    </Section>
-
-
-    <Section>
       <Heading
         level={2}
         text="List コンポーネント"
@@ -129,15 +144,15 @@ import ListLink from "@src/components/parts/ListLink.astro";
 
       <List
         text={[
-          "コンポーネント説明",
+          "引数 text（必須）は配列の要素ごとに li 要素が生成されます",
+          "配列内で HTML 要素を記述すると、 HTML 要素として出力されます",
+          "上記方法で出力された HTML 要素はコンポーネントファイル内で CSS の設定ができません",
         ]}
       />
     </Section>
 
 
-    <Section
-      gray={true}
-    >
+    <Section>
       <Heading
         level={2}
         text="ListLink コンポーネント"
@@ -147,12 +162,12 @@ import ListLink from "@src/components/parts/ListLink.astro";
         link={
           [
             {
-              href: '/__dummy__/',
               text: 'リストリンク1',
+              href: '/__dummy__/',
             },
             {
-              href: '/__dummy__/',
               text: 'リストリンク2',
+              href: '/__dummy__/',
             }
           ]
         }
@@ -165,13 +180,19 @@ import ListLink from "@src/components/parts/ListLink.astro";
 
       <List
         text={[
-          "コンポーネント説明",
+          "引数 link（必須）は配列内のオブジェクトごとに li 要素が生成されます",
+          "text キー（必須）は表示するリンクのテキストを設定します",
+          "href キー（必須）はリンク先の URL を設定します",
+          "配列内で HTML 要素を記述すると、 HTML 要素として出力されます",
+          "上記方法で出力された HTML 要素はコンポーネントファイル内で CSS の設定ができません",
         ]}
       />
     </Section>
 
 
-    <Section>
+    <Section
+      gray={true}
+    >
       <Heading
         level={2}
         text="Toggle コンポーネント"
@@ -189,18 +210,18 @@ import ListLink from "@src/components/parts/ListLink.astro";
 
       <List
         text={[
-          "コンポーネント説明",
+          "トグル機能を制御するコンポーネントです",
+          "引数 buttonText（必須）はトグルを開閉するボタンに表示するテキストを設定します",
+          "引数 bodyText（必須）はトグルで開閉される要素に表示するテキストを設定します",
         ]}
       />
     </Section>
 
 
-    <Section
-      gray={true}
-    >
+    <Section>
       <Heading
         level={2}
-        text="Accordion コンポーネント"
+        text="Accordion コンポーネント、 AccordionItem コンポーネント"
       />
 
       <Accordion />
@@ -212,13 +233,17 @@ import ListLink from "@src/components/parts/ListLink.astro";
 
       <List
         text={[
-          "コンポーネント説明",
+          "アコーディオン機能を制御するコンポーネントです",
+          "AccordionItem の引数 buttonText（必須）は各トグルを開閉するボタンに表示するテキストを設定します",
+          "AccordionItem の引数 bodyText（必須）は各トグルで開閉される要素に表示するテキストを設定します",
         ]}
       />
     </Section>
 
 
-    <Section>
+    <Section
+      gray={true}
+    >
       <Heading
         level={2}
         text="Modal コンポーネント"
@@ -242,15 +267,17 @@ import ListLink from "@src/components/parts/ListLink.astro";
 
       <List
         text={[
-          "コンポーネント説明",
+          "モーダル機能を制御するコンポーネントです",
+          "引数 buttonText（必須）はモーダルを開閉するボタンに表示するテキストを設定します",
+          "引数 headingLevel（必須）はモーダル内に設置する見出し要素のレベルを設定します",
+          "引数 headingText（必須）は見出しに表示するテキストを設定します",
+          "引数 bodyText（必須）はモーダルで開閉される要素に表示するテキストを設定します",
         ]}
       />
     </Section>
 
 
-    <Section
-      gray={true}
-    >
+    <Section>
       <Heading
         level={2}
         text="Tab コンポーネント"
