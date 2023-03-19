@@ -17,7 +17,7 @@ export default class Modal {
   body: HTMLBodyElement;
   modalBody: HTMLElement;
   button: HTMLElement;
-  focusableElement: NodeList;
+  focusableElement: any;
   firstFocusableElement: HTMLElement;
   lastFocusableElement: HTMLElement;
   modalOverlay: HTMLDivElement;
@@ -54,13 +54,12 @@ export default class Modal {
     this.button = <HTMLElement>base.querySelector(`.${baseName}__button`);
 
     /**
-     * @type {NodeList} モーダル内のフォーカス可能な要素群
+     * @type {any} モーダル内のフォーカス可能な要素群
      */
-    this.focusableElement = <NodeList>(
-      modalBody.querySelectorAll(
-        'a[href], area[href], input, select, textarea, button, output, video, audio, object, embed, iframe, [tabindex], [onclick]'
-      )
+    this.focusableElement = modalBody.querySelectorAll(
+      'a[href], area[href], input, select, textarea, button, output, video, audio, object, embed, iframe, [tabindex], [onclick]'
     );
+    if (this.focusableElement.length === 0) this.focusableElement = [this.modalBody];
 
     /**
      * @type {HTMLElement} モーダル内のフォーカス可能な要素群の中の最初の要素
@@ -70,9 +69,7 @@ export default class Modal {
     /**
      * @type {HTMLElement} モーダル内のフォーカス可能な要素群の中の最後の要素
      */
-    this.lastFocusableElement = <HTMLElement>(
-      this.focusableElement[this.focusableElement.length - 1]
-    );
+    this.lastFocusableElement = <HTMLElement>this.focusableElement[this.focusableElement.length - 1];
 
     /**
      * @type {HTMLElement} モーダル内の透過背景要素
@@ -111,6 +108,8 @@ export default class Modal {
     this.modalBody.setAttribute('aria-modal', 'true');
     this.modalBody.setAttribute('aria-hidden', 'true');
     this.modalBody.setAttribute('id', this.uniquId);
+
+    if (this.focusableElement.length === 0) this.modalBody.setAttribute("tabindex", "0");
   }
 
   /**
@@ -156,8 +155,11 @@ export default class Modal {
     this.body.classList.add(this.openClass);
     this.body.style.top = `${-this.windowYPosition}px`;
     this.modalBody.setAttribute('aria-hidden', 'false');
+    this.modalBody.setAttribute("tabindex", "0");
     this.button.setAttribute('aria-expanded', 'true');
     this.firstFocusableElement.focus();
+
+    window.addEventListener("keydown", () => this.focusIndex());
   }
 
   /**
@@ -168,7 +170,28 @@ export default class Modal {
     this.body.classList.remove(this.openClass);
     this.body.style.top = '';
     this.modalBody.setAttribute('aria-hidden', 'true');
+    this.modalBody.removeAttribute('tabindex');
     this.button.setAttribute('aria-expanded', 'false');
     window.scrollTo(0, this.windowYPosition);
+    window.removeEventListener("keydown", () => this.focusIndex());
+  }
+
+  focusIndex() {
+    console.log('focusIndex');
+
+    const focusIndex = (() => {
+      const arr: Array<unknown> = [];
+      this.focusableElement.forEach(element => {
+        arr.push(element);
+      })
+
+      return arr.findIndex(
+        el => el === document.activeElement
+      );
+    })();
+
+    if (focusIndex !== 0) {
+      this.firstFocusableElement.focus();
+    }
   }
 }
