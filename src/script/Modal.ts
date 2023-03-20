@@ -17,7 +17,7 @@ export default class Modal {
   body: HTMLBodyElement;
   modalBody: HTMLElement;
   button: HTMLElement;
-  focusableElement: any;
+  focusableElement: Array<HTMLElement>;
   firstFocusableElement: HTMLElement;
   lastFocusableElement: HTMLElement;
   modalOverlay: HTMLDivElement;
@@ -54,12 +54,22 @@ export default class Modal {
     this.button = <HTMLElement>base.querySelector(`.${baseName}__button`);
 
     /**
-     * @type {any} モーダル内のフォーカス可能な要素群
+     * @type {string} フォーカス可能と判断する対象となる要素名
      */
-    this.focusableElement = modalBody.querySelectorAll(
-      'a[href], area[href], input, select, textarea, button, output, video, audio, object, embed, iframe, [tabindex], [onclick]'
-    );
+    const focusableElementList: string = 'a[href], area[href], input, select, textarea, button, output, video, audio, object, embed, iframe, [tabindex], [onclick]';
+
+    /**
+     * @type {NodeList} モーダル内のフォーカス可能な要素群
+     */
+    this.focusableElement = (() => {
+      const arr: Array<any> = [];
+      modalBody.querySelectorAll(focusableElementList).forEach(element => {
+        arr.push(element);
+      });
+      return arr;
+    })();
     if (this.focusableElement.length === 0) this.focusableElement = [this.modalBody];
+    console.log(this.focusableElement);
 
     /**
      * @type {HTMLElement} モーダル内のフォーカス可能な要素群の中の最初の要素
@@ -178,14 +188,7 @@ export default class Modal {
 
   focusIndex() {
     const focusIndex = (() => {
-      const arr: Array<unknown> = [];
-      this.focusableElement.forEach(element => {
-        arr.push(element);
-      })
-
-      return arr.findIndex(
-        el => el === document.activeElement
-      );
+      return this.focusableElement.findIndex(el => el === document.activeElement);
     })();
 
     if (focusIndex !== 0) {
