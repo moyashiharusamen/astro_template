@@ -158,7 +158,6 @@ export default class Modal {
     this.modalBody.setAttribute("tabindex", "0");
     this.button.setAttribute('aria-expanded', 'true');
     this.firstFocusableElement.focus();
-
     window.addEventListener("keydown", () => this.focusIndex());
   }
 
@@ -177,8 +176,6 @@ export default class Modal {
   }
 
   focusIndex() {
-    console.log('focusIndex');
-
     const focusIndex = (() => {
       const arr: Array<unknown> = [];
       this.focusableElement.forEach(element => {
