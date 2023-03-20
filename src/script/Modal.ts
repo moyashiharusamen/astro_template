@@ -172,6 +172,7 @@ export default class Modal {
     this.modalBody.removeAttribute('tabindex');
     this.button.setAttribute('aria-expanded', 'false');
     window.scrollTo(0, this.windowYPosition);
+    this.button.focus();
     window.removeEventListener("keydown", () => this.focusIndex());
   }
 
