@@ -69,7 +69,6 @@ export default class Modal {
       return arr;
     })();
     if (this.focusableElement.length === 0) this.focusableElement = [this.modalBody];
-    console.log(this.focusableElement);
 
     /**
      * @type {HTMLElement} モーダル内のフォーカス可能な要素群の中の最初の要素
