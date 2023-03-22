@@ -59,10 +59,10 @@ html ファイルは案件ディレクトリのルートに、
 alt 属性は値が空だとしても必ず記述してください
 
 ✗
-<img src="__dummy__">
+`<img src="__dummy__">`
 
 ○
-<img src="__dummy__" alt="">
+`<img src="__dummy__" alt="">`
 
 ## 5.3.1 値
 
@@ -125,7 +125,7 @@ block__list
 マルチクラスを作成する場合、「-（ハイフン）」始まりのクラス名としてください
 
 例 :
-<div class="block__emelent -wide">
+`<div class="block__emelent -wide">`
 
 ## 6.3.3 単語の省略
 
