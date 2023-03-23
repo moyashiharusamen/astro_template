@@ -24,6 +24,27 @@ import ListLink from "@src/components/parts/ListLink.astro";
       centering={true}
     />
 
+    <Section
+      gray={true}
+    >
+      <Heading
+        level={2}
+        text="Heading コンポーネント"
+      />
+
+      <Heading
+        level={3}
+        text="コンポーネント説明"
+      />
+
+      <List
+        text={[
+          "引数 level（必須）は見出しレベルを1〜6の数値で設定してください",
+          "引数 text（必須）は見出しにしたいテキストを設定してください",
+        ]}
+      />
+    </Section>
+
     <Section>
       <Heading
         level={2}
