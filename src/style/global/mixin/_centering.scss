@@ -1,19 +1,19 @@
 @charset "utf-8";
 
-@use '../variables' as v;
-@use './mediaQuery' as mq;
+@use "../variables" as v;
+@use "./mediaQuery" as mq;
 
 // ========== position ==========
 @mixin centering() {
-    width: 100%;
-    max-width: v.$content-size;
-    margin-inline: auto;
-    padding-right: v.$content-margin;
-    padding-left: v.$content-margin;
-    box-sizing: border-box;
+  width: 100%;
+  max-width: v.$content-size;
+  margin-inline: auto;
+  padding-right: v.$content-margin;
+  padding-left: v.$content-margin;
+  box-sizing: border-box;
 
-    @include mq.mediaQuery() {
-        padding-right: v.$content-margin-pc;
-        padding-left: v.$content-margin-pc;
-    }
+  @include mq.mediaQuery() {
+    padding-right: v.$content-margin-pc;
+    padding-left: v.$content-margin-pc;
+  }
 }
