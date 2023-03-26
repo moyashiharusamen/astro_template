@@ -2,13 +2,13 @@
 
 // ========== hover ==========
 @mixin hover() {
-    &:hover,
-    &:active,
-    &:focus {
-        @content;
-    }
+  &:hover,
+  &:active,
+  &:focus {
+    @content;
+  }
 
-    &:is(:hover, :active, :focus) {
-        @content;
-    }
+  &:is(:hover, :active, :focus) {
+    @content;
+  }
 }

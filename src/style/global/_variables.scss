@@ -1,21 +1,17 @@
 @charset "utf-8";
 
-
 // ========== base ==========
 $base-color: #333;
 
 // ========== color ==========
-
 
 // ========== text ==========
 $base-text-color: #333;
 
 // ========== gradation ==========
 
-
 // ========== easing ==========
 $easing: cubic-bezier(0.42, 0, 0.58, 1);
-
 
 // ========== contents size ==========
 $content-width: 375;
@@ -24,8 +20,6 @@ $content-margin: 20px;
 $content-margin-pc: 30px;
 $content-size: $content-width-pc + ($content-margin * 2);
 
-
 // ========== break point ==========
-
 
 // ========== mobile first ==========

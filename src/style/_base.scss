@@ -1,43 +1,43 @@
 @charset "utf-8";
 
-@use 'global' as g;
+@use "global" as g;
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap");
 
 :root {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 // OS の設定で視差効果をオフにしている場合の処理
 @media (prefers-reduced-motion: reduce) {
-    :root {
-        scroll-behavior: auto;
-    }
+  :root {
+    scroll-behavior: auto;
+  }
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    background: #fff;
-    font-family: 'Noto Sans JP', sans-serif;
-    font-size: g.rem(14px);
-    font-weight: 400;
-    color: g.$base-text-color;
-    line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: g.rem(14px);
+  font-weight: 400;
+  color: g.$base-text-color;
+  line-height: 1.6;
 
-    @include g.mediaQuery() {
-        font-size: g.rem(16px);
-    }
+  @include g.mediaQuery() {
+    font-size: g.rem(16px);
+  }
 
-    &.-modal-open {
-        overflow: hidden;
-    }
+  &.-modal-open {
+    overflow: hidden;
+  }
 }
 
 main {
-    flex-grow: 1;
+  flex-grow: 1;
 }
 
 a {
-    color: g.$base-text-color;
+  color: g.$base-text-color;
 }
