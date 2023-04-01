@@ -2,7 +2,7 @@
  *  @fileoverview モーダルを制御するJS
  *  ============================================================ */
 
-import { v4 } from 'uuid';
+import { uuid } from 'uuidv4';
 
 /**
  * @class Modal
@@ -95,7 +95,7 @@ export default class Modal {
     /**
      * @type {string} ユニークな識別子
      */
-    this.uniquId = `${baseName}__${v4()}`;
+    this.uniquId = `${baseName}__${uuid()}`;
 
     /**
      * @type {number} window の縦軸位置が入る
