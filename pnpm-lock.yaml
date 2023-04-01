@@ -18,6 +18,9 @@ devDependencies:
   '@types/lodash':
     specifier: ^4.14.192
     version: 4.14.192
+  '@types/uuid':
+    specifier: ^9.0.1
+    version: 9.0.1
   '@typescript-eslint/eslint-plugin':
     specifier: ^5.57.0
     version: 5.57.0(@typescript-eslint/parser@5.57.0)(eslint@8.37.0)(typescript@5.0.3)
@@ -1430,6 +1433,10 @@ packages:
 
   /@types/uuid@8.3.4:
     resolution: {integrity: sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==}
+    dev: true
+
+  /@types/uuid@9.0.1:
+    resolution: {integrity: sha512-rFT3ak0/2trgvp4yYZo5iKFEPsET7vKydKF+VRCxlQ9bpheehyAJH89dAkaLEq/j/RZXJIqcgsmPJKUP1Z28HA==}
     dev: true
 
   /@types/yargs-parser@21.0.0:
