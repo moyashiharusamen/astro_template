@@ -20,17 +20,13 @@ body {
   flex-direction: column;
   background: #fff;
   font-family: "Noto Sans JP", sans-serif;
-  font-size: g.rem(14px);
+  font-size: g.rem(g.$font-size);
   font-weight: 400;
   color: g.$base-text-color;
   line-height: 1.6;
 
   @include g.mediaQuery() {
-    font-size: g.rem(16px);
-  }
-
-  &.-modal-open {
-    overflow: hidden;
+    font-size: g.rem(g.$font-size-pc);
   }
 }
 
@@ -41,3 +37,6 @@ main {
 a {
   color: g.$base-text-color;
 }
+
+// :where(:focus-visible) {
+// }

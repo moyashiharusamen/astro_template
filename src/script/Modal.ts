@@ -118,7 +118,7 @@ export default class Modal {
     this.modalBody.setAttribute('aria-hidden', 'true');
     this.modalBody.setAttribute('id', this.uniquId);
 
-    if (this.focusableElement.length === 0) this.modalBody.setAttribute("tabindex", "0");
+    if (this.focusableElement.length === 0) this.modalBody.setAttribute('tabindex', '0');
   }
 
   /**
@@ -164,10 +164,10 @@ export default class Modal {
     this.body.classList.add(this.openClass);
     this.body.style.top = `${-this.windowYPosition}px`;
     this.modalBody.setAttribute('aria-hidden', 'false');
-    this.modalBody.setAttribute("tabindex", "0");
+    this.modalBody.setAttribute('tabindex', '0');
     this.button.setAttribute('aria-expanded', 'true');
     this.firstFocusableElement.focus();
-    window.addEventListener("keydown", () => this.focusIndex());
+    window.addEventListener('keydown', () => this.focusIndex());
   }
 
   /**
@@ -182,7 +182,7 @@ export default class Modal {
     this.button.setAttribute('aria-expanded', 'false');
     window.scrollTo(0, this.windowYPosition);
     this.button.focus();
-    window.removeEventListener("keydown", () => this.focusIndex());
+    window.removeEventListener('keydown', () => this.focusIndex());
   }
 
   focusIndex() {
