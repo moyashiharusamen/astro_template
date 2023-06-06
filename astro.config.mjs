@@ -13,10 +13,13 @@ export default defineConfig({
     build: {
       rollupOptions: {
         output: {
-          assetFileNames: 'assets/style/[name].[extname]',
+          assetFileNames: 'assets/style/[name][extname]',
+          // chunkFileNames: `assets/script/[name].js`,
+          entryFileNames: `assets/script/[name].js`
         },
         external: ['uuidv4', 'lodash'],
       },
+      assetsInlineLimit: 0,
     },
   },
   integrations: [
