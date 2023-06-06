@@ -17,7 +17,7 @@ export default defineConfig({
           // chunkFileNames: `assets/script/[name].js`,
           entryFileNames: `assets/script/[name].js`
         },
-        external: ['uuidv4', 'lodash'],
+        external: ['uuid', 'lodash'],
       },
       assetsInlineLimit: 0,
     },
