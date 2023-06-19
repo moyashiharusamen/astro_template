@@ -3,7 +3,7 @@
  *  ============================================================ */
 
 import Events from 'events';
-import { uuid } from 'uuidv4';
+import { v4 as uuidv4 } from 'uuid';
 
 /**
  * @class Toggle
@@ -53,7 +53,7 @@ export default class Toggle extends Events {
     /**
      * @type {string} ユニークな識別子
      */
-    this.uniquId = `${name}__${uuid()}`;
+    this.uniquId = `${name}__${uuidv4()}`;
 
     this.bindEvents();
     this.setAttr();

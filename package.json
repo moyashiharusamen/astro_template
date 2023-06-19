@@ -28,6 +28,7 @@
     "@acab/reset.css": "^0.5.3",
     "@astrojs/vue": "^2.1.0",
     "astro": "^2.1.8",
+    "uuid": "^9.0.0",
     "vue": "^3.2.47"
   },
   "devDependencies": {
@@ -50,7 +51,6 @@
     "stylelint": "^14.16.1",
     "stylelint-config-prettier-scss": "^0.0.1",
     "stylelint-config-recess-order": "^3.1.0",
-    "stylelint-config-standard-scss": "^6.1.0",
-    "uuidv4": "^6.2.13"
+    "stylelint-config-standard-scss": "^6.1.0"
   }
 }
