@@ -86,6 +86,7 @@ export default class Toggle extends Events {
   bindEvents() {
     this.button.addEventListener('click', e => {
       e.preventDefault();
+      this.emit('toggle', this);
       this.toggle();
     });
   }
@@ -99,6 +100,26 @@ export default class Toggle extends Events {
     this.isOpened = Boolean(shouldOpen) ? shouldOpen : !this.isOpened;
 
     return this;
+  }
+
+  /**
+   * トグルを開く
+   * @return {Void}
+   */
+  open() {
+    this.body.setAttribute('aria-hidden', 'false');
+    this.button.setAttribute('aria-expanded', 'true');
+    this.buttonMark.textContent = '閉じる';
+  }
+
+  /**
+   * トグルを開く
+   * @return {Void}
+   */
+  close() {
+    this.body.setAttribute('aria-hidden', 'true');
+    this.button.setAttribute('aria-expanded', 'false');
+    this.buttonMark.textContent = '開く';
   }
 
   /**

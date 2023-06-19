@@ -3,7 +3,7 @@
  *  ============================================================ */
 
 import Events from 'events';
-import _ from 'lodash';
+import { without } from 'lodash';
 import Toggle from './Toggle';
 
 /**
@@ -60,7 +60,7 @@ export default class Accordion {
    * @return {Void}
    */
   bindEvents() {
-    this.toggles.forEach(toggle => toggle.on('open', () => this.onOpen(toggle)));
+    this.toggles.forEach(toggle => toggle.on('toggle', () => this.onOpen(toggle)));
   }
 
   /**
@@ -69,6 +69,6 @@ export default class Accordion {
    * @return {Void}
    */
   onOpen(toggle: object) {
-    _.without(this.toggles, toggle).forEach((_toggle: any) => _toggle.close());
+    without(this.toggles, toggle).forEach((_toggle: any) => _toggle.close());
   }
 }
