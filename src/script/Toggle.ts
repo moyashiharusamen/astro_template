@@ -3,17 +3,13 @@
  *  ============================================================ */
 
 import Events from 'events';
-import { v4 as uuid } from 'uuid';
+import { isBoolean } from 'lodash';
+import { v4 as uuidv4 } from 'uuid';
 
 /**
  * @class Toggle
  */
 export default class Toggle extends Events {
-  /**
-   * @property {string} ブロック名
-   */
-  static baseName: string = 'toggle';
-
   base: HTMLElement;
   body: HTMLElement;
   button: HTMLElement;
@@ -21,14 +17,28 @@ export default class Toggle extends Events {
   uniquId: string;
 
   /**
+   * @property {string} ブロック名
+   */
+  static baseName: string = 'toggle';
+
+  /**
+   * 現在の HTML ページ内にあるすべての Toggle ブロックをインスタンス化する
+   */
+  static createAll(name: string = Toggle.baseName) {
+    document.querySelectorAll(`.${name}`).forEach((element: Object) => {
+      return new Toggle(element, name);
+    });
+  }
+
+  /**
    * インスタンスを生成
    * @param {Object} element 基底要素ノード、またはそれを探すための文字列
-   * @param {string} rootName 設定したいブロック名
+   * @param {string} name 設定したいブロック名
    */
-  constructor(element: Object, rootName: string = Toggle.baseName) {
+  constructor(element: Object, name: string = Toggle.baseName) {
     super();
 
-    const name = rootName;
+    const baseName = name;
 
     /**
      * @type {HTMLElement} 基底要素ノード
@@ -38,22 +48,22 @@ export default class Toggle extends Events {
     /**
      * @type {HTMLElement} トグルの開閉される本体要素
      */
-    this.body = <HTMLElement>base.querySelector(`.${name}__body`);
+    this.body = <HTMLElement>base.querySelector(`.${baseName}__body`);
 
     /**
      * @type {HTMLElement} トグルの開閉を制御するボタン要素
      */
-    this.button = <HTMLElement>base.querySelector(`.${name}__button`);
+    this.button = <HTMLElement>base.querySelector(`.${baseName}__button`);
 
     /**
      * @type {HTMLElement} ボタン内にあるマーク部分要素
      */
-    this.buttonMark = <HTMLElement>base.querySelector(`.${name}__button__mark`);
+    this.buttonMark = <HTMLElement>base.querySelector(`.${baseName}__button__mark`);
 
     /**
      * @type {string} ユニークな識別子
      */
-    this.uniquId = `${name}__${uuid()}`;
+    this.uniquId = `${baseName}__${uuidv4()}`;
 
     this.bindEvents();
     this.setAttr();
@@ -76,16 +86,20 @@ export default class Toggle extends Events {
   bindEvents() {
     this.button.addEventListener('click', e => {
       e.preventDefault();
+      this.emit('toggle', this);
       this.toggle();
     });
   }
 
   /**
    * トグルの開閉
-   * @return {Void}
+   * @param {boolean} shouldOpen  開閉状態を明示する場合は真偽値を与える。引数なしのときは開閉状態のトグルになる。
+   * @return {Accordion}
    */
-  toggle() {
-    this.isOpened() ? this.close() : this.open();
+  toggle(shouldOpen: boolean = false) {
+    this.isOpened = Boolean(shouldOpen) ? shouldOpen : !this.isOpened;
+
+    return this;
   }
 
   /**
@@ -93,7 +107,6 @@ export default class Toggle extends Events {
    * @return {Void}
    */
   open() {
-    this.emit('open', this);
     this.body.setAttribute('aria-hidden', 'false');
     this.button.setAttribute('aria-expanded', 'true');
     this.buttonMark.textContent = '閉じる';
@@ -110,10 +123,18 @@ export default class Toggle extends Events {
   }
 
   /**
-   * トグルが開いているかどうか
+   * 開閉状態、 true なら「開いている」
    * @returns {boolean}
    */
-  isOpened() {
+  get isOpened() {
     return this.body.getAttribute('aria-hidden') !== 'true';
+  }
+
+  set isOpened(isOpened: boolean) {
+    if (isBoolean(isOpened)) {
+      this.body.setAttribute('aria-hidden', `${!isOpened}`);
+      this.button.setAttribute('aria-expanded', `${isOpened}`);
+      this.buttonMark.textContent = isOpened ? '閉じる' : '開く';
+    }
   }
 }

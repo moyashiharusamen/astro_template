@@ -3,27 +3,37 @@
  *  ============================================================ */
 
 import Events from 'events';
-import _ from 'lodash';
+import { without } from 'lodash';
 import Toggle from './Toggle';
 
 /**
  * @class Accordion
  */
 export default class Accordion {
+  events: Object;
+  toggles: Toggle[];
+
   /**
    * @property {string} ブロック名
    */
   static baseName: string = 'accordion';
 
-  events: Object;
-  toggles: Toggle[];
+  /**
+   * 現在の HTML ページ内にあるすべての Accordion ブロックをインスタンス化する
+   */
+  static createAll(name: string = Accordion.baseName) {
+    document.querySelectorAll(`.${name}`).forEach((element: Object) => {
+      new Accordion(element, name);
+    });
+  }
 
   /**
    * インスタンスを生成
    * @param {Object} element 基底要素ノード、またはそれを探すための文字列
+   * @param {string} name 設定したいブロック名
    */
-  constructor(element: Object, rootName: string = Accordion.baseName) {
-    const name = rootName;
+  constructor(element: Object, name: string) {
+    const baseName = name;
 
     /**
      * @type {HTMLElement} 基底要素ノード
@@ -31,16 +41,16 @@ export default class Accordion {
     const base = <HTMLElement>element;
 
     /**
-     * @type {HTMLElement} 基底要素ノード
+     * @type {HTMLElement} トグルさせる要素
      */
-    const item = base.querySelectorAll('.accordionItem');
+    const item = base.querySelectorAll(`.${baseName}Item`);
 
     this.events = new Events.EventEmitter();
 
     /**
      * @type {Toggle[]} Toggle のインスタンス群
      */
-    this.toggles = [...item].map(element => new Toggle(element, 'accordionItem'));
+    this.toggles = [...item].map(element => new Toggle(element, `${baseName}Item`));
 
     this.bindEvents();
   }
@@ -50,9 +60,7 @@ export default class Accordion {
    * @return {Void}
    */
   bindEvents() {
-    this.toggles.forEach(toggle => {
-      toggle.on('open', () => this.onOpen(toggle));
-    });
+    this.toggles.forEach(toggle => toggle.on('toggle', () => this.onOpen(toggle)));
   }
 
   /**
@@ -61,6 +69,6 @@ export default class Accordion {
    * @return {Void}
    */
   onOpen(toggle: object) {
-    _.without(this.toggles, toggle).forEach((_toggle: any) => _toggle.close());
+    without(this.toggles, toggle).forEach((_toggle: any) => _toggle.close());
   }
 }

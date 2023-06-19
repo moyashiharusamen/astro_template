@@ -28,6 +28,7 @@
     "@acab/reset.css": "^0.5.3",
     "@astrojs/vue": "^2.1.0",
     "astro": "^2.1.8",
+    "uuid": "^9.0.0",
     "vue": "^3.2.47"
   },
   "devDependencies": {
