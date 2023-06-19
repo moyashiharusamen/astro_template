@@ -3,6 +3,7 @@
  *  ============================================================ */
 
 import Events from 'events';
+import { isBoolean } from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
 
 /**
@@ -91,38 +92,28 @@ export default class Toggle extends Events {
 
   /**
    * トグルの開閉
-   * @return {Void}
+   * @param {boolean} shouldOpen  開閉状態を明示する場合は真偽値を与える。引数なしのときは開閉状態のトグルになる。
+   * @return {Accordion}
    */
-  toggle() {
-    this.isOpened() ? this.close() : this.open();
+  toggle(shouldOpen: boolean = false) {
+    this.isOpened = Boolean(shouldOpen) ? shouldOpen : !this.isOpened;
+
+    return this;
   }
 
   /**
-   * トグルを開く
-   * @return {Void}
-   */
-  open() {
-    this.emit('open', this);
-    this.body.setAttribute('aria-hidden', 'false');
-    this.button.setAttribute('aria-expanded', 'true');
-    this.buttonMark.textContent = '閉じる';
-  }
-
-  /**
-   * トグルを開く
-   * @return {Void}
-   */
-  close() {
-    this.body.setAttribute('aria-hidden', 'true');
-    this.button.setAttribute('aria-expanded', 'false');
-    this.buttonMark.textContent = '開く';
-  }
-
-  /**
-   * トグルが開いているかどうか
+   * 開閉状態、 true なら「開いている」
    * @returns {boolean}
    */
-  isOpened() {
+  get isOpened() {
     return this.body.getAttribute('aria-hidden') !== 'true';
+  }
+
+  set isOpened(isOpened: boolean) {
+    if (isBoolean(isOpened)) {
+      this.body.setAttribute('aria-hidden', `${!isOpened}`);
+      this.button.setAttribute('aria-expanded', `${isOpened}`);
+      this.buttonMark.textContent = isOpened ? '閉じる' : '開く';
+    }
   }
 }
