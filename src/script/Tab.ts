@@ -7,23 +7,33 @@
  */
 
 export default class Tab {
-  /**
-   * @property {string} ブロック名
-   */
-  static baseName: string = 'tab';
-
   baseName: string;
   base: HTMLElement;
   buttonWrap: HTMLElement;
   buttons: NodeList;
   bodies: NodeList;
+
+  /**
+   * @property {string} ブロック名
+   */
+  static baseName: string = 'tab';
+
+  /**
+   * 現在の HTML ページ内にあるすべての Tab ブロックをインスタンス化する
+   */
+  static createAll(name: string = Tab.baseName) {
+    document.querySelectorAll(`.${name}`).forEach((element: Object) => {
+      new Tab(element, name);
+    });
+  }
+
   /**
    * インスタンスを生成
    * @param {Object} element 基底要素ノード、またはそれを探すための文字列
-   * @param {string} rootName 設定したいブロック名
+   * @param {string} name 設定したいブロック名
    */
-  constructor(element: Object, rootName: string = Tab.baseName) {
-    const baseName = this.baseName = rootName;
+  constructor(element: Object, name: string) {
+    const baseName = this.baseName = name;
 
     /**
      * @type {HTMLElement} 基底要素ノード

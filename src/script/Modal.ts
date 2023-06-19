@@ -8,11 +8,6 @@ import { v4 as uuidv4 } from 'uuid';
  * @class Modal
  */
 export default class Modal {
-  /**
-   * @property {string} ブロック名
-   */
-  static baseName: string = 'modal';
-
   base: HTMLElement;
   body: HTMLBodyElement;
   modalBody: HTMLElement;
@@ -26,12 +21,26 @@ export default class Modal {
   windowYPosition: number;
 
   /**
+   * @property {string} ブロック名
+   */
+  static baseName: string = 'modal';
+
+  /**
+   * 現在の HTML ページ内にあるすべての Modal ブロックをインスタンス化する
+   */
+  static createAll(name: string = Modal.baseName) {
+    document.querySelectorAll(`.${name}`).forEach((element: Object) => {
+      new Modal(element, name);
+    });
+  }
+
+  /**
    * インスタンスを生成
    * @param {Object} element 基底要素ノード、またはそれを探すための文字列
-   * @param {string} rootName 設定したいブロック名
+   * @param {string} name 設定したいブロック名
    */
-  constructor(element: Object, rootName: string = Modal.baseName) {
-    const baseName = rootName;
+  constructor(element: Object, name: string) {
+    const baseName = name;
 
     /**
      * @type {HTMLElement} 基底要素ノード

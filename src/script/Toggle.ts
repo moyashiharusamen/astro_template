@@ -9,11 +9,6 @@ import { v4 as uuidv4 } from 'uuid';
  * @class Toggle
  */
 export default class Toggle extends Events {
-  /**
-   * @property {string} ブロック名
-   */
-  static baseName: string = 'toggle';
-
   base: HTMLElement;
   body: HTMLElement;
   button: HTMLElement;
@@ -21,14 +16,28 @@ export default class Toggle extends Events {
   uniquId: string;
 
   /**
+   * @property {string} ブロック名
+   */
+  static baseName: string = 'toggle';
+
+  /**
+   * 現在の HTML ページ内にあるすべての Toggle ブロックをインスタンス化する
+   */
+  static createAll(name: string = Toggle.baseName) {
+    document.querySelectorAll(`.${name}`).forEach((element: Object) => {
+      return new Toggle(element, name);
+    });
+  }
+
+  /**
    * インスタンスを生成
    * @param {Object} element 基底要素ノード、またはそれを探すための文字列
-   * @param {string} rootName 設定したいブロック名
+   * @param {string} name 設定したいブロック名
    */
-  constructor(element: Object, rootName: string = Toggle.baseName) {
+  constructor(element: Object, name: string = Toggle.baseName) {
     super();
 
-    const name = rootName;
+    const baseName = name;
 
     /**
      * @type {HTMLElement} 基底要素ノード
@@ -38,22 +47,22 @@ export default class Toggle extends Events {
     /**
      * @type {HTMLElement} トグルの開閉される本体要素
      */
-    this.body = <HTMLElement>base.querySelector(`.${name}__body`);
+    this.body = <HTMLElement>base.querySelector(`.${baseName}__body`);
 
     /**
      * @type {HTMLElement} トグルの開閉を制御するボタン要素
      */
-    this.button = <HTMLElement>base.querySelector(`.${name}__button`);
+    this.button = <HTMLElement>base.querySelector(`.${baseName}__button`);
 
     /**
      * @type {HTMLElement} ボタン内にあるマーク部分要素
      */
-    this.buttonMark = <HTMLElement>base.querySelector(`.${name}__button__mark`);
+    this.buttonMark = <HTMLElement>base.querySelector(`.${baseName}__button__mark`);
 
     /**
      * @type {string} ユニークな識別子
      */
-    this.uniquId = `${name}__${uuidv4()}`;
+    this.uniquId = `${baseName}__${uuidv4()}`;
 
     this.bindEvents();
     this.setAttr();
