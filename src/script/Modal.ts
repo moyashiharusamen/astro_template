@@ -167,7 +167,6 @@ export default class Modal {
     this.modalBody.setAttribute('tabindex', '0');
     this.button.setAttribute('aria-expanded', 'true');
     this.firstFocusableElement.focus();
-    window.addEventListener('keydown', () => this.focusIndex());
   }
 
   /**
@@ -182,16 +181,5 @@ export default class Modal {
     this.button.setAttribute('aria-expanded', 'false');
     window.scrollTo(0, this.windowYPosition);
     this.button.focus();
-    window.removeEventListener('keydown', () => this.focusIndex());
-  }
-
-  focusIndex() {
-    const focusIndex = (() => {
-      return this.focusableElement.findIndex(el => el === document.activeElement);
-    })();
-
-    if (focusIndex !== 0) {
-      this.firstFocusableElement.focus();
-    }
   }
 }
