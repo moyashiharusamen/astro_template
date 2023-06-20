@@ -3,7 +3,7 @@
  *  ============================================================ */
 
 import Events from 'events';
-import { isBoolean } from 'lodash';
+import { isBoolean, isString } from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
 
 /**
@@ -14,7 +14,6 @@ export default class Toggle extends Events {
   body: HTMLElement;
   button: HTMLElement;
   buttonMark: HTMLElement;
-  uniquId: string;
 
   /**
    * @property {string} ブロック名
@@ -60,10 +59,7 @@ export default class Toggle extends Events {
      */
     this.buttonMark = <HTMLElement>base.querySelector(`.${baseName}__button__mark`);
 
-    /**
-     * @type {string} ユニークな識別子
-     */
-    this.uniquId = `${baseName}__${uuidv4()}`;
+    this.uuid = `${baseName}__${uuidv4()}`;
 
     this.bindEvents();
     this.setAttr();
@@ -75,8 +71,6 @@ export default class Toggle extends Events {
    */
   setAttr() {
     this.button.setAttribute('aria-expanded', 'false');
-    this.button.setAttribute('aria-controls', this.uniquId);
-    this.body.setAttribute('id', this.uniquId);
   }
 
   /**
@@ -120,6 +114,20 @@ export default class Toggle extends Events {
     this.body.setAttribute('aria-hidden', 'true');
     this.button.setAttribute('aria-expanded', 'false');
     this.buttonMark.textContent = '開く';
+  }
+
+  /**
+   * @type {string} インスタンスの固有 ID
+   */
+  get uuid() {
+    return this.body.getAttribute('id') || '';
+  }
+
+  set uuid(uuid: string) {
+    if (isString(uuid)) {
+      this.button.setAttribute('aria-controls', uuid);
+      this.body.setAttribute('id', uuid);
+    }
   }
 
   /**

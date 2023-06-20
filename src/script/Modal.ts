@@ -2,6 +2,7 @@
  *  @fileoverview モーダルを制御するJS
  *  ============================================================ */
 
+import { isString } from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
 
 /**
@@ -17,13 +18,17 @@ export default class Modal {
   lastFocusableElement: HTMLElement;
   modalOverlay: HTMLDivElement;
   openClass: string;
-  uniquId: string;
   windowYPosition: number;
 
   /**
    * @property {string} ブロック名
    */
   static baseName: string = 'modal';
+
+  /**
+     * @type {string} フォーカス可能と判断する対象となる要素名
+     */
+  static focusableElementList: string = 'a[href], area[href], input, select, textarea, button, output, video, audio, object, embed, iframe, [tabindex], [onclick]';
 
   /**
    * 現在の HTML ページ内にあるすべての Modal ブロックをインスタンス化する
@@ -63,21 +68,14 @@ export default class Modal {
     this.button = <HTMLElement>base.querySelector(`.${baseName}__button`);
 
     /**
-     * @type {string} フォーカス可能と判断する対象となる要素名
-     */
-    const focusableElementList: string = 'a[href], area[href], input, select, textarea, button, output, video, audio, object, embed, iframe, [tabindex], [onclick]';
-
-    /**
      * @type {NodeList} モーダル内のフォーカス可能な要素群
      */
     this.focusableElement = (() => {
-      const arr: Array<any> = [];
-      modalBody.querySelectorAll(focusableElementList).forEach(element => {
-        arr.push(element);
-      });
-      return arr;
+      const elementList: Array<any> = [];
+      modalBody.querySelectorAll(Modal.focusableElementList).forEach(element => elementList.push(element));
+      if (elementList.length === 0) elementList.push(this.modalBody);
+      return elementList;
     })();
-    if (this.focusableElement.length === 0) this.focusableElement = [this.modalBody];
 
     /**
      * @type {HTMLElement} モーダル内のフォーカス可能な要素群の中の最初の要素
@@ -102,14 +100,11 @@ export default class Modal {
     this.openClass = '-modal-open';
 
     /**
-     * @type {string} ユニークな識別子
-     */
-    this.uniquId = `${baseName}__${uuidv4()}`;
-
-    /**
      * @type {number} window の縦軸位置が入る
      */
     this.windowYPosition = 0;
+
+    this.uuid = `${baseName}__${uuidv4()}`;
 
     this.setAttr();
     this.bindEvents();
@@ -121,11 +116,9 @@ export default class Modal {
    */
   setAttr() {
     this.button.setAttribute('aria-expanded', 'false');
-    this.button.setAttribute('aria-controls', this.uniquId);
     this.modalBody.setAttribute('role', 'dialog');
     this.modalBody.setAttribute('aria-modal', 'true');
     this.modalBody.setAttribute('aria-hidden', 'true');
-    this.modalBody.setAttribute('id', this.uniquId);
 
     if (this.focusableElement.length === 0) this.modalBody.setAttribute('tabindex', '0');
   }
@@ -190,5 +183,19 @@ export default class Modal {
     this.button.setAttribute('aria-expanded', 'false');
     window.scrollTo(0, this.windowYPosition);
     this.button.focus();
+  }
+
+  /**
+   * @type {string} インスタンスの固有 ID
+   */
+  get uuid() {
+    return this.modalBody.getAttribute('id') || '';
+  }
+
+  set uuid(uuid: string) {
+    if (isString(uuid)) {
+      this.button.setAttribute('aria-controls', uuid);
+      this.modalBody.setAttribute('id', uuid);
+    }
   }
 }

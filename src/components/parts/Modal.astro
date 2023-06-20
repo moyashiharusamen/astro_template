@@ -10,7 +10,7 @@ export interface Props {
 
 const { buttonText, headingLevel, headingText, bodyText } = Astro.props;
 const Heading: any = `h${headingLevel}`;
-const uniqueId = uuidv4();
+const uuid = uuidv4();
 ---
 
 <div class="root modal">
@@ -24,10 +24,10 @@ const uniqueId = uuidv4();
   <div
     role="dialog"
     class="nav modal__body"
-    aria-labelledby={uniqueId}
+    aria-labelledby={uuid}
   >
     <div class="modal__body__inner">
-      <Heading id={uniqueId}>
+      <Heading id={uuid}>
         {headingText.map(item => <span>{item}</span>)}
       </Heading>
 
