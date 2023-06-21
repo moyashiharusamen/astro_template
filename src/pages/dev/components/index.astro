@@ -11,6 +11,7 @@ import Accordion from "@src/components/templates/Accordion.astro";
 import Tab from "@src/components/parts/Tab.astro";
 import List from "@src/components/parts/List.astro";
 import ListLink from "@src/components/parts/ListLink.astro";
+import TextTransition from "@src/components/parts/TextTransition.astro";
 ---
 
 <BaseLayout
@@ -316,6 +317,37 @@ import ListLink from "@src/components/parts/ListLink.astro";
           "タブ機能を制御するコンポーネントです",
           "デフォルトで表示したいタブの aria-hidden を false に設定",
           "false に設定できるのは .tab__body の中で1つのみ",
+        ]}
+      />
+    </Section>
+
+
+    <Section
+      gray={true}
+    >
+      <Heading
+        level={2}
+        text="TextTransition コンポーネント"
+      />
+
+      <TextTransition
+        text={[
+          "テキストテキストテキスト",
+          "テキストテキストテキスト",
+          "テキストテキストテキスト"
+        ]}
+      />
+
+      <Heading
+        level={3}
+        text="コンポーネント説明"
+      />
+
+      <List
+        text={[
+          "テキストの色が左から右へ遷移する機能を制御するコンポーネントです",
+          "引数 text （必須）は配列1つ毎に p 要素が生成されます",
+          "上記で生成された p 要素毎（1行毎）に文字色が遷移します",
         ]}
       />
     </Section>
