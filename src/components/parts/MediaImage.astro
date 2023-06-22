@@ -18,13 +18,13 @@ const { imgSrc, alt, width, height, lazy, async } = Astro.props;
     alt={`${alt}`}
     width={`${width}`}
     height={`${height}`}
-    loading={lazy ? "lazy" : "eager"}
-    decoding={async ? "async" : "sync"}
+    loading={lazy ? 'lazy' : 'eager'}
+    decoding={async ? 'async' : 'sync'}
   />
 </div>
 
 <style lang="scss">
-  @use "../../style/global" as g;
+  @use '../../style/global' as g;
 
   // ---------- 基底要素 ----------
   .root {

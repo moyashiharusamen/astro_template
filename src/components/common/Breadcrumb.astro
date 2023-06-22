@@ -1,5 +1,5 @@
 ---
-import { PAGELIST } from "@src/config";
+import { PAGELIST } from '@src/config';
 
 export interface Props {
   index: Array<number>;
@@ -36,7 +36,7 @@ const { index } = Astro.props;
 </nav>
 
 <style lang="scss">
-  @use "../../style/global" as g;
+  @use '../../style/global' as g;
 
   // ---------- 基底要素 ----------
   .root {
@@ -69,7 +69,7 @@ const { index } = Astro.props;
 
     // 矢印
     &::before {
-      content: ">";
+      content: '>';
       display: block;
       margin-right: 1em;
     }

@@ -1,15 +1,15 @@
 @charset "utf-8";
-@use "sass:math";
-@use "../variables" as v;
+@use 'sass:math';
+@use '../variables' as v;
 
 // ========== px to vw ==========
 // 引数の px を vw に変換して返す
-@function pxToVw($px, $device: "sp") {
+@function pxToVw($px, $device: 'sp') {
   $contentSize: 0;
 
-  @if $device == "sp" {
+  @if $device == 'sp' {
     $contentSize: v.$content-width;
-  } @else if $device == "pc" {
+  } @else if $device == 'pc' {
     $contentSize: v.$content-width-pc;
   } @else {
     $contentSize: v.$content-width;

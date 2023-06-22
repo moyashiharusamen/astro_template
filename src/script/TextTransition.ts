@@ -32,7 +32,7 @@ export default class TextTransition {
    * @param {HTMLElement} element 基底要素ノード
    */
   constructor(element: Object) {
-    const baseName = this.baseName = TextTransition.baseName;
+    const baseName = (this.baseName = TextTransition.baseName);
 
     /**
      * @type {HTMLElement} 基底要素ノード
@@ -42,7 +42,7 @@ export default class TextTransition {
     /**
      * @type {HTMLElement} フェードインさせる要素群
      */
-    const items = this.items = <any>base.querySelectorAll(`.${baseName}__item`);
+    const items = (this.items = <any>base.querySelectorAll(`.${baseName}__item`));
 
     /**
      * @type {number} window のスクロール位置
@@ -52,7 +52,7 @@ export default class TextTransition {
     /**
      * @type {string} 通過した要素に設定したいブロック名の文字列
      */
-    const passedClass = this.passedClass = 'passedTextTransition';
+    const passedClass = (this.passedClass = 'passedTextTransition');
 
     /**
      * @type {number} アニメーションの時間
@@ -63,7 +63,7 @@ export default class TextTransition {
     const options = {
       root: null,
       rootMargin: '-10% 0px',
-      threshold: 0
+      threshold: 0,
     };
 
     /**
@@ -85,11 +85,11 @@ export default class TextTransition {
             }
             i++;
           }, transitionDuration);
-        };
+        }
       });
-    }
+    };
 
-    const observer = this.observer = new IntersectionObserver(doWhenIntersect, options);
+    const observer = (this.observer = new IntersectionObserver(doWhenIntersect, options));
     observer.observe(base);
     this.addClassIfBelowTarget();
   }
@@ -104,6 +104,6 @@ export default class TextTransition {
     // 要素の下が window の上よりも下にあるならクラスを付与
     if (elementPositionBottom < this.windowScrollPosition) {
       this.items.forEach((element: any) => element.classList.add(this.passedClass));
-    };
+    }
   }
 }

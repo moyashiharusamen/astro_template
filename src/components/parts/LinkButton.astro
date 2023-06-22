@@ -12,14 +12,13 @@ const { text, href, blank } = Astro.props;
   <a
     class="link"
     href={`${href}`}
-    target={`${blank ? "_blank" : ""}`}
+    target={`${blank ? '_blank' : ''}`}
     set:html={text}
-  >
-  </a>
+  />
 </div>
 
 <style lang="scss">
-  @use "../../style/global" as g;
+  @use '../../style/global' as g;
 
   // ---------- 基底要素 ----------
   .root {
@@ -67,7 +66,7 @@ const { text, href, blank } = Astro.props;
 
     // 矢印
     &::after {
-      content: "";
+      content: '';
       display: block;
       width: g.rem(14px);
       height: g.rem(14px);

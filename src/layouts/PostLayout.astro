@@ -1,8 +1,8 @@
 ---
-import "../style/style.scss";
-import { SITE } from "@src/config";
-import Header from "@components/common/Header.astro";
-import Footer from "@components/common/Footer.astro";
+import '../style/style.scss';
+import { SITE } from '@src/config';
+import Header from '@components/common/Header.astro';
+import Footer from '@components/common/Footer.astro';
 
 const { frontmatter } = Astro.props;
 
@@ -41,5 +41,5 @@ const canonicalURL = new URL(Astro.url.pathname, SITE.urlOrigin);
 </html>
 
 <script>
-  import "@src/script/main.js";
+  import '@src/script/main.js';
 </script>

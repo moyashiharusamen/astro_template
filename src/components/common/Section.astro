@@ -1,21 +1,21 @@
 ---
 export interface Props {
   htmlELement?: string;
-  gray?:        boolean;
+  gray?: boolean;
 }
 
 const { htmlELement, gray } = Astro.props;
-const Section = htmlELement ? htmlELement : "section";
+const Section = htmlELement ? htmlELement : 'section';
 ---
 
-<Section class:list={["root", { gray }]}>
+<Section class:list={['root', { gray }]}>
   <div class="section__inner">
     <slot />
   </div>
 </Section>
 
 <style lang="scss">
-  @use "../../style/global" as g;
+  @use '../../style/global' as g;
 
   // ---------- 基底要素 ----------
   .root {
@@ -23,7 +23,7 @@ const Section = htmlELement ? htmlELement : "section";
   }
 
   .gray {
-    background: #eee
+    background: #eee;
   }
 
   // ---------- 基底要素のインナー要素 ----------
