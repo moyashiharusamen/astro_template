@@ -10,8 +10,6 @@ module.exports = {
   ],
   // 行末にセミコロン
   semi: true,
-  // 末尾のカンマ
-  trailingComma: "none",
   // アロー関数の引数のカッコを可能な限り省略する
   arrowParens: "avoid",
   // 長い行の折り返し位置
@@ -22,4 +20,6 @@ module.exports = {
   endOfLine: "lf",
   // 属性の改行
   singleAttributePerLine: true,
+  // シングルクォーテーションで囲む
+  singleQuote: true,
 };
