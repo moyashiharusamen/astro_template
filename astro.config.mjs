@@ -15,7 +15,6 @@ export default defineConfig({
         output: {
           assetFileNames: 'assets/style/[name].[extname]',
         },
-        external: ['uuidv4', 'lodash'],
       },
     },
   },
