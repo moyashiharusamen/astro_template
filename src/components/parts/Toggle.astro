@@ -1,5 +1,5 @@
 ---
-import { SITE } from "@src/config";
+import { SITE } from '@src/config';
 const { rootPath } = SITE;
 
 export interface Props {
@@ -33,7 +33,7 @@ const { buttonText, bodyText } = Astro.props;
 </div>
 
 <style lang="scss">
-  @use "../../style/global" as g;
+  @use '../../style/global' as g;
 
   // ---------- 基底要素 ----------
   .root {
@@ -81,7 +81,7 @@ const { buttonText, bodyText } = Astro.props;
     // 十字線
     &::before,
     &::after {
-      content: "";
+      content: '';
       display: block;
       background: g.$base-color;
       width: g.rem(15px);
@@ -104,7 +104,7 @@ const { buttonText, bodyText } = Astro.props;
   }
 
   // ---------- トグル本体要素が開いているとき ----------
-  .button[aria-expanded="true"] {
+  .button[aria-expanded='true'] {
     .button__mark::before {
       transform: rotate(0);
     }

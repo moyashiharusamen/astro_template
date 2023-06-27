@@ -1,7 +1,7 @@
 @charset "utf-8";
 
-@use "../variables" as v;
-@use "./mediaQuery" as mq;
+@use '../variables' as v;
+@use './mediaQuery' as mq;
 
 // ========== position ==========
 @mixin centering() {

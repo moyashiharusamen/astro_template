@@ -1,6 +1,6 @@
 ---
 export interface Props {
-  level: 1|2|3|4|5|6;
+  level: 1 | 2 | 3 | 4 | 5 | 6;
   text: string;
   centering?: boolean;
 }
@@ -9,12 +9,12 @@ const { level, text, centering } = Astro.props;
 const Heading = `h${level}`;
 ---
 
-<header class:list={["root", `-${Heading}`, { centering }]}>
+<header class:list={['root', `-${Heading}`, { centering }]}>
   <Heading class:list="heading">{text}</Heading>
 </header>
 
 <style lang="scss">
-  @use "../../style/global" as g;
+  @use '../../style/global' as g;
 
   // ---------- 基底要素 ----------
   .root.centering {

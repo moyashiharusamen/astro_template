@@ -5,7 +5,8 @@ module.exports = {
     node: true
   },
   parserOptions: {
-    sourceType: "module"
+    sourceType: "module",
+    ecmaVersion: 2015
   },
   extends: ["plugin:@typescript-eslint/recommended", "plugin:astro/recommended"],
   plugins: ["@typescript-eslint"],

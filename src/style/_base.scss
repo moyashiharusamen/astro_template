@@ -1,8 +1,8 @@
 @charset "utf-8";
 
-@use "global" as g;
+@use 'global' as g;
 
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
 
 :root {
   scroll-behavior: smooth;
@@ -19,7 +19,7 @@ body {
   display: flex;
   flex-direction: column;
   background: #fff;
-  font-family: "Noto Sans JP", sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
   font-size: g.rem(g.$font-size);
   font-weight: 400;
   color: g.$base-text-color;

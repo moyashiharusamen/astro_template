@@ -13,14 +13,14 @@ const { text } = Astro.props;
         <li
           class="item"
           set:html={item}
-        ></li>
+        />
       ))
     }
   </ul>
 </div>
 
 <style lang="scss">
-  @use "../../style/global" as g;
+  @use '../../style/global' as g;
 
   // ---------- 基底要素 ----------
   .root {
@@ -34,7 +34,7 @@ const { text } = Astro.props;
   .list {
     display: flex;
     flex-direction: column;
-    gap: .6em;
+    gap: 0.6em;
   }
 
   .item {
@@ -42,12 +42,12 @@ const { text } = Astro.props;
   }
 
   .item::before {
-    content: "";
+    content: '';
     display: block;
-    width: .4em;
-    height: .4em;
-    margin-top: .6em;
-    margin-right: .5em;
+    width: 0.4em;
+    height: 0.4em;
+    margin-top: 0.6em;
+    margin-right: 0.5em;
     background: g.$base-text-color;
     border-radius: 50vh;
   }

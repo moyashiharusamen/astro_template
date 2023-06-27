@@ -26,9 +26,10 @@ export default class Modal {
   static baseName: string = 'modal';
 
   /**
-     * @type {string} フォーカス可能と判断する対象となる要素名
-     */
-  static focusableElementList: string = 'a[href], area[href], input, select, textarea, button, output, video, audio, object, embed, iframe, [tabindex], [onclick]';
+   * @type {string} フォーカス可能と判断する対象となる要素名
+   */
+  static focusableElementList: string =
+    'a[href], area[href], input, select, textarea, button, output, video, audio, object, embed, iframe, [tabindex], [onclick]';
 
   /**
    * 現在の HTML ページ内にあるすべての Modal ブロックをインスタンス化する
@@ -60,7 +61,7 @@ export default class Modal {
     /**
      * @type {HTMLElement} モーダルの開閉される本体要素
      */
-    const modalBody = this.modalBody = <HTMLElement>base.querySelector(`.${baseName}__body`);
+    const modalBody = (this.modalBody = <HTMLElement>base.querySelector(`.${baseName}__body`));
 
     /**
      * @type {HTMLElement} モーダルの開閉を制御するボタン要素
@@ -72,7 +73,9 @@ export default class Modal {
      */
     this.focusableElement = (() => {
       const elementList: Array<any> = [];
-      modalBody.querySelectorAll(Modal.focusableElementList).forEach(element => elementList.push(element));
+      modalBody
+        .querySelectorAll(Modal.focusableElementList)
+        .forEach(element => elementList.push(element));
       if (elementList.length === 0) elementList.push(this.modalBody);
       return elementList;
     })();
@@ -85,7 +88,9 @@ export default class Modal {
     /**
      * @type {HTMLElement} モーダル内のフォーカス可能な要素群の中の最後の要素
      */
-    this.lastFocusableElement = <HTMLElement>this.focusableElement[this.focusableElement.length - 1];
+    this.lastFocusableElement = <HTMLElement>(
+      this.focusableElement[this.focusableElement.length - 1]
+    );
 
     /**
      * @type {HTMLElement} モーダル内の透過背景要素

@@ -3,23 +3,23 @@ export const SITE = {
   title: 'Default Title',
   description: 'Default Description',
   ogImage: 'default_og.jpg',
-  rootPath: '/'
+  rootPath: '/',
 };
 
 export const PAGELIST = [
   {
     id: 1,
     pageTitle: 'Top',
-    url: SITE.rootPath
+    url: SITE.rootPath,
   },
   {
     id: 2,
     pageTitle: '診断',
-    url: `${SITE.rootPath}checker/`
+    url: `${SITE.rootPath}checker/`,
   },
   {
     id: 3,
     pageTitle: '診断結果',
-    url: `${SITE.rootPath}checker/result/`
-  }
+    url: `${SITE.rootPath}checker/result/`,
+  },
 ];

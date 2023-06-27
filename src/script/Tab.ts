@@ -33,12 +33,12 @@ export default class Tab {
    * @param {string} name 設定したいブロック名
    */
   constructor(element: Object, name: string) {
-    const baseName = this.baseName = name;
+    const baseName = (this.baseName = name);
 
     /**
      * @type {HTMLElement} 基底要素ノード
      */
-    const base = this.base = <HTMLElement>element;
+    const base = (this.base = <HTMLElement>element);
 
     /**
      * @type {HTMLElement} タブを制御するボタンを内包するラッパー要素
@@ -100,7 +100,7 @@ export default class Tab {
       });
 
       button.addEventListener('keydown', e => this.keyCtrl(e));
-    })
+    });
   }
 
   /**
@@ -109,7 +109,9 @@ export default class Tab {
    */
   toggle(target: HTMLElement, inputKeyboard: boolean) {
     const currentTargetID = target.getAttribute('aria-controls');
-    const targetElement = <HTMLElement>this.base.querySelector(`.${this.baseName}__body[id='${currentTargetID}'`);
+    const targetElement = <HTMLElement>(
+      this.base.querySelector(`.${this.baseName}__body[id='${currentTargetID}'`)
+    );
 
     if (targetElement.getAttribute('aria-hidden') === 'false') return;
 
@@ -135,18 +137,12 @@ export default class Tab {
     let target;
     const currentTarget = e.target;
 
-    if (
-      (e.key === 'ArrowRight' || e.key === 'Right')
-      || (e.key === 'ArrowDown' || e.key === 'Down')
-    ) {
+    if (e.key === 'ArrowRight' || e.key === 'Right' || e.key === 'ArrowDown' || e.key === 'Down') {
       target = currentTarget.nextElementSibling;
 
       // 次のタブがなければ最初のタブへ
       if (!target) target = this.buttons[0];
-    } else if (
-      (e.key === 'ArrowLeft' || e.key === 'Left')
-      || (e.key === 'ArrowUp' || e.key === 'Up')
-    ) {
+    } else if (e.key === 'ArrowLeft' || e.key === 'Left' || e.key === 'ArrowUp' || e.key === 'Up') {
       // 'left arrow key & up arrow key'
       target = currentTarget.previousElementSibling;
 
@@ -154,12 +150,17 @@ export default class Tab {
       if (!target) target = this.buttons[this.buttons.length - 1];
     }
 
-    if ((e.key === 'ArrowLeft' || e.key === 'Left')
-      || (e.key === 'ArrowUp' || e.key === 'Up')
-      || (e.key === 'ArrowRight' || e.key === 'Right')
-      || (e.key === 'ArrowDown' || e.key === 'Down')
+    if (
+      e.key === 'ArrowLeft' ||
+      e.key === 'Left' ||
+      e.key === 'ArrowUp' ||
+      e.key === 'Up' ||
+      e.key === 'ArrowRight' ||
+      e.key === 'Right' ||
+      e.key === 'ArrowDown' ||
+      e.key === 'Down'
     ) {
-      e.preventDefault()
+      e.preventDefault();
       this.toggle(target, true);
     }
   }
