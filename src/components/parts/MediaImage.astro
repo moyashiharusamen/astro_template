@@ -4,11 +4,10 @@ export interface Props {
   alt: string;
   width: string;
   height: string;
-  lazy?: boolean;
   async?: boolean;
 }
 
-const { imgSrc, alt, width, height, lazy, async } = Astro.props;
+const { imgSrc, alt, width, height, async } = Astro.props;
 ---
 
 <div class="root">
@@ -18,7 +17,6 @@ const { imgSrc, alt, width, height, lazy, async } = Astro.props;
     alt={`${alt}`}
     width={`${width}`}
     height={`${height}`}
-    loading={lazy ? 'lazy' : 'eager'}
     decoding={async ? 'async' : 'sync'}
   />
 </div>

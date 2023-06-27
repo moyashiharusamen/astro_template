@@ -114,7 +114,6 @@ import TextTransition from '@src/components/parts/TextTransition.astro';
         alt="__dummy__"
         width="600"
         height="400"
-        lazy={true}
         async={true}
       />
 
@@ -130,9 +129,8 @@ import TextTransition from '@src/components/parts/TextTransition.astro';
           '引数 width（必須）は img 要素の width 属性の値を設定します',
           '引数 height（必須）は img 要素の height 属性の値を設定します',
           '引数の width と height はレイアウトシフト対策として必ず設定してください',
-          '引数 lazy（任意）は true を設定すると img 要素に loading="lazy" を設定します',
           '引数 async（任意）は true を設定すると img 要素に decoding="async" を設定します',
-          '引数の lazy と async は基本的には true にしてください、ただしファーストビューに入るので対象の画像をチラつかせたくないなどの理由がある場合は false に設定、または未記入で対応してくださ',
+          '引数の async は基本的には true にしてください、ただしファーストビューに入るので対象の画像をチラつかせたくないなどの理由がある場合は false に設定、または未記入で対応してください',
         ]}
       />
     </Section>
