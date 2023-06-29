@@ -13,7 +13,8 @@ export default defineConfig({
     build: {
       rollupOptions: {
         output: {
-          assetFileNames: 'assets/style/[name].[extname]',
+          assetFileNames: 'assets/style/[name][extname]',
+          entryFileNames: `assets/script/[name].js`
         },
       },
     },
