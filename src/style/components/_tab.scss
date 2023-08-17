@@ -5,25 +5,25 @@
 .tab {
   @at-root {
     // ---------- ブロックの基底要素 ----------
-    .tab {
-    }
+    // .tab {
+    // }
 
     // ---------- タブのボタン部分 ----------
-    .tab__button__wrap {
-    }
+    // .tab__button__wrap {
+    // }
 
-    .tab__button {
-    }
+    // .tab__button {
+    // }
 
-    .tab__button[aria-selected='true'] {
-    }
+    // .tab__button[aria-selected='true'] {
+    // }
 
-    .tab__button[aria-selected='true'] .tab__button__inner {
-    }
+    // .tab__button[aria-selected='true'] .tab__button__inner {
+    // }
 
     // ---------- タブ本体部分 ----------
-    .tab__body {
-    }
+    // .tab__body {
+    // }
 
     .tab__body[aria-hidden='true'] {
       display: none;
