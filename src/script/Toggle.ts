@@ -4,7 +4,6 @@
 
 import Events from 'events';
 import { isBoolean, isString } from 'lodash';
-import { v4 as uuidv4 } from 'uuid';
 
 /**
  * @class Toggle
@@ -59,7 +58,7 @@ export default class Toggle extends Events {
      */
     this.buttonMark = <HTMLElement>base.querySelector(`.${baseName}__button__mark`);
 
-    this.uuid = `${baseName}__${uuidv4()}`;
+    this.uuid = `${baseName}__${crypto.randomUUID()}`;
 
     this.bindEvents();
     this.setAttr();

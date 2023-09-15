@@ -3,7 +3,6 @@
  *  ============================================================ */
 
 import { isString } from 'lodash';
-import { v4 as uuidv4 } from 'uuid';
 
 /**
  * @class Modal
@@ -109,7 +108,7 @@ export default class Modal {
      */
     this.windowYPosition = 0;
 
-    this.uuid = `${baseName}__${uuidv4()}`;
+    this.uuid = `${baseName}__${crypto.randomUUID()}`;
 
     this.setAttr();
     this.bindEvents();

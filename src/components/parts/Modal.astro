@@ -1,6 +1,4 @@
 ---
-import { v4 as uuidv4 } from 'uuid';
-
 export interface Props {
   buttonText: Array<string>;
   headingLevel: number;
@@ -10,7 +8,7 @@ export interface Props {
 
 const { buttonText, headingLevel, headingText, bodyText } = Astro.props;
 const Heading: any = `h${headingLevel}`;
-const uuid = uuidv4();
+const uuid = crypto.randomUUID();
 ---
 
 <div class="root modal">
