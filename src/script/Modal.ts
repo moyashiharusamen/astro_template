@@ -2,7 +2,7 @@
  *  @fileoverview モーダルを制御するJS
  *  ============================================================ */
 
-import { isString } from 'lodash';
+import { isBoolean, isString } from 'lodash';
 
 /**
  * @class Modal
@@ -132,16 +132,14 @@ export default class Modal {
    * @return {Void}
    */
   bindEvents() {
-    this.button.addEventListener('click', () => {
-      this.button.getAttribute('aria-expanded') === 'false' ? this.open() : this.close();
-    });
-    this.modalOverlay.addEventListener('click', () => this.close());
+    this.button.addEventListener('click', () => this.toggle());
+    this.modalOverlay.addEventListener('click', () => this.toggle(false));
     this.base.addEventListener('keyup', e => {
       if (
         (e.key === 'Escape' || e.key === 'Esc') &&
         this.modalBody.getAttribute('aria-hidden') === 'false'
       ) {
-        this.close();
+        this.toggle(false)
       }
     });
     this.base.addEventListener('keydown', e => {
@@ -162,31 +160,43 @@ export default class Modal {
   }
 
   /**
-   * モーダルを開く
-   * @return {Void}
+   * モーダルの開閉
+   * @param {boolean} shouldOpen  開閉状態を明示する場合は真偽値を与える。引数なしのときは開閉状態のモーダルになる。
+   * @return {Accordion}
    */
-  open() {
-    this.windowYPosition = window.pageYOffset;
-    this.body.classList.add(this.openClass);
-    this.body.style.top = `${-this.windowYPosition}px`;
-    this.modalBody.setAttribute('aria-hidden', 'false');
-    this.modalBody.setAttribute('tabindex', '0');
-    this.button.setAttribute('aria-expanded', 'true');
-    this.firstFocusableElement.focus();
+  toggle(shouldOpen: boolean = false) {
+    this.isOpened = Boolean(shouldOpen) ? shouldOpen : !this.isOpened;
+
+    return this;
   }
 
   /**
-   * モーダルを閉じる
-   * @return {Void}
+   * 開閉状態、 true なら「開いている」
+   * @returns {boolean}
    */
-  close() {
-    this.body.classList.remove(this.openClass);
-    this.body.style.top = '';
-    this.modalBody.setAttribute('aria-hidden', 'true');
-    this.modalBody.removeAttribute('tabindex');
-    this.button.setAttribute('aria-expanded', 'false');
-    window.scrollTo(0, this.windowYPosition);
-    this.button.focus();
+  get isOpened() {
+    return this.modalBody.getAttribute('aria-hidden') !== 'true';
+  }
+
+  set isOpened(isOpened: boolean) {
+    if (isBoolean(isOpened)) {
+      this.modalBody.setAttribute('aria-hidden', `${!isOpened}`);
+      this.button.setAttribute('aria-expanded', `${isOpened}`);
+
+      if (isOpened) {
+        this.windowYPosition = window.pageYOffset;
+        this.body.classList.add(this.openClass);
+        this.body.style.top = `${-this.windowYPosition}px`;
+        this.modalBody.setAttribute('tabindex', '0');
+        this.firstFocusableElement.focus();
+      } else if (!isOpened) {
+        this.body.classList.remove(this.openClass);
+        this.body.style.top = '';
+        this.modalBody.removeAttribute('tabindex');
+        window.scrollTo(0, this.windowYPosition);
+        this.button.focus();
+      }
+    }
   }
 
   /**
