@@ -5,14 +5,14 @@ export interface Props {
 }
 
 const { htmlELement, gray } = Astro.props;
-const Section = htmlELement ? htmlELement : 'section';
+const SectionElement = htmlELement ? htmlELement : 'section';
 ---
 
-<Section class:list={['root', { gray }]}>
+<SectionElement class:list={['root', { gray }]}>
   <div class="section__inner">
     <slot />
   </div>
-</Section>
+</SectionElement>
 
 <style lang="scss">
   @use '../../style/global' as g;
