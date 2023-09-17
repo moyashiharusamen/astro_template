@@ -58,6 +58,9 @@ export default class Toggle extends Events {
      */
     this.buttonMark = <HTMLElement>base.querySelector(`.${baseName}__button__mark`);
 
+    /**
+     * @type {string} ユニークな ID
+     */
     this.uuid = `${baseName}__${crypto.randomUUID()}`;
 
     this.bindEvents();

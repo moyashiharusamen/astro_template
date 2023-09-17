@@ -108,6 +108,9 @@ export default class Modal {
      */
     this.windowYPosition = 0;
 
+    /**
+     * @type {string} ユニークな ID
+     */
     this.uuid = `${baseName}__${crypto.randomUUID()}`;
 
     this.setAttr();
