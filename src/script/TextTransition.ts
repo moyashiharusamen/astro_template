@@ -69,10 +69,10 @@ export default class TextTransition {
     /**
      * @type {Function} 交差したときに呼び出す関数
      * @return {Void}
-     * @param entries
+     * @param {IntersectionObserverEntry[]} entries
      */
-    const doWhenIntersect = function (entries: any) {
-      entries.forEach((entry: any) => {
+    const doWhenIntersect = function (entries: IntersectionObserverEntry[]) {
+      entries.forEach((entry: IntersectionObserverEntry) => {
         if (entry.isIntersecting) {
           let i = 0;
 
@@ -103,7 +103,7 @@ export default class TextTransition {
 
     // 要素の下が window の上よりも下にあるならクラスを付与
     if (elementPositionBottom < this.windowScrollPosition) {
-      [...this.items].forEach((element: any) => element.classList.add(this.passedClass));
+      [...this.items].forEach((element: Element) => element.classList.add(this.passedClass));
     }
   }
 }

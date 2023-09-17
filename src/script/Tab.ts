@@ -66,13 +66,13 @@ export default class Tab {
   setAttr() {
     let defaultDisplayNumber: number;
     this.buttonWrap.setAttribute('role', 'tablist');
-    [...this.bodies].forEach((body: any, i) => {
+    [...this.bodies].forEach((body: Element, i) => {
       body.setAttribute('role', 'tabpanel');
       body.setAttribute('id', `${this.baseName}_${i + 1}`);
 
       if (body.getAttribute('aria-hidden') === 'false') defaultDisplayNumber = i;
     });
-    [...this.buttons].forEach((button: any, i) => {
+    [...this.buttons].forEach((button: Element, i) => {
       button.setAttribute('role', 'tab');
       button.setAttribute('aria-controls', `${this.baseName}_${i + 1}`);
 
@@ -93,7 +93,8 @@ export default class Tab {
   bindEvents() {
     [...this.buttons].forEach((button) => {
       button.addEventListener('click', e => {
-        const target: any = e.target;
+        if (!(e.target instanceof HTMLElement)) return;
+        const target= e.target;
         if (target.getAttribute('aria-selected') === 'true') return;
 
         this.toggle(target, false);
@@ -115,13 +116,13 @@ export default class Tab {
 
     if (targetElement.getAttribute('aria-hidden') === 'false') return;
 
-    [...this.buttons].forEach((button: any) => {
+    [...this.buttons].forEach((button: Element) => {
       button.setAttribute('aria-selected', 'false');
       button.setAttribute('tabindex', '-1');
     });
     target.setAttribute('aria-selected', 'true');
     target.setAttribute('tabindex', '0');
-    [...this.bodies].forEach((body: any) => {
+    [...this.bodies].forEach((body: Element) => {
       body.setAttribute('aria-hidden', 'true');
     });
     targetElement.setAttribute('aria-hidden', 'false');
