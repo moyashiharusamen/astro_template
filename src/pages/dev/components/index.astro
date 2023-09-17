@@ -2,6 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Section from '@src/components/common/Section.astro';
 import Heading from '@src/components/parts/Heading.astro';
+import Carousel from '@src/components/parts/Carousel.astro';
 import Text from '@src/components/parts/Text.astro';
 import MediaImage from '@src/components/parts/MediaImage.astro';
 import LinkButton from '@src/components/parts/LinkButton.astro';
@@ -319,6 +320,26 @@ import TextTransition from '@src/components/parts/TextTransition.astro';
           'テキストの色が左から右へ遷移する機能を制御するコンポーネントです',
           '引数 text （必須）は配列1つ毎に p 要素が生成されます',
           '上記で生成された p 要素毎（1行毎）に文字色が遷移します',
+        ]}
+      />
+    </Section>
+
+    <Section gray={true}>
+      <Heading
+        level={2}
+        text="Carousel コンポーネント"
+      />
+
+      <Carousel></Carousel>
+
+      <Heading
+        level={3}
+        text="コンポーネント説明"
+      />
+
+      <List
+        text={[
+          'ライブラリのsplide.js（https://ja.splidejs.com/）を使用しています',
         ]}
       />
     </Section>
