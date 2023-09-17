@@ -2,15 +2,21 @@
 export interface Props {
   level: 1 | 2 | 3 | 4 | 5 | 6;
   text: string;
+  id?: string;
   centering?: boolean;
 }
 
-const { level, text, centering } = Astro.props;
-const Heading = `h${level}`;
+const { level, text, id, centering } = Astro.props;
+const HeadingElement: any = `h${level}`;
 ---
 
-<header class:list={['root', `-${Heading}`, { centering }]}>
-  <Heading class:list="heading">{text}</Heading>
+<header class:list={['root', `-${HeadingElement}`, { centering }]}>
+  <HeadingElement
+    id={id}
+    class:list="heading"
+  >
+    {text}
+  </HeadingElement>
 </header>
 
 <style lang="scss">

@@ -8,7 +8,7 @@ export interface Props {
 
 const { buttonText, headingLevel, headingText, bodyText } = Astro.props;
 const Heading: any = `h${headingLevel}`;
-const uuid = crypto.randomUUID();
+const uuid = `Modal_${crypto.randomUUID()}`;
 ---
 
 <div class="root modal">
