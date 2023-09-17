@@ -1,0 +1,67 @@
+---
+import { SITE } from '@src/config';
+import '@splidejs/splide/css';
+const { rootPath } = SITE;
+
+// export interface Props {}
+
+// const { } = Astro.props;
+---
+
+<div class="root carousel">
+  <div class="inner">
+    <div class="splide" aria-label="Splideの基本的なHTML">
+      <div class="splide__track">
+        <ul class="splide__list">
+          <li class="splide__slide">
+            <img
+              src=`${rootPath}assets/image/dummy2.webp`
+              alt=""
+              width="1200"
+              height="400"
+            >
+          </li>
+
+          <li class="splide__slide">
+            <img
+              src=`${rootPath}assets/image/dummy2.webp`
+              alt=""
+              width="1200"
+              height="400"
+            >
+          </li>
+
+          <li class="splide__slide">
+            <img
+              src=`${rootPath}assets/image/dummy2.webp`
+              alt=""
+              width="1200"
+              height="400"
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  @use '../../style/global' as g;
+
+  // ---------- 基底要素 ----------
+  .root {
+  }
+
+  // ---------- 基底要素のインナー要素 ----------
+  .inner {
+  }
+
+  .splide__slide {
+    display: flex;
+    justify-content: center;
+  }
+
+  .splide__slide > img {
+    width: 100%;
+  }
+</style>

@@ -33,6 +33,7 @@
     "vue": "^3.2.47"
   },
   "devDependencies": {
+    "@splidejs/splide": "^4.1.4",
     "@types/lodash": "^4.14.192",
     "@typescript-eslint/eslint-plugin": "^5.57.0",
     "@typescript-eslint/parser": "^5.57.0",
