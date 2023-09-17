@@ -18,7 +18,7 @@ export default class Carousel {
    * 現在の HTML ページ内にあるすべての Carousel ブロックをインスタンス化する
    */
   static createAll(name: string = Carousel.baseName) {
-    document.querySelectorAll(`.${name}`).forEach((element: Object) => {
+    [...document.getElementsByClassName(`${name}`)].forEach((element: Object) => {
       new Carousel(element, name);
     });
   }

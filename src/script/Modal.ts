@@ -34,7 +34,7 @@ export default class Modal {
    * 現在の HTML ページ内にあるすべての Modal ブロックをインスタンス化する
    */
   static createAll(name: string = Modal.baseName) {
-    document.querySelectorAll(`.${name}`).forEach((element: Object) => {
+    [...document.getElementsByClassName(`${name}`)].forEach((element: Object) => {
       new Modal(element, name);
     });
   }
@@ -53,7 +53,7 @@ export default class Modal {
     const base = (this.base = <HTMLElement>element);
 
     /**
-     * @type {HTMLElement} HTML の body 要素
+     * @type {HTMLBodyElement} HTML の body 要素
      */
     this.body = <HTMLBodyElement>document.querySelector('body');
 

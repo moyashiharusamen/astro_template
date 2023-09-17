@@ -14,15 +14,15 @@ export default class TextTransition {
   /**
    * 現在の HTML ページ内にあるすべての TextTransition ブロックをインスタンス化する
    */
-  static createAll() {
-    document.querySelectorAll(`.${TextTransition.baseName}`).forEach((element: Object) => {
+  static createAll(name: string = TextTransition.baseName) {
+    [...document.getElementsByClassName(`${name}`)].forEach((element: Object) => {
       new TextTransition(element);
     });
   }
 
   baseName: string;
   base: HTMLElement;
-  items: NodeList;
+  items: HTMLCollection;
   windowScrollPosition: number;
   passedClass: string;
   observer: Object;
@@ -40,9 +40,9 @@ export default class TextTransition {
     const base = (this.base = <HTMLElement>element);
 
     /**
-     * @type {HTMLElement} フェードインさせる要素群
+     * @type {HTMLCollection} フェードインさせる要素群
      */
-    const items = (this.items = <any>base.querySelectorAll(`.${baseName}__item`));
+    const items = (this.items = <HTMLCollection>base.getElementsByClassName(`${baseName}__item`));
 
     /**
      * @type {number} window のスクロール位置
@@ -103,7 +103,7 @@ export default class TextTransition {
 
     // 要素の下が window の上よりも下にあるならクラスを付与
     if (elementPositionBottom < this.windowScrollPosition) {
-      this.items.forEach((element: any) => element.classList.add(this.passedClass));
+      [...this.items].forEach((element: any) => element.classList.add(this.passedClass));
     }
   }
 }

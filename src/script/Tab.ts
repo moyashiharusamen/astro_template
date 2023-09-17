@@ -10,8 +10,8 @@ export default class Tab {
   baseName: string;
   base: HTMLElement;
   buttonWrap: HTMLElement;
-  buttons: NodeList;
-  bodies: NodeList;
+  buttons: HTMLCollection;
+  bodies: HTMLCollection;
 
   /**
    * @property {string} ブロック名
@@ -22,7 +22,7 @@ export default class Tab {
    * 現在の HTML ページ内にあるすべての Tab ブロックをインスタンス化する
    */
   static createAll(name: string = Tab.baseName) {
-    document.querySelectorAll(`.${name}`).forEach((element: Object) => {
+    [...document.getElementsByClassName(`${name}`)].forEach((element: Object) => {
       new Tab(element, name);
     });
   }
@@ -46,14 +46,14 @@ export default class Tab {
     this.buttonWrap = <HTMLElement>base.querySelector(`.${baseName}__button__wrap`);
 
     /**
-     * @type {NodeList} タブを制御するボタン要素
+     * @type {HTMLCollection} タブを制御するボタン要素
      */
-    this.buttons = <NodeList>base.querySelectorAll(`.${baseName}__button`);
+    this.buttons = <HTMLCollection>base.getElementsByClassName(`${baseName}__button`);
 
     /**
-     * @type {NodeList} タブボタンで表示非表示される要素
+     * @type {HTMLCollection} タブボタンで表示非表示される要素
      */
-    this.bodies = <NodeList>base.querySelectorAll(`.${baseName}__body`);
+    this.bodies = <HTMLCollection>base.getElementsByClassName(`${baseName}__body`);
 
     this.bindEvents();
     this.setAttr();
@@ -66,13 +66,13 @@ export default class Tab {
   setAttr() {
     let defaultDisplayNumber: number;
     this.buttonWrap.setAttribute('role', 'tablist');
-    this.bodies.forEach((body: any, i) => {
+    [...this.bodies].forEach((body: any, i) => {
       body.setAttribute('role', 'tabpanel');
       body.setAttribute('id', `${this.baseName}_${i + 1}`);
 
       if (body.getAttribute('aria-hidden') === 'false') defaultDisplayNumber = i;
     });
-    this.buttons.forEach((button: any, i) => {
+    [...this.buttons].forEach((button: any, i) => {
       button.setAttribute('role', 'tab');
       button.setAttribute('aria-controls', `${this.baseName}_${i + 1}`);
 
@@ -91,7 +91,7 @@ export default class Tab {
    * @return {Void}
    */
   bindEvents() {
-    this.buttons.forEach((button, i) => {
+    [...this.buttons].forEach((button, i) => {
       button.addEventListener('click', e => {
         const target: any = e.target;
         if (target.getAttribute('aria-selected') === 'true') return;
@@ -115,13 +115,13 @@ export default class Tab {
 
     if (targetElement.getAttribute('aria-hidden') === 'false') return;
 
-    this.buttons.forEach((button: any) => {
+    [...this.buttons].forEach((button: any) => {
       button.setAttribute('aria-selected', 'false');
       button.setAttribute('tabindex', '-1');
     });
     target.setAttribute('aria-selected', 'true');
     target.setAttribute('tabindex', '0');
-    this.bodies.forEach((body: any) => {
+    [...this.bodies].forEach((body: any) => {
       body.setAttribute('aria-hidden', 'true');
     });
     targetElement.setAttribute('aria-hidden', 'false');

@@ -23,7 +23,7 @@ export default class Toggle extends Events {
    * 現在の HTML ページ内にあるすべての Toggle ブロックをインスタンス化する
    */
   static createAll(name: string = Toggle.baseName) {
-    document.querySelectorAll(`.${name}`).forEach((element: Object) => {
+    [...document.getElementsByClassName(`${name}`)].forEach((element: Object) => {
       return new Toggle(element, name);
     });
   }

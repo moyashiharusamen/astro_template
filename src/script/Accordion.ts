@@ -22,7 +22,7 @@ export default class Accordion {
    * 現在の HTML ページ内にあるすべての Accordion ブロックをインスタンス化する
    */
   static createAll(name: string = Accordion.baseName) {
-    document.querySelectorAll(`.${name}`).forEach((element: Object) => {
+    [...document.getElementsByClassName(`${name}`)].forEach((element: Object) => {
       new Accordion(element, name);
     });
   }
@@ -43,7 +43,7 @@ export default class Accordion {
     /**
      * @type {HTMLElement} トグルさせる要素
      */
-    const item = base.querySelectorAll(`.${baseName}Item`);
+    const item = base.getElementsByClassName(`${baseName}Item`);
 
     this.events = new Events.EventEmitter();
 
