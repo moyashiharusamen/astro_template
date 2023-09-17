@@ -19,16 +19,14 @@ export default class Carousel {
    */
   static createAll(name: string = Carousel.baseName) {
     [...document.getElementsByClassName(`${name}`)].forEach((element: Object) => {
-      new Carousel(element, name);
+      new Carousel();
     });
   }
 
   /**
    * インスタンスを生成
-   * @param {Object} element 基底要素ノード、またはそれを探すための文字列
-   * @param {string} name 設定したいブロック名
    */
-  constructor(element: Object, name: string) {
+  constructor() {
     const splide = new Splide('.splide', {
       padding: '20px',
       lazyLoad: 'nearby',

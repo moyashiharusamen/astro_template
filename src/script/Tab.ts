@@ -91,7 +91,7 @@ export default class Tab {
    * @return {Void}
    */
   bindEvents() {
-    [...this.buttons].forEach((button, i) => {
+    [...this.buttons].forEach((button) => {
       button.addEventListener('click', e => {
         const target: any = e.target;
         if (target.getAttribute('aria-selected') === 'true') return;
