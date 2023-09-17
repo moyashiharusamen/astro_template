@@ -1,16 +1,25 @@
 ---
 import { SITE } from '@src/config';
 import '@splidejs/splide/css';
+import Heading from './Heading.astro';
 const { rootPath } = SITE;
 
 // export interface Props {}
 
 // const { } = Astro.props;
+const uuid = `carousel_${crypto.randomUUID()}`;
 ---
 
-<div class="root carousel">
+<div class="root carousel" aria-labelledby={uuid}>
   <div class="inner">
-    <div class="splide" aria-label="Splideの基本的なHTML">
+    <Heading
+      level={3}
+      text="Carousel"
+      id={uuid}
+    />
+
+    <!-- <div class="splide" aria-label="Splideの基本的なHTML"> -->
+    <div class="splide">
       <div class="splide__track">
         <ul class="splide__list">
           <li class="splide__slide">
