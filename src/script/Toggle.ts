@@ -99,16 +99,6 @@ export default class Toggle extends Events {
    * トグルを開く
    * @return {Void}
    */
-  open() {
-    this.body.setAttribute('aria-hidden', 'false');
-    this.button.setAttribute('aria-expanded', 'true');
-    this.buttonMark.textContent = '閉じる';
-  }
-
-  /**
-   * トグルを開く
-   * @return {Void}
-   */
   close() {
     this.body.setAttribute('aria-hidden', 'true');
     this.button.setAttribute('aria-expanded', 'false');
