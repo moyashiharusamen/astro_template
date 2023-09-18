@@ -38,5 +38,14 @@ a {
   color: g.$base-text-color;
 }
 
+summary {
+  display: block;
+
+  // Safari で表示されるデフォルトのアイコンを非表示にする
+  &::-webkit-details-marker {
+    display: none;
+  }
+}
+
 // :where(:focus-visible) {
 // }
