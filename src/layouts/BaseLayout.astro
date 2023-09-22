@@ -8,14 +8,12 @@ export interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
-  useLenis?: boolean;
 }
 
 const {
   title = SITE.title,
   description = SITE.description,
   ogImage = SITE.ogImage,
-  useLenis = false, // Lenis を使用するには scroll-behavior: smooth; を無効にする必要がある
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, SITE.urlOrigin);
@@ -23,10 +21,7 @@ const socialImageURL = new URL(ogImage ? ogImage : SITE.ogImage, SITE.urlOrigin)
 ---
 
 <!DOCTYPE html>
-<html
-  lang="ja"
-  class={useLenis ? 'useLenis' : ''}
->
+<html lang="ja">
   <head>
     <meta charset="UTF-8" />
     <meta
