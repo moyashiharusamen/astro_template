@@ -29,6 +29,7 @@
   "dependencies": {
     "@acab/reset.css": "^0.5.3",
     "@astrojs/vue": "^2.1.0",
+    "@studio-freight/lenis": "^1.0.23",
     "astro": "^2.1.8",
     "vue": "^3.2.47"
   },
