@@ -41,6 +41,17 @@ a {
 // :where(:focus-visible) {
 // }
 
+summary {
+  display: block;
+
+  // Safari で表示されるデフォルトのアイコンを非表示にする
+  &::-webkit-details-marker {
+    display: none;
+  }
+}
+
+
+
 // Lenis 用のスタイル
 html.lenis {
   height: auto;

@@ -1,4 +1,5 @@
 import Toggle from './Toggle';
+import ToggleNew from './ToggleNew';
 import Modal from './Modal';
 import Accordion from './Accordion';
 import Tab from './Tab';
@@ -7,6 +8,7 @@ import Carousel from './Carousel';
 import MomentumScrolling from './MomentumScrolling';
 
 Toggle.createAll();
+ToggleNew.createAll();
 Modal.createAll();
 Accordion.createAll();
 Tab.createAll();
