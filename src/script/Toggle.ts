@@ -10,12 +10,9 @@ import { isBoolean, isString } from 'lodash';
  */
 export default class Toggle extends Events {
   base: HTMLElement;
-  details: HTMLElement;
   body: HTMLElement;
   button: HTMLElement;
-  animationTiming: Object;
-  closingAnimationKeyframes: Function;
-  openingAnimationKeyframes: Function;
+  buttonMark: HTMLElement;
 
   /**
    * @property {string} ブロック名
@@ -47,11 +44,6 @@ export default class Toggle extends Events {
     const base = (this.base = <HTMLElement>element);
 
     /**
-     * @type {HTMLElement} detail 要素
-     */
-    this.details = <HTMLElement>base.querySelector(`.${baseName}__details`);
-
-    /**
      * @type {HTMLElement} トグルの開閉される本体要素
      */
     this.body = <HTMLElement>base.querySelector(`.${baseName}__body`);
@@ -62,42 +54,25 @@ export default class Toggle extends Events {
     this.button = <HTMLElement>base.querySelector(`.${baseName}__button`);
 
     /**
-     * @type {Object} トグルの開閉をアニメーションさせるタイミングの設定
+     * @type {HTMLElement} ボタン内にあるマーク部分要素
      */
-    this.animationTiming = {
-      duration: 400,
-      easing: 'ease-in-out',
-    };
+    this.buttonMark = <HTMLElement>base.querySelector(`.${baseName}__button__mark`);
 
     /**
-     * @type {Function} トグルを閉じるアニメーションのキーフレーム
+     * @type {string} ユニークな ID
      */
-    this.closingAnimationKeyframes = (content: HTMLElement) => [
-      {
-        height: content.offsetHeight + 'px',
-        opacity: 1,
-      },
-      {
-        height: 0,
-        opacity: 0,
-      },
-    ];
-
-    /**
-     * @type {Function} トグルを開くアニメーションのキーフレーム
-     */
-    this.openingAnimationKeyframes = (content: HTMLElement) => [
-      {
-        height: 0,
-        opacity: 0,
-      },
-      {
-        height: content.offsetHeight + 'px',
-        opacity: 1,
-      },
-    ];
+    this.uuid = `${baseName}__${crypto.randomUUID()}`;
 
     this.bindEvents();
+    this.setAttr();
+  }
+
+  /**
+   * 属性の初期設定
+   * @return {Void}
+   */
+  setAttr() {
+    this.button.setAttribute('aria-expanded', 'false');
   }
 
   /**
@@ -107,10 +82,6 @@ export default class Toggle extends Events {
   bindEvents() {
     this.button.addEventListener('click', e => {
       e.preventDefault();
-
-      // 連打対策
-      if (this.details.dataset.animationStatus === 'running') return;
-
       this.emit('toggle', this);
       this.toggle();
     });
@@ -128,49 +99,42 @@ export default class Toggle extends Events {
   }
 
   /**
+   * トグルを開く
+   * @return {Void}
+   */
+  close() {
+    this.body.setAttribute('aria-hidden', 'true');
+    this.button.setAttribute('aria-expanded', 'false');
+    this.buttonMark.textContent = '開く';
+  }
+
+  /**
+   * @type {string} インスタンスの固有 ID
+   */
+  get uuid() {
+    return this.body.getAttribute('id') || '';
+  }
+
+  set uuid(uuid: string) {
+    if (isString(uuid)) {
+      this.button.setAttribute('aria-controls', uuid);
+      this.body.setAttribute('id', uuid);
+    }
+  }
+
+  /**
    * 開閉状態、 true なら「開いている」
    * @returns {boolean}
    */
   get isOpened() {
-    return this.details.open;
+    return this.body.getAttribute('aria-hidden') !== 'true';
   }
 
   set isOpened(isOpened: boolean) {
-    if (!isBoolean(isOpened)) return;
-    this.isOpened ? this.close() : this.open();
-  }
-
-  /**
-   * トグルを開く
-   * @return {Void}
-   */
-  open() {
-    const openingAnimation = this.body.animate(
-      this.openingAnimationKeyframes(this.body),
-      this.animationTiming
-    );
-
-    this.details.setAttribute('open', 'true');
-    this.details.dataset.animationStatus = 'running';
-    openingAnimation.onfinish = () => {
-      this.details.dataset.animationStatus = '';
-    };
-  }
-
-  /**
-   * トグルを閉じる
-   * @return {Void}
-   */
-  close() {
-    const closingAnimation = this.body.animate(
-      this.closingAnimationKeyframes(this.body),
-      this.animationTiming
-    );
-
-    this.details.dataset.animationStatus = 'running';
-    closingAnimation.onfinish = () => {
-      this.details.removeAttribute('open');
-      this.details.dataset.animationStatus = '';
-    };
+    if (isBoolean(isOpened)) {
+      this.body.setAttribute('aria-hidden', `${!isOpened}`);
+      this.button.setAttribute('aria-expanded', `${isOpened}`);
+      this.buttonMark.textContent = isOpened ? '閉じる' : '開く';
+    }
   }
 }
