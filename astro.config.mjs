@@ -17,7 +17,9 @@ export default defineConfig({
           entryFileNames: `assets/script/[name].js`
         },
       },
-      cssCodeSplit: true, // CSSを分割する
+      // CSS を分割する
+      // まとめて出力する場合は false にする
+      cssCodeSplit: true,
     },
   },
   integrations: [
