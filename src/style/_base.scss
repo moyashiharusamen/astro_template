@@ -30,6 +30,13 @@ body {
   }
 }
 
+body.-is-modal-open {
+  width: 100%;
+  overflow-y: hidden;
+  position: fixed;
+  left: 0;
+}
+
 main {
   flex-grow: 1;
 }
@@ -48,6 +55,11 @@ summary {
   &::-webkit-details-marker {
     display: none;
   }
+}
+
+dialog {
+  background: transparent;
+  border: none;
 }
 
 

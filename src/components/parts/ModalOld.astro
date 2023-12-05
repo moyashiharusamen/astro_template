@@ -8,22 +8,23 @@ export interface Props {
 
 const { buttonText, headingLevel, headingText, bodyText } = Astro.props;
 const Heading: any = `h${headingLevel}`;
-const uuid = `Modal_${crypto.randomUUID()}`;
+const uuid = `ModalOld_${crypto.randomUUID()}`;
 ---
 
-<div class="root modal">
+<div class="root modalOld">
   <button
     type="button"
-    class="button modal__button"
+    class="button modalOld__button"
   >
     {buttonText.map(item => <span>{item}</span>)}
   </button>
 
-  <dialog
-    class="nav modal__body"
+  <div
+    role="dialog"
+    class="nav modalOld__body"
     aria-labelledby={uuid}
   >
-    <div class="modal__body__inner">
+    <div class="modalOld__body__inner">
       <Heading id={uuid}>
         {headingText.map(item => <span>{item}</span>)}
       </Heading>
@@ -35,11 +36,11 @@ const uuid = `Modal_${crypto.randomUUID()}`;
       <a href="__dummy__">ダミーリンク</a>
       <a href="__dummy__">ダミーリンク</a>
 
-      <button class="modal__button__close">
-        <span class="modal__button__close__text">閉じる</span>
+      <button class="modalOld__button__close">
+        <span class="modalOld__button__close__text">閉じる</span>
       </button>
     </div>
-  </dialog>
+  </div>
 </div>
 
 <style lang="scss">
@@ -59,7 +60,7 @@ const uuid = `Modal_${crypto.randomUUID()}`;
   // }
 
   // ---------- モーダル本体要素 ----------
-  .modal__body {
+  .modalOld__body {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,16 +75,12 @@ const uuid = `Modal_${crypto.randomUUID()}`;
     transition: opacity 0.4s ease, visibility 0.4s ease;
   }
 
-  .modal__body::backdrop {
-    background: none;
-  }
-
-  .modal__body[open] {
-    opacity: 1;
+  .modalOld__body[aria-hidden='false'] {
     visibility: visible;
+    opacity: 1;
   }
 
-  .modal__body__inner {
+  .modalOld__body__inner {
     width: g.pxToVw(300, 'sp');
     padding: g.rem(20px) g.rem(30px);
     background: #fff;
@@ -98,12 +95,12 @@ const uuid = `Modal_${crypto.randomUUID()}`;
     }
   }
 
-  .modal__body[aria-hidden='false'] .modal__body__inner {
+  .modalOld__body[aria-hidden='false'] .modalOld__body__inner {
     opacity: 1;
   }
 
   // ---------- モーダルを閉じるボタン要素 ----------
-  .modal__button__close {
+  .modalOld__button__close {
     width: g.rem(30px);
     height: g.rem(30px);
     position: absolute;
@@ -113,8 +110,8 @@ const uuid = `Modal_${crypto.randomUUID()}`;
   }
 
   // 線
-  .modal__button__close::before,
-  .modal__button__close::after {
+  .modalOld__button__close::before,
+  .modalOld__button__close::after {
     content: '';
     display: block;
     width: 30px;
@@ -125,15 +122,15 @@ const uuid = `Modal_${crypto.randomUUID()}`;
     inset: 0;
   }
 
-  .modal__button__close::before {
+  .modalOld__button__close::before {
     transform: rotate(45deg);
   }
 
-  .modal__button__close::after {
+  .modalOld__button__close::after {
     transform: rotate(-45deg);
   }
 
-  .modal__button__close__text {
+  .modalOld__button__close__text {
     @include g.visibilityHidden();
   }
 </style>

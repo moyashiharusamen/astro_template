@@ -10,18 +10,26 @@ import { isBoolean, isString } from 'lodash';
 export default class Modal {
   base: HTMLElement;
   body: HTMLBodyElement;
-  modalBody: HTMLDialogElement;
+  modalBody: HTMLElement;
   button: HTMLElement;
   buttonClose: HTMLElement;
+  focusableElement: Array<HTMLElement>;
+  firstFocusableElement: HTMLElement;
+  lastFocusableElement: HTMLElement;
   modalOverlay: HTMLDivElement;
-  activeButtonClass: string;
   openClass: string;
   windowYPosition: number;
 
   /**
    * @property {string} ブロック名
    */
-  static baseName: string = 'modal';
+  static baseName: string = 'modalOld';
+
+  /**
+   * @type {string} フォーカス可能と判断する対象となる要素名
+   */
+  static focusableElementList: string =
+    'a[href], area[href], input, select, textarea, button, output, video, audio, object, embed, iframe, [tabindex], [onclick]';
 
   /**
    * 現在の HTML ページ内にあるすべての Modal ブロックをインスタンス化する
@@ -51,9 +59,9 @@ export default class Modal {
     this.body = <HTMLBodyElement>document.querySelector('body');
 
     /**
-     * @type {HTMLDialogElement} モーダルの開閉される本体要素
+     * @type {HTMLElement} モーダルの開閉される本体要素
      */
-      this.modalBody = <HTMLDialogElement>base.querySelector(`.${baseName}__body`);
+    const modalBody = (this.modalBody = <HTMLElement>base.querySelector(`.${baseName}__body`));
 
     /**
      * @type {HTMLElement} モーダルの開閉を制御するボタン要素
@@ -66,16 +74,35 @@ export default class Modal {
     this.buttonClose = <HTMLElement>base.querySelector(`.${baseName}__button__close`);
 
     /**
+     * @type {NodeList} モーダル内のフォーカス可能な要素群
+     */
+    this.focusableElement = (() => {
+      const elementList: Array<any> = [];
+      modalBody
+        .querySelectorAll(Modal.focusableElementList)
+        .forEach(element => elementList.push(element));
+      if (elementList.length === 0) elementList.push(this.modalBody);
+      return elementList;
+    })();
+
+    /**
+     * @type {HTMLElement} モーダル内のフォーカス可能な要素群の中の最初の要素
+     */
+    this.firstFocusableElement = <HTMLElement>this.focusableElement[0];
+
+    /**
+     * @type {HTMLElement} モーダル内のフォーカス可能な要素群の中の最後の要素
+     */
+    this.lastFocusableElement = <HTMLElement>(
+      this.focusableElement[this.focusableElement.length - 1]
+    );
+
+    /**
      * @type {HTMLElement} モーダル内の透過背景要素
      */
     this.modalOverlay = <HTMLDivElement>document.createElement('div');
     this.modalOverlay.classList.add(`${baseName}__overlay`);
     this.modalBody.appendChild(this.modalOverlay);
-
-    /**
-     * @type {string} 押下されたボタンを示す class 属性名
-     */
-    this.activeButtonClass = '-is-active-button';
 
     /**
      * @type {string} モーダルが開いたときに付与される class 属性名
@@ -102,8 +129,11 @@ export default class Modal {
    */
   setAttr() {
     this.button.setAttribute('aria-expanded', 'false');
+    this.modalBody.setAttribute('role', 'dialog');
     this.modalBody.setAttribute('aria-modal', 'true');
     this.modalBody.setAttribute('aria-hidden', 'true');
+
+    if (this.focusableElement.length === 0) this.modalBody.setAttribute('tabindex', '0');
   }
 
   /**
@@ -111,10 +141,7 @@ export default class Modal {
    * @return {Void}
    */
   bindEvents() {
-    this.button.addEventListener('click', (e: any) => {
-      e.target.classList.add('-is-active');
-      this.toggle();
-    });
+    this.button.addEventListener('click', () => this.toggle());
     this.buttonClose.addEventListener('click', () => this.toggle(false));
     this.modalOverlay.addEventListener('click', () => this.toggle(false));
     this.base.addEventListener('keyup', e => {
@@ -123,6 +150,21 @@ export default class Modal {
         this.modalBody.getAttribute('aria-hidden') === 'false'
       ) {
         this.toggle(false)
+      }
+    });
+    this.base.addEventListener('keydown', e => {
+      if (e.code === 'Tab') {
+        if (e.shiftKey) {
+          if (document.activeElement === this.firstFocusableElement) {
+            e.preventDefault();
+            this.lastFocusableElement.focus();
+          }
+        } else {
+          if (document.activeElement === this.lastFocusableElement) {
+            e.preventDefault();
+            this.firstFocusableElement.focus();
+          }
+        }
       }
     });
   }
@@ -153,22 +195,23 @@ export default class Modal {
 
       if (isOpened) {
         this.modalBody.classList.add('-from-show');
-        this.modalBody.showModal();
-        requestAnimationFrame(() => this.modalBody.classList.remove('-from-show'));
         this.windowYPosition = window.scrollY;
         this.body.classList.add(this.openClass);
         this.body.style.top = `${-this.windowYPosition}px`;
+        this.modalBody.setAttribute('tabindex', '0');
+        requestAnimationFrame(() => this.modalBody.classList.remove('-from-show'));
+        this.firstFocusableElement.focus();
       } else if (!isOpened) {
         this.modalBody.classList.add('-to-hide');
+        this.body.classList.remove(this.openClass);
+        this.body.style.top = '';
+        this.modalBody.removeAttribute('tabindex');
+        window.scrollTo(0, this.windowYPosition);
         this.modalBody.addEventListener('transitionend', () => {
           this.modalBody.classList.remove('-to-hide');
           this.modalBody.close();
         }, { once: true });
-        this.body.classList.remove(this.openClass);
-        this.body.style.top = '';
-        window.scrollTo(0, this.windowYPosition);
-        if (this.button.classList.contains(this.activeButtonClass)) this.button.focus();
-        this.button.classList.remove(this.activeButtonClass);
+        this.button.focus();
       }
     }
   }

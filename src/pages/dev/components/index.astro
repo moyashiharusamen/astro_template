@@ -9,6 +9,7 @@ import LinkButton from '@src/components/parts/LinkButton.astro';
 import Toggle from '@src/components/parts/Toggle.astro';
 import ToggleNew from '@src/components/parts/ToggleNew.astro';
 import Modal from '@src/components/parts/Modal.astro';
+import ModalOld from '@src/components/parts/ModalOld.astro';
 import Accordion from '@src/components/templates/Accordion.astro';
 import Tab from '@src/components/parts/Tab.astro';
 import List from '@src/components/parts/List.astro';
@@ -313,6 +314,40 @@ import TextTransition from '@src/components/parts/TextTransition.astro';
     <Section>
       <Heading
         level={2}
+        text="旧 Modal コンポーネント"
+      />
+
+      <ModalOld
+        buttonText={['旧モーダルボタン']}
+        headingLevel={2}
+        headingText={['旧モーダル見出し']}
+        bodyText={[
+          'テキストテキストテキスト',
+          'テキストテキストテキスト',
+          'テキストテキストテキスト',
+        ]}
+      />
+
+      <Heading
+        level={3}
+        text="コンポーネント説明"
+      />
+
+      <List
+        text={[
+          'モーダル機能を制御するコンポーネントです',
+          'dialog 要素を使用しないモーダルコンポーネントです',
+          '引数 buttonText（必須）はモーダルを開閉するボタンに表示するテキストを設定します',
+          '引数 headingLevel（必須）はモーダル内に設置する見出し要素のレベルを設定します',
+          '引数 headingText（必須）は見出しに表示するテキストを設定します',
+          '引数 bodyText（必須）はモーダルで開閉される要素に表示するテキストを設定します',
+        ]}
+      />
+    </Section>
+
+    <Section gray={true}>
+      <Heading
+        level={2}
         text="Tab コンポーネント"
       />
 
@@ -332,7 +367,7 @@ import TextTransition from '@src/components/parts/TextTransition.astro';
       />
     </Section>
 
-    <Section gray={true}>
+    <Section>
       <Heading
         level={2}
         text="TextTransition コンポーネント"
