@@ -209,7 +209,6 @@ export default class Modal {
         window.scrollTo(0, this.windowYPosition);
         this.modalBody.addEventListener('transitionend', () => {
           this.modalBody.classList.remove('-to-hide');
-          this.modalBody.close();
         }, { once: true });
         this.button.focus();
       }
