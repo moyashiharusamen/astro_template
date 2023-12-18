@@ -25,11 +25,11 @@ export default defineConfig({
   integrations: [
     vue(),
     compress({
-      css: true,
-      html: true,
-      img: false,
-      js: true,
-      svg: false,
+      CSS: true,
+      HTML: true,
+      Image: false,
+      JavaScript: true,
+      SVG: false,
     }),
   ],
 });
