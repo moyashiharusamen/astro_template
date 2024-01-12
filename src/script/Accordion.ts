@@ -2,7 +2,7 @@
  *  @fileoverview アコーディオンを制御するJS
  *  ============================================================ */
 
-import Events from 'events';
+import Events from 'eventemitter3';
 import { without } from 'lodash';
 import Toggle from './Toggle';
 
@@ -51,6 +51,7 @@ export default class Accordion {
      * @type {Toggle[]} Toggle のインスタンス群
      */
     this.toggles = [...item].map(element => new Toggle(element, `${baseName}Item`));
+    console.log(this.toggles);
 
     this.bindEvents();
   }

@@ -2,7 +2,7 @@
  *  @fileoverview トグルを制御するJS
  *  ============================================================ */
 
-import Events from 'events';
+import Events from 'eventemitter3';
 import { isBoolean, isString } from 'lodash';
 
 /**

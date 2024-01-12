@@ -42,7 +42,7 @@
     "autoprefixer": "^10.4.14",
     "eslint": "^8.37.0",
     "eslint-plugin-astro": "^0.31.0",
-    "event-emitter": "^0.3.5",
+    "eventemitter3": "^5.0.1",
     "html2canvas": "^1.4.1",
     "lodash": "^4.17.21",
     "markuplint": "^3.5.0",
