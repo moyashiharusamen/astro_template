@@ -51,7 +51,6 @@ export default class Accordion {
      * @type {Toggle[]} Toggle のインスタンス群
      */
     this.toggles = [...item].map(element => new Toggle(element, `${baseName}Item`));
-    console.log(this.toggles);
 
     this.bindEvents();
   }

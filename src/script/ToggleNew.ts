@@ -3,7 +3,7 @@
  *  ============================================================ */
 
 import Events from 'eventemitter3';
-import { isBoolean, isString } from 'lodash';
+import { isBoolean } from 'lodash';
 
 /**
  * @class ToggleNew
